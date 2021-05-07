@@ -19,7 +19,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "lint": "eslint '{lib,tests,examples}/**/*.ts' --fix",
+    "lint": "eslint {lib/**/*.ts,test/**/*.ts,examples/**/*.ts} --fix",
     "prepublish:npm": "npm run build",
     "prerelease": "npm run build",
     "release": "release-it"
