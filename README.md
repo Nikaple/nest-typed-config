@@ -50,10 +50,10 @@ Writing type casting is a pain and hard to maintain, and it's common to use non-
 // config.ts
 export class Config {
     @IsString()
-    public readonly host: string;
+    public readonly host!: string;
 
     @IsNumber()
-    public readonly port: number;
+    public readonly port!: number;
 }
 
 // app.service.ts
