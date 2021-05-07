@@ -23,14 +23,7 @@ export class TypedConfigModule {
       validate = this.validateWithClassValidator.bind(this),
     } = options;
 
-    let rawConfig: any;
-
-    try {
-      rawConfig = await load();
-    } catch (err) {
-      throw new Error(`Configuration load failed with error: ${err.message}`);
-    }
-
+    const rawConfig = await load();
     if (typeof rawConfig !== 'object') {
       throw new Error(
         `Configuration should be an object, received: ${rawConfig}. Please check the return value of \`load()\``,
