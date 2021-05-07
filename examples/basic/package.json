@@ -1,0 +1,17 @@
+{
+    "name": "nest-typed-config-examples",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {
+        "nest-typed-config": "latest"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "start": "nest start --watch",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
