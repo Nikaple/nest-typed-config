@@ -14,6 +14,7 @@
     "url": "https://github.com/Nikaple/nest-typed-config/issues"
   },
   "scripts": {
+    "prepare": "husky install",
     "build": "rimraf -rf dist && tsc -p tsconfig.build.json",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -73,11 +74,5 @@
     "*.ts": [
       "prettier --write"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -c .commitlintrc.json -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
   }
 }
