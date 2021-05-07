@@ -20,6 +20,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "lint": "eslint {lib/**/*.ts,test/**/*.ts,examples/**/*.ts} --fix",
+    "lint:dontfix": "eslint {lib/**/*.ts,test/**/*.ts,examples/**/*.ts}",
     "prepublish:npm": "npm run build",
     "prerelease": "npm run build",
     "release": "release-it"
