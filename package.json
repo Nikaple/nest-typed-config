@@ -27,6 +27,7 @@
   "dependencies": {
     "@iarna/toml": "^2.2.5",
     "axios": "^0.21.1",
+    "chalk": "^4.1.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "cosmiconfig": "^7.0.0",
