@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/Nikaple/nest-typed-config/compare/1.0.2...1.0.3) (2021-05-07)
+
+
+### Bug Fixes
+
+* isGlobal works properly now ([3dd2154](https://github.com/Nikaple/nest-typed-config/commit/3dd2154d2a93e96bad79894d3dfa9fcf77e6e6bd))
+
 ## [1.0.2](https://github.com/Nikaple/nest-typed-config/compare/1.0.2...1.0.3) (2021-05-07)
 
 
