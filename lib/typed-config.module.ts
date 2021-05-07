@@ -20,6 +20,7 @@ export class TypedConfigModule {
       schema: Config,
       normalize = identity,
       validationOptions,
+      isGlobal,
       validate = this.validateWithClassValidator.bind(this),
     } = options;
 
@@ -34,6 +35,7 @@ export class TypedConfigModule {
     const providers = this.getProviders(config, Config);
 
     return {
+      global: isGlobal,
       module: TypedConfigModule,
       providers,
       exports: providers,
