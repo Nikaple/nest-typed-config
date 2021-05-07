@@ -5,7 +5,7 @@ import { DotenvLoaderOptions } from '../../lib/loader/dotenv-loader';
 import { AppModule } from '../src/app.module';
 import { Config, DatabaseConfig, TableConfig } from '../src/config.model';
 
-describe('Environment variables', () => {
+describe('Dotenv loader', () => {
   let app: INestApplication;
   let envBackup = {};
 

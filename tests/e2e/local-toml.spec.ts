@@ -3,7 +3,7 @@ import { Test } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 import { Config, DatabaseConfig, TableConfig } from '../src/config.model';
 
-describe('Environment variables', () => {
+describe('Local toml', () => {
   let app: INestApplication;
 
   beforeEach(async () => {

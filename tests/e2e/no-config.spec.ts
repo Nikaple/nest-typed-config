@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModuleBuilder } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 
-describe('Environment variables', () => {
+describe('No config', () => {
   let app: INestApplication;
   let module: TestingModuleBuilder;
 
