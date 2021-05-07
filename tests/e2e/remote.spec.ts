@@ -7,7 +7,7 @@ import { RemoteLoaderConfigType, RemoteLoaderOptions } from '../../lib';
 
 jest.mock('axios');
 
-describe('Environment variables', () => {
+describe('Remote loader', () => {
   let app: INestApplication;
   const instance = {
     request: jest.fn(),

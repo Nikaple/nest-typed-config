@@ -3,7 +3,7 @@ import { Test } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 import { DatabaseConfig } from '../src/config.model';
 
-describe('Environment variables', () => {
+describe('File loader precedence', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
