@@ -18,7 +18,7 @@
     "build": "rimraf -rf dist && tsc -p tsconfig.build.json",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "test:cov": "jest --coverage",
     "lint": "eslint {lib/**/*.ts,test/**/*.ts,examples/**/*.ts} --fix",
     "prepublish:npm": "npm run build",
     "prerelease": "npm run build",
