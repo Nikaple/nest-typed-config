@@ -7,7 +7,7 @@
 <a href="https://www.npmjs.com/package/nest-typed-config"><img src="https://img.shields.io/npm/l/nest-typed-config.svg" alt="Package License" /></a>
 <a href="https://www.npmjs.com/package/nest-typed-config"><img src="https://img.shields.io/npm/dm/nest-typed-config.svg" alt="NPM Downloads" /></a>
 <a href="https://www.npmjs.com/nestjs-config-module"><img src="https://github.com/Nikaple/nest-typed-config/workflows/CI/badge.svg" alt="CI" /></a>
-<a href="https://coveralls.io/github/Nikaple/nest-typed-config?branch=master"><img src="https://coveralls.io/repos/github/Nikaple/nest-typed-config/badge.svg?branch=master#5" alt="Coverage" /></a>
+<a href="https://coveralls.io/github/Nikaple/nest-typed-config?branch=main"><img src="https://coveralls.io/repos/github/Nikaple/nest-typed-config/badge.svg?branch=main" alt="Coverage" /></a>
 </p>
 
 ## Features
@@ -158,7 +158,7 @@ export class AppService {
 }
 ```
 
-For a full example, please visit our [examples](https://github.com/Nikaple/nest-typed-config/tree/master/examples/basic) folder
+For a full example, please visit our [examples](https://github.com/Nikaple/nest-typed-config/tree/main/examples/basic) folder
 
 
 ## API
