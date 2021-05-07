@@ -24,7 +24,7 @@ export interface FileLoaderOptions extends Partial<Options> {
   searchFrom?: string;
 }
 
-const getSearchOptions = (options: FileLoaderOptions = {}) => {
+const getSearchOptions = (options: FileLoaderOptions) => {
   if (options.absolutePath) {
     return {
       searchPlaces: [basename(options.absolutePath)],
