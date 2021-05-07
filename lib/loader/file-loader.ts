@@ -1,6 +1,7 @@
 import { cosmiconfig, Options } from 'cosmiconfig';
 import { parse as parseToml } from '@iarna/toml';
 import { Config } from 'cosmiconfig/dist/types';
+import { basename, dirname } from 'path';
 
 const loadToml = function loadYaml(filepath: string, content: string) {
   try {
@@ -23,6 +24,23 @@ export interface FileLoaderOptions extends Partial<Options> {
   searchFrom?: string;
 }
 
+const getSearchOptions = (options: FileLoaderOptions = {}) => {
+  if (options.absolutePath) {
+    return {
+      searchPlaces: [basename(options.absolutePath)],
+      searchFrom: dirname(options.absolutePath),
+    };
+  }
+  const formats = ['toml', 'yaml', 'yml', 'json', 'js'];
+  return {
+    searchPlaces: [
+      ...formats.map(format => `.env.${process.env.NODE_ENV}.${format}`),
+      ...formats.map(format => `.env.${format}`),
+    ],
+    searchFrom: options.searchFrom,
+  };
+};
+
 /**
  * File loader loads configuration with `cosmiconfig`.
  *
@@ -39,13 +57,7 @@ export interface FileLoaderOptions extends Partial<Options> {
  */
 export const fileLoader = (options: FileLoaderOptions = {}) => {
   return async (): Promise<Config> => {
-    const formats = ['toml', 'yaml', 'yml', 'json', 'js'];
-    const searchPlaces = options.absolutePath
-      ? [options.absolutePath]
-      : [
-          ...formats.map(format => `.env.${process.env.NODE_ENV}.${format}`),
-          ...formats.map(format => `.env.${format}`),
-        ];
+    const { searchPlaces, searchFrom } = getSearchOptions(options);
     const loaders = {
       '.toml': loadToml,
       ...options.loaders,
@@ -55,7 +67,7 @@ export const fileLoader = (options: FileLoaderOptions = {}) => {
       ...options,
       loaders,
     });
-    const result = await explorer.search(options.searchFrom);
+    const result = await explorer.search(searchFrom);
 
     if (!result) {
       throw new Error(`Failed to find configuration file.`);
