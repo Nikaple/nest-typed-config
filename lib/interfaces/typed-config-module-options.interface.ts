@@ -10,7 +10,7 @@ export interface TypedConfigModuleOptions {
   /**
    * Function to load configurations, can be sync or async.
    */
-  load(): Promise<any> | any;
+  load(): Promise<Record<string, any>> | Record<string, any>;
 
   /**
    * If "true", registers `ConfigModule` as a global module.
