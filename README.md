@@ -404,7 +404,19 @@ TypedConfigModule.forRoot({
 
 ### Using custom loader
 
-If native loaders provided by `nest-typed-config` can't meet your needs, 
+If native loaders provided by `nest-typed-config` can't meet your needs, you can implement a custom  loader. This can be achieved by providing a function which returns the configuration object synchronously or asynchronously through the `load` option. For example:
+
+```ts
+TypedConfigModule.forRoot({
+    schema: RootConfig,
+    load: async () => {
+        return {
+            host: '127.0.0.1',
+            port: 3000
+        }
+    },
+})
+```
 
 ## License
 
