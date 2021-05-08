@@ -48,7 +48,7 @@ export class AppModule {
       imports: [
         TypedConfigModule.forRoot({
           schema: Config,
-          load: () => 'string',
+          load: () => 'string' as any,
         }),
       ],
     };

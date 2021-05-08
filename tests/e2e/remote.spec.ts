@@ -121,6 +121,6 @@ describe('Remote loader', () => {
   });
 
   afterEach(async () => {
-    await app.close();
+    await app?.close();
   });
 });

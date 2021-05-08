@@ -27,6 +27,6 @@ describe('Local toml', () => {
   });
 
   afterEach(async () => {
-    await app.close();
+    await app?.close();
   });
 });
