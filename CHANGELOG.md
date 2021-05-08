@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Nikaple/nest-typed-config/compare/1.0.3...1.1.0) (2021-05-08)
+
+
+### Features
+
+* **remote-loader:** support retry when failed to fetch config ([e22463a](https://github.com/Nikaple/nest-typed-config/commit/e22463a160d0b0ba926c7466609fc10ad470bdce))
+
 ## [1.0.3](https://github.com/Nikaple/nest-typed-config/compare/1.0.2...1.0.3) (2021-05-07)
 
 
