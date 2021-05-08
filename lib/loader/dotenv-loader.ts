@@ -8,7 +8,7 @@ import * as fs from 'fs';
 import * as dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';
 import { resolve } from 'path';
-import { set } from 'lodash';
+import set from 'lodash.set';
 
 export interface DotenvLoaderOptions {
   /**

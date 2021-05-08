@@ -1,8 +1,8 @@
 import { parse as parseToml } from '@iarna/toml';
-import axios, { AxiosRequestConfig } from 'axios';
-import { identity } from 'lodash';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import parseJson from 'parse-json';
 import { parse as parseYaml } from 'yaml';
+import { identity } from '../utils/identity.util';
 
 type AxiosRequestConfigWithoutUrl = Omit<AxiosRequestConfig, 'url'>;
 
