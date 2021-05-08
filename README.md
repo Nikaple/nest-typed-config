@@ -332,7 +332,7 @@ TypedConfigModule.forRoot({
 
 ### Using remote loader
 
-The `remoteLoader` function allows you to load configuration from a remote endpoint, such as configuration center. Internally [`axios`](https://github.com/axios/axios) is used to perform http requests.
+The `remoteLoader` function allows you to load configuration from a remote endpoint, such as configuration center. Internally [axios](https://github.com/axios/axios) is used to perform http requests.
 
 #### Example
 
@@ -348,11 +348,12 @@ TypedConfigModule.forRoot({
 The `remoteLoader` function optionally expects a `RemoteLoaderOptions` object as a second parameter, which accepts all `axios` request configuration except `url`.
 
 ```ts
+export type RemoteLoaderConfigType = 'json' | 'yaml' | 'toml' | 'yml';
 export interface RemoteLoaderOptions extends Omit<AxiosRequestConfig, 'url'>; {
     /**
      * Config file type
      */
-    type?:  'json' | 'yaml' | 'toml';
+    type?:  ((response: any) => RemoteLoaderConfigType) | RemoteLoaderConfigType;
     /**
      * A function that maps http response body to corresponding configuration object
      */
@@ -369,6 +370,7 @@ You can use the `mapResponse` function to preprocess the server response before 
   {
     "code": 0,
     "fileName": ".env.yaml",
+    "fileType": "yaml",
     "fileContent": "database:\n    table:\n        name: example"
   }
 */
@@ -376,7 +378,7 @@ You can use the `mapResponse` function to preprocess the server response before 
 TypedConfigModule.forRoot({
     schema: RootConfig,
     load: remoteLoader('http://localhost:8080', {
-        type: 'yaml',
+        type: response => response.fileType,
         mapResponse: response => response.fileContent
     }),
 })
