@@ -6,9 +6,9 @@ import {
   ValidationError,
   ValidatorOptions,
 } from 'class-validator';
-import { identity } from 'lodash';
 import { TypedConfigModuleOptions } from './interfaces/typed-config-module-options.interface';
 import { forEachDeep } from './utils/for-each-deep.util';
+import { identity } from './utils/identity.util';
 
 @Module({})
 export class TypedConfigModule {

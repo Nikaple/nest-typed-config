@@ -1,5 +1,3 @@
-import { isArray, isObjectLike } from 'lodash';
-
 /**
  * Iterates over elements of collection invoking iteratee for each element.
  * The iteratee is invoked with three arguments: (value, path).
@@ -16,7 +14,7 @@ export function forEachDeep(
     Object.entries(obj).forEach(([key, value]) => {
       iteratee(value, [...path, key]);
 
-      if (isObjectLike(value) && !isArray(value)) {
+      if (typeof value === 'object' && value && !Array.isArray(value)) {
         return helper(value, [...path, key]);
       }
     });
