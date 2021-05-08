@@ -86,7 +86,7 @@ describe('Dotenv loader', () => {
   });
 
   afterEach(async () => {
-    await app.close();
+    await app?.close();
 
     process.env = envBackup;
   });
