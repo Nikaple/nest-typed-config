@@ -6,13 +6,13 @@ import { parse as parseYaml } from 'yaml';
 
 type AxiosRequestConfigWithoutUrl = Omit<AxiosRequestConfig, 'url'>;
 
-export type RemoteLoaderConfigType = 'json' | 'yaml' | 'toml';
+export type RemoteLoaderConfigType = 'json' | 'yaml' | 'toml' | 'yml';
 
 export interface RemoteLoaderOptions extends AxiosRequestConfigWithoutUrl {
   /**
    * Config file type
    */
-  type?: RemoteLoaderConfigType;
+  type?: ((response: any) => RemoteLoaderConfigType) | RemoteLoaderConfigType;
   /**
    * A function that maps http response body to corresponding config object
    */
@@ -40,11 +40,13 @@ export const remoteLoader = (
     const parser = {
       json: (content: string) => parseJson(content),
       yaml: (content: string) => parseYaml(content),
+      yml: (content: string) => parseYaml(content),
       toml: (content: string) => parseToml(content),
     };
 
-    if (typeof config === 'string' && type && parser[type]) {
-      return parser[type](config);
+    const realType = typeof type === 'function' ? type(response.data) : type;
+    if (typeof config === 'string' && realType && parser[realType]) {
+      return parser[realType](config);
     }
 
     return config;

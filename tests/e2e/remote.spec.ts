@@ -74,6 +74,14 @@ describe('Remote loader', () => {
               table:
                 name: yaml
             `,
+            yml: `
+            isAuthEnabled: true
+            database:
+              host: 127.0.0.1
+              port: 3000
+              table:
+                name: yml
+            `,
             toml: `
             isAuthEnabled = true
             [database]
@@ -99,7 +107,7 @@ describe('Remote loader', () => {
 
     const run = async (type: RemoteLoaderConfigType) => {
       const config = await getTableConfig({
-        type,
+        type: type === 'yml' ? type : () => type,
         mapResponse: res => res[type],
       });
 
@@ -108,6 +116,7 @@ describe('Remote loader', () => {
 
     await run('json');
     await run('yaml');
+    await run('yml');
     await run('toml');
   });
 
