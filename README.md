@@ -6,7 +6,7 @@
 <a href="https://www.npmjs.com/package/nest-typed-config"><img src="https://img.shields.io/npm/v/nest-typed-config.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/package/nest-typed-config"><img src="https://img.shields.io/npm/l/nest-typed-config.svg" alt="Package License" /></a>
 <a href="https://www.npmjs.com/package/nest-typed-config"><img src="https://img.shields.io/npm/dm/nest-typed-config.svg" alt="NPM Downloads" /></a>
-<a href="https://www.npmjs.com/nestjs-config-module"><img src="https://github.com/Nikaple/nest-typed-config/workflows/build/badge.svg" alt="build" /></a>
+<a href="https://github.com/Nikaple/nest-typed-config/actions/workflows/build.yml"><img src="https://github.com/Nikaple/nest-typed-config/workflows/build/badge.svg" alt="build" /></a>
 <a href="https://coveralls.io/github/Nikaple/nest-typed-config?branch=main"><img src="https://coveralls.io/repos/github/Nikaple/nest-typed-config/badge.svg?branch=main" alt="Coverage" /></a>
 </p>
 
