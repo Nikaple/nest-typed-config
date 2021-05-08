@@ -175,7 +175,7 @@ export interface TypedConfigModuleOptions {
   /**
    * Function to load configurations, can be sync or async.
    */
-  load(): Promise<any> | any;
+  load(): Promise<Record<string, any>> | Record<string, any>;
 
   /**
    * If "true", registers `TypedConfigModule` as a global module.
@@ -348,21 +348,35 @@ TypedConfigModule.forRoot({
 The `remoteLoader` function optionally expects a `RemoteLoaderOptions` object as a second parameter, which accepts all `axios` request configuration except `url`.
 
 ```ts
-export type RemoteLoaderConfigType = 'json' | 'yaml' | 'toml' | 'yml';
-export interface RemoteLoaderOptions extends Omit<AxiosRequestConfig, 'url'>; {
-    /**
-     * Config file type
-     */
-    type?:  ((response: any) => RemoteLoaderConfigType) | RemoteLoaderConfigType;
-    /**
-     * A function that maps http response body to corresponding configuration object
-     */
-    mapResponse?: (config: any) => Promise<any> | any;
-}
+export interface RemoteLoaderOptions extends AxiosRequestConfigWithoutUrl {
+  /**
+   * Config file type
+   */
+  type?: ((response: any) => RemoteLoaderConfigType) | RemoteLoaderConfigType;
 
+  /**
+   * A function that maps http response body to corresponding config object
+   */
+  mapResponse?: (config: any) => Promise<any> | any;
+
+  /**
+   * A function that determines if the request should be retried
+   */
+  shouldRetry?: (response: AxiosResponse) => boolean;
+
+  /**
+   * Number of retries to perform, defaults to 3
+   */
+  retries?: number;
+
+  /**
+   * Interval in milliseconds between each retry
+   */
+  retryInterval?: number;
+}
 ```
 
-You can use the `mapResponse` function to preprocess the server response before parsing, for example:
+You can use the `mapResponse` function to preprocess the server response before parsing with `type`, and use `shouldRetry` function to determine whether server response is valid or not. When server response is not valid, you can use `retries` and `retryInterval` to adjust retry strategies. For example:
 
 ```ts
 /*
@@ -380,10 +394,17 @@ TypedConfigModule.forRoot({
     load: remoteLoader('http://localhost:8080', {
         type: response => response.fileType,
         mapResponse: response => response.fileContent
+        // retry when http status is not 200, or response code is not zero
+        shouldRetry: response => response.data.code !== 0
+        retries: 3,
+        retryInterval: 3000
     }),
 })
 ```
 
+### Using custom loader
+
+If native loaders provided by `nest-typed-config` can't meet your needs, 
 
 ## License
 
