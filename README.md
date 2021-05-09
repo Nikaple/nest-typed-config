@@ -14,20 +14,17 @@
 
 - Provide a type-safe and intuitive way to config your [Nest](https://github.com/nestjs/nest) projects, just as smooth as request DTO.
 - Load your configuration with environment variables, json/yaml/toml configuration files or remote endpoints.
-- Validate your configuration with [class-validator](https://github.com/typestack/class-validator) and [class-transformer](https://github.com/typestack/class-transformer)
+- Validate your configuration with [class-validator](https://github.com/typestack/class-validator) and [class-transformer](https://github.com/typestack/class-transformer).
 - Provide easy to use options by default, meanwhile everything is customizable.
 
 
 ## Installation
 
-### Yarn
-
 ```bash
-yarn add nest-typed-config
-```
+# For Yarn
+$ yarn add nest-typed-config
 
-### NPM
-```bash
+# For NPM
 $ npm i --save nest-typed-config
 ```
 
