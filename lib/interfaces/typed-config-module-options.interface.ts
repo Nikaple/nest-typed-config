@@ -1,6 +1,10 @@
 import { ClassConstructor } from 'class-transformer';
 import { ValidatorOptions } from 'class-validator';
 
+export type ConfigLoader = () =>
+  | Promise<Record<string, any>>
+  | Record<string, any>;
+
 export interface TypedConfigModuleOptions {
   /**
    * The root object for application configuration.
@@ -10,7 +14,7 @@ export interface TypedConfigModuleOptions {
   /**
    * Function to load configurations, can be sync or async.
    */
-  load(): Promise<Record<string, any>> | Record<string, any>;
+  load: ConfigLoader | ConfigLoader[];
 
   /**
    * If "true", registers `ConfigModule` as a global module.

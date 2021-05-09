@@ -161,53 +161,6 @@ export class AppService {
 For a full example, please visit our [examples](https://github.com/Nikaple/nest-typed-config/tree/main/examples/basic) folder
 
 
-## API
-
-### TypedConfigModule.forRoot
-
-```ts
-export interface TypedConfigModuleOptions {
-  /**
-   * The root object for application configuration.
-   */
-  schema: ClassConstructor<any>;
-
-  /**
-   * Function to load configurations, can be sync or async.
-   */
-  load(): Promise<Record<string, any>> | Record<string, any>;
-
-  /**
-   * If "true", registers `TypedConfigModule` as a global module.
-   * See: https://docs.nestjs.com/modules#global-modules
-   */
-  isGlobal?: boolean;
-
-  /**
-   * Custom function to normalize configurations. It takes an object containing configurations
-   * as input and outputs normalized configurations.
-   *
-   * This function is executed before validation, and can be used to do type casting,
-   * variable expanding, etc.
-   */
-  normalize?: (config: Record<string, any>) => Record<string, any>;
-
-  /**
-   * Custom function to validate configurations. It takes an object containing environment
-   * variables as input and outputs validated configurations.
-   *
-   * If exception is thrown in the function it would prevent the application from bootstrapping.
-   */
-  validate?: (config: Record<string, any>) => Record<string, any>;
-
-  /**
-   * Options passed to validator during validation.
-   * @see https://github.com/typestack/class-validator
-   */
-  validationOptions?: ValidatorOptions;
-}
-```
-
 ## Using loaders
 
 ### Using dotenv loader
@@ -305,15 +258,21 @@ The `fileLoader` function optionally expects a `FileLoaderOptions` object as a f
 import { Options } from 'cosmiconfig';
 
 export interface FileLoaderOptions extends Partial<Options> {
-    /**
-     * Use given file directly, instead of recursively searching in directory tree.
-     */
-    absolutePath?: string;
-    /**
-     * The directory to search from, defaults to `process.cwd()`.
-     * See: https://github.com/davidtheclark/cosmiconfig#explorersearch
-     */
-    searchFrom?: string;
+  /**
+   * basename of config file, defaults to `.env`.
+   *
+   * In other words, `.env.yaml`, `.env.yml`, `.env.json`, `.env.toml`, `.env.js`
+   * will be searched by default.
+   */
+  basename?: string;
+  /**
+   * Use given file directly, instead of recursively searching in directory tree.
+   */
+  absolutePath?: string;
+  /**
+   * The directory to search from, defaults to `process.cwd()`. See: https://github.com/davidtheclark/cosmiconfig#explorersearch
+   */
+  searchFrom?: string;
 }
 ```
 
@@ -323,6 +282,7 @@ If you want to add support for other extensions, you can use [`loaders`](https:/
 TypedConfigModule.forRoot({
     schema: RootConfig,
     load: fileLoader({
+        // .env.ini has the highest priority now
         loaders: {
           '.ini': iniLoader
         }
@@ -402,9 +362,26 @@ TypedConfigModule.forRoot({
 })
 ```
 
+### Using multiple loaders
+
+Loading configuration from file system is convenient for development, but when it comes to deployment, you may need to load configuration from environment variables, especially in a dockerized environment. This can be easily achieved by providing multiple loaders. For example:
+
+```ts
+TypedConfigModule.forRoot({
+    schema: RootConfig,
+    // Loaders having larger index take precedence over smaller ones,
+    // make sure dotenvLoader comes after fileLoader ensures that
+    // environment variables always have the highest priority
+    load: [
+        fileLoader({ /* options */ }),
+        dotenvLoader({ /* options */ }),
+    ]
+})
+```
+
 ### Using custom loader
 
-If native loaders provided by `nest-typed-config` can't meet your needs, you can implement a custom  loader. This can be achieved by providing a function which returns the configuration object synchronously or asynchronously through the `load` option. For example:
+If native loaders provided by `nest-typed-config` can't meet your needs, you can implement a custom loader. This can be achieved by providing a function which returns the configuration object synchronously or asynchronously through the `load` option. For example:
 
 ```ts
 TypedConfigModule.forRoot({
@@ -417,6 +394,75 @@ TypedConfigModule.forRoot({
     },
 })
 ```
+
+## Default values
+
+Just define your default values in config schema, and you are ready to go:
+
+```ts
+// config.ts
+export class Config {
+    @IsString()
+    public readonly host: string = '127.0.0.1';
+
+    @IsNumber()
+    public readonly port: number = 3000;
+}
+```
+
+## API
+
+### TypedConfigModule.forRoot
+
+```ts
+export type ConfigLoader = () =>
+  | Promise<Record<string, any>>
+  | Record<string, any>;
+
+export interface TypedConfigModuleOptions {
+  /**
+   * The root object for application configuration.
+   */
+  schema: ClassConstructor<any>;
+
+  /**
+   * Function to load configurations, can be sync or async.
+   */
+  load: ConfigLoader | ConfigLoader[];
+
+  /**
+   * If "true", registers `ConfigModule` as a global module.
+   * See: https://docs.nestjs.com/modules#global-modules
+   */
+  isGlobal?: boolean;
+
+  /**
+   * Custom function to normalize configurations. It takes an object containing environment
+   * variables as input and outputs normalized configurations.
+   *
+   * This function is executed before validation, and can be used to do type casting,
+   * variable expanding, etc.
+   */
+  normalize?: (config: Record<string, any>) => Record<string, any>;
+
+  /**
+   * Custom function to validate configurations. It takes an object containing environment
+   * variables as input and outputs validated configurations.
+   * If exception is thrown in the function it would prevent the application from bootstrapping.
+   */
+  validate?: (config: Record<string, any>) => Record<string, any>;
+
+  /**
+   * Options passed to validator during validation.
+   * @see https://github.com/typestack/class-validator
+   */
+  validationOptions?: ValidatorOptions;
+}
+```
+
+## changelog
+
+Please refer to [CHANGELOD.md](https://github.com/Nikaple/nest-typed-config/blob/main/CHANGELOG.md)
 
 ## License
 

@@ -1,5 +1,6 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { join } from 'path';
+import { parse as parseYaml } from 'yaml';
 import {
   remoteLoader,
   RemoteLoaderOptions,
@@ -12,8 +13,50 @@ import {
 } from '../../lib/loader/dotenv-loader';
 import { Config, TableConfig } from './config.model';
 
+const loadYaml = function loadYaml(filepath: string, content: string) {
+  try {
+    const result = parseYaml(content);
+    return result;
+  } catch (error) {
+    error.message = `YAML Error in ${filepath}:\n${error.message}`;
+    throw error;
+  }
+};
+
 @Module({})
 export class AppModule {
+  static withMultipleLoaders(
+    loaderTypes: ('reject' | 'part1' | 'part2')[],
+  ): DynamicModule {
+    const loaders = loaderTypes.map(type => {
+      if (type === 'reject') {
+        return () => Promise.reject(new Error('Not found'));
+      }
+      if (type === 'part1') {
+        return fileLoader({
+          searchFrom: __dirname,
+          basename: '.env.part1',
+        });
+      }
+      if (type === 'part2') {
+        return fileLoader({
+          searchFrom: __dirname,
+          basename: '.env.part2',
+        });
+      }
+      throw new Error('not valid type');
+    });
+    return {
+      module: AppModule,
+      imports: [
+        TypedConfigModule.forRoot({
+          schema: Config,
+          load: loaders,
+        }),
+      ],
+    };
+  }
+
   static withToml(): DynamicModule {
     return {
       module: AppModule,
@@ -22,6 +65,24 @@ export class AppModule {
           schema: Config,
           load: fileLoader({
             absolutePath: join(__dirname, '.env.toml'),
+          }),
+        }),
+      ],
+    };
+  }
+
+  static withSpecialFormat(): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        TypedConfigModule.forRoot({
+          schema: Config,
+          load: fileLoader({
+            basename: '.config',
+            loaders: {
+              '.special': loadYaml,
+            },
+            searchFrom: __dirname,
           }),
         }),
       ],
