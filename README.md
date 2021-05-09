@@ -459,7 +459,7 @@ export interface TypedConfigModuleOptions {
 
 ## changelog
 
-Please refer to [CHANGELOD.md](https://github.com/Nikaple/nest-typed-config/blob/main/CHANGELOG.md)
+Please refer to [CHANGELOG.md](https://github.com/Nikaple/nest-typed-config/blob/main/CHANGELOG.md)
 
 ## License
 
