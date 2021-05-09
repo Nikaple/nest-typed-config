@@ -3,7 +3,7 @@
 
 ### Features
 
-* support multiple loaders, support custom basename for file-loader ([7b24b58](https://github.com/Nikaple/nest-typed-config/commit/7b24b58041cdb45aaa2cf6de79aa178eced32ff0))
+* support multiple loaders, support custom basename for file-loader ([f111754](https://github.com/Nikaple/nest-typed-config/commit/f111754c469475525d565fe478c67b2ca20baa6f))
 
 # [1.1.0](https://github.com/Nikaple/nest-typed-config/compare/1.0.3...1.1.0) (2021-05-08)
 
