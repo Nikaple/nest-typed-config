@@ -6,9 +6,14 @@ import {
   ValidationError,
   ValidatorOptions,
 } from 'class-validator';
-import { TypedConfigModuleOptions } from './interfaces/typed-config-module-options.interface';
+import merge from 'lodash.merge';
+import {
+  ConfigLoader,
+  TypedConfigModuleOptions,
+} from './interfaces/typed-config-module-options.interface';
 import { forEachDeep } from './utils/for-each-deep.util';
 import { identity } from './utils/identity.util';
+import { debug } from './utils/debug.util';
 
 @Module({})
 export class TypedConfigModule {
@@ -24,7 +29,7 @@ export class TypedConfigModule {
       validate = this.validateWithClassValidator.bind(this),
     } = options;
 
-    const rawConfig = await load();
+    const rawConfig = await this.getRawConfig(load);
     if (typeof rawConfig !== 'object') {
       throw new Error(
         `Configuration should be an object, received: ${rawConfig}. Please check the return value of \`load()\``,
@@ -40,6 +45,22 @@ export class TypedConfigModule {
       providers,
       exports: providers,
     };
+  }
+
+  private static async getRawConfig(load: ConfigLoader | ConfigLoader[]) {
+    if (Array.isArray(load)) {
+      const config = {};
+      for (const fn of load) {
+        try {
+          const conf = await fn();
+          merge(config, conf);
+        } catch (err) {
+          debug(`Config load failed: ${err.message}`);
+        }
+      }
+      return config;
+    }
+    return load();
   }
 
   private static getProviders(

@@ -2,8 +2,9 @@ import { cosmiconfig, Options } from 'cosmiconfig';
 import { parse as parseToml } from '@iarna/toml';
 import { Config } from 'cosmiconfig/dist/types';
 import { basename, dirname } from 'path';
+import { debug } from '../utils/debug.util';
 
-const loadToml = function loadYaml(filepath: string, content: string) {
+const loadToml = function loadToml(filepath: string, content: string) {
   try {
     const result = parseToml(content);
     return result;
@@ -14,6 +15,13 @@ const loadToml = function loadYaml(filepath: string, content: string) {
 };
 
 export interface FileLoaderOptions extends Partial<Options> {
+  /**
+   * basename of config file, defaults to `.env`.
+   *
+   * In other words, `.env.yaml`, `.env.yml`, `.env.json`, `.env.toml`, `.env.js`
+   * will be searched by default.
+   */
+  basename?: string;
   /**
    * Use given file directly, instead of recursively searching in directory tree.
    */
@@ -31,11 +39,14 @@ const getSearchOptions = (options: FileLoaderOptions) => {
       searchFrom: dirname(options.absolutePath),
     };
   }
-  const formats = ['toml', 'yaml', 'yml', 'json', 'js'];
+  const { basename: name = '.env', loaders = {} } = options;
+  const additionalFormats = Object.keys(loaders).map(ext => ext.slice(1));
+
+  const formats = [...additionalFormats, 'toml', 'yaml', 'yml', 'json', 'js'];
   return {
     searchPlaces: [
-      ...formats.map(format => `.env.${process.env.NODE_ENV}.${format}`),
-      ...formats.map(format => `.env.${format}`),
+      ...formats.map(format => `${name}.${process.env.NODE_ENV}.${format}`),
+      ...formats.map(format => `${name}.${format}`),
     ],
     searchFrom: options.searchFrom,
   };
@@ -72,6 +83,11 @@ export const fileLoader = (options: FileLoaderOptions = {}) => {
     if (!result) {
       throw new Error(`Failed to find configuration file.`);
     }
+
+    debug(
+      `File-loader has loaded a configuration file from ${result.filepath}`,
+    );
+
     return result.config;
   };
 };
