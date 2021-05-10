@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Nikaple/nest-typed-config/compare/1.2.0...1.3.0) (2021-05-10)
+
+
+### Features
+
+* support using config in decorators with selectConfig ([09cdb95](https://github.com/Nikaple/nest-typed-config/commit/09cdb955aea2ec68c0609748b50ce66381c1414c))
+
 # [1.2.0](https://github.com/Nikaple/nest-typed-config/compare/1.1.0...1.2.0) (2021-05-09)
 
 
