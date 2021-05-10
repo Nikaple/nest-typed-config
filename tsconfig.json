@@ -6,7 +6,7 @@
     "lib": [
       "esnext"
     ],
-    "removeComments": true,
+    "removeComments": false,
     "noLib": false,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
