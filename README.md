@@ -155,7 +155,7 @@ export class AppService {
 }
 ```
 
-For a full example, please visit our [examples](https://github.com/Nikaple/nest-typed-config/tree/main/examples/basic) folder
+For a full example, please visit our [examples](https://github1s.com/Nikaple/nest-typed-config/blob/main/examples/basic/src/app.module.ts) folder.
 
 
 ## Using loaders
@@ -407,6 +407,75 @@ export class Config {
 }
 ```
 
+## Using config in decorators
+
+> **CAUTION!** You can't use config in decorators through dependency injection, using it will make you struggle harder writing unit tests.
+
+Due to the nature of JavaScript loading modules, decorators are executed before Nest's module initialization. If you want to get config value in decorators like `@Controller()` or `@WebSocketGateway()`, config module should be initialized before application bootstrap.
+
+Suppose we need to inject routing information from the configuration, then we can define the configuration like this:
+
+```ts
+// config.ts
+import { Type } from 'class-transformer';
+import { IsDefined, IsNumber, IsString } from 'class-validator';
+
+export class RouteConfig {
+  @IsString()
+  public readonly app!: string;
+}
+
+export class RootConfig {
+  @IsDefined()
+  @Type(() => RouteConfig)
+  public readonly route!: RouteConfig;
+}
+```
+
+Then create a configuration file:
+
+```yaml
+route:
+    app: /app
+```
+
+After creating the configuration file, we can initialize our `ConfigModule` with `TypedConfigModule`, and select `RootConfig` from `ConfigModule` using `selectConfig` method.
+
+```ts
+// config.module.ts
+import { TypedConfigModule, fileLoader, selectConfig } from 'nest-typed-config';
+import { RouteConfig } from './config';
+
+export const ConfigModule = TypedConfigModule.forRoot({
+  schema: RootConfig,
+  load: fileLoader(),
+});
+
+export const rootConfig = selectConfig(ConfigModule, RootConfig);
+export const routeConfig = selectConfig(ConfigModule, RouteConfig);
+```
+
+That's it! You can use `rootConfig` and `routeConfig` anywhere in your app now!
+
+```ts
+// app.controller.ts
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
+import { rootConfig } from './config.module';
+
+@Controller(routeConfig.app)
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get()
+  show(): void {
+    return this.appService.show();
+  }
+}
+```
+
+For a full example, please visit our [examples](https://github1s.com/Nikaple/nest-typed-config/blob/main/examples/preload/src/app.module.ts) folder.
+
 ## API
 
 ### TypedConfigModule.forRoot
@@ -457,7 +526,7 @@ export interface TypedConfigModuleOptions {
 }
 ```
 
-## changelog
+## Changelog
 
 Please refer to [CHANGELOG.md](https://github.com/Nikaple/nest-typed-config/blob/main/CHANGELOG.md)
 

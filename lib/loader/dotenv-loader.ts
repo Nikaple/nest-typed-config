@@ -88,7 +88,7 @@ const loadEnvFile = (options: DotenvLoaderOptions): Record<string, any> => {
  *
  */
 export const dotenvLoader = (options: DotenvLoaderOptions = {}) => {
-  return async (): Promise<any> => {
+  return (): Record<string, any> => {
     const { ignoreEnvFile, ignoreEnvVars, separator } = options;
 
     let config = ignoreEnvFile ? {} : loadEnvFile(options);
