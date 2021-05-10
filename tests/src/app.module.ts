@@ -27,10 +27,13 @@ const loadYaml = function loadYaml(filepath: string, content: string) {
 export class AppModule {
   static withMultipleLoaders(
     loaderTypes: ('reject' | 'part1' | 'part2')[],
+    async = true,
   ): DynamicModule {
     const loaders = loaderTypes.map(type => {
       if (type === 'reject') {
-        return () => Promise.reject(new Error('Not found'));
+        return () => {
+          throw new Error('Not found');
+        };
       }
       if (type === 'part1') {
         return fileLoader({
@@ -49,7 +52,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRoot({
+        TypedConfigModule[async ? 'forRootAsync' : 'forRoot']({
           schema: Config,
           load: loaders,
         }),
@@ -71,11 +74,20 @@ export class AppModule {
     };
   }
 
+  static withRawModule(): DynamicModule {
+    return TypedConfigModule.forRoot({
+      schema: Config,
+      load: fileLoader({
+        absolutePath: join(__dirname, '.env.toml'),
+      }),
+    });
+  }
+
   static withSpecialFormat(): DynamicModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRoot({
+        TypedConfigModule.forRootAsync({
           schema: Config,
           load: fileLoader({
             basename: '.config',
@@ -93,7 +105,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRoot({
+        TypedConfigModule.forRootAsync({
           schema: Config,
           load: fileLoader({
             absolutePath: join(__dirname, '.env.error.toml'),
@@ -107,7 +119,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRoot({
+        TypedConfigModule.forRootAsync({
           schema: Config,
           load: () => 'string' as any,
         }),
@@ -119,7 +131,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRoot({
+        TypedConfigModule.forRootAsync({
           schema: Config,
           load: fileLoader(),
         }),
@@ -131,7 +143,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRoot({
+        TypedConfigModule.forRootAsync({
           schema: Config,
           load: fileLoader({
             absolutePath: join(__dirname, '.env.invalid.toml'),
@@ -145,7 +157,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRoot({
+        TypedConfigModule.forRootAsync({
           schema: Config,
           load: fileLoader({
             searchFrom: __dirname,
@@ -159,7 +171,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRoot({
+        TypedConfigModule.forRootAsync({
           schema: TableConfig,
           load: dotenvLoader(),
         }),
@@ -171,7 +183,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRoot({
+        TypedConfigModule.forRootAsync({
           schema: Config,
           load: dotenvLoader(option),
           validationOptions: {
@@ -191,7 +203,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRoot({
+        TypedConfigModule.forRootAsync({
           schema: Config,
           load: remoteLoader('http://localhost', loaderOptions),
         }),

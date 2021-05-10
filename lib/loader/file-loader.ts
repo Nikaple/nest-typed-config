@@ -1,4 +1,4 @@
-import { cosmiconfig, Options } from 'cosmiconfig';
+import { cosmiconfigSync, OptionsSync } from 'cosmiconfig';
 import { parse as parseToml } from '@iarna/toml';
 import { Config } from 'cosmiconfig/dist/types';
 import { basename, dirname } from 'path';
@@ -14,7 +14,7 @@ const loadToml = function loadToml(filepath: string, content: string) {
   }
 };
 
-export interface FileLoaderOptions extends Partial<Options> {
+export interface FileLoaderOptions extends Partial<OptionsSync> {
   /**
    * basename of config file, defaults to `.env`.
    *
@@ -53,7 +53,7 @@ const getSearchOptions = (options: FileLoaderOptions) => {
 };
 
 /**
- * File loader loads configuration with `cosmiconfig`.
+ * File loader loads configuration with `cosmiconfig` from file system.
  *
  * It is designed to be easy to use by default:
  *  1. Searching for configuration file starts at `process.cwd()`, and continues
@@ -67,18 +67,18 @@ const getSearchOptions = (options: FileLoaderOptions) => {
  * @param options cosmiconfig initialize options. See: https://github.com/davidtheclark/cosmiconfig#cosmiconfigoptions
  */
 export const fileLoader = (options: FileLoaderOptions = {}) => {
-  return async (): Promise<Config> => {
+  return (): Config => {
     const { searchPlaces, searchFrom } = getSearchOptions(options);
     const loaders = {
       '.toml': loadToml,
       ...options.loaders,
     };
-    const explorer = cosmiconfig('env', {
+    const explorer = cosmiconfigSync('env', {
       searchPlaces,
       ...options,
       loaders,
     });
-    const result = await explorer.search(searchFrom);
+    const result = explorer.search(searchFrom);
 
     if (!result) {
       throw new Error(`Failed to find configuration file.`);

@@ -6,16 +6,13 @@ describe('Validation failed', () => {
   let app: INestApplication;
   let module: TestingModuleBuilder;
 
-  beforeEach(async () => {
-    module = Test.createTestingModule({
-      imports: [AppModule.withValidationFailed()],
-    });
-  });
-
   it(`should not bootstrap when validation fails`, async () => {
     expect.assertions(3);
 
     try {
+      module = Test.createTestingModule({
+        imports: [AppModule.withValidationFailed()],
+      });
       await module.compile();
     } catch (err) {
       expect(err.message).toMatch(/isAuthEnabled must be a boolean value/);

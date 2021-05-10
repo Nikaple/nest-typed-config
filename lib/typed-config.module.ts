@@ -17,19 +17,32 @@ import { debug } from './utils/debug.util';
 
 @Module({})
 export class TypedConfigModule {
-  static async forRoot(
+  static forRoot(options: TypedConfigModuleOptions): DynamicModule {
+    const rawConfig = this.getRawConfig(options.load);
+
+    return this.getDynamicModule(options, rawConfig);
+  }
+
+  static async forRootAsync(
     options: TypedConfigModuleOptions,
   ): Promise<DynamicModule> {
+    const rawConfig = await this.getRawConfigAsync(options.load);
+
+    return this.getDynamicModule(options, rawConfig);
+  }
+
+  private static getDynamicModule(
+    options: TypedConfigModuleOptions,
+    rawConfig: Record<string, any>,
+  ) {
     const {
-      load,
       schema: Config,
       normalize = identity,
       validationOptions,
-      isGlobal,
+      isGlobal = true,
       validate = this.validateWithClassValidator.bind(this),
     } = options;
 
-    const rawConfig = await this.getRawConfig(load);
     if (typeof rawConfig !== 'object') {
       throw new Error(
         `Configuration should be an object, received: ${rawConfig}. Please check the return value of \`load()\``,
@@ -47,7 +60,23 @@ export class TypedConfigModule {
     };
   }
 
-  private static async getRawConfig(load: ConfigLoader | ConfigLoader[]) {
+  private static getRawConfig(load: ConfigLoader | ConfigLoader[]) {
+    if (Array.isArray(load)) {
+      const config = {};
+      for (const fn of load) {
+        try {
+          const conf = fn();
+          merge(config, conf);
+        } catch (err) {
+          debug(`Config load failed: ${err.message}`);
+        }
+      }
+      return config;
+    }
+    return load();
+  }
+
+  private static async getRawConfigAsync(load: ConfigLoader | ConfigLoader[]) {
     if (Array.isArray(load)) {
       const config = {};
       for (const fn of load) {

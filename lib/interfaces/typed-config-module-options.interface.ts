@@ -17,6 +17,8 @@ export interface TypedConfigModuleOptions {
   load: ConfigLoader | ConfigLoader[];
 
   /**
+   * Defaults to "true".
+   *
    * If "true", registers `ConfigModule` as a global module.
    * See: https://docs.nestjs.com/modules#global-modules
    */
