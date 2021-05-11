@@ -8,7 +8,7 @@ import {
 } from 'class-validator';
 import merge from 'lodash.merge';
 import {
-  ConfigLoader,
+  TypedConfigModuleAsyncOptions,
   TypedConfigModuleOptions,
 } from './interfaces/typed-config-module-options.interface';
 import { forEachDeep } from './utils/for-each-deep.util';
@@ -17,14 +17,14 @@ import { debug } from './utils/debug.util';
 
 @Module({})
 export class TypedConfigModule {
-  static forRoot(options: TypedConfigModuleOptions): DynamicModule {
+  public static forRoot(options: TypedConfigModuleOptions): DynamicModule {
     const rawConfig = this.getRawConfig(options.load);
 
     return this.getDynamicModule(options, rawConfig);
   }
 
-  static async forRootAsync(
-    options: TypedConfigModuleOptions,
+  public static async forRootAsync(
+    options: TypedConfigModuleAsyncOptions,
   ): Promise<DynamicModule> {
     const rawConfig = await this.getRawConfigAsync(options.load);
 
@@ -32,7 +32,7 @@ export class TypedConfigModule {
   }
 
   private static getDynamicModule(
-    options: TypedConfigModuleOptions,
+    options: TypedConfigModuleOptions | TypedConfigModuleAsyncOptions,
     rawConfig: Record<string, any>,
   ) {
     const {
@@ -60,7 +60,7 @@ export class TypedConfigModule {
     };
   }
 
-  private static getRawConfig(load: ConfigLoader | ConfigLoader[]) {
+  private static getRawConfig(load: TypedConfigModuleOptions['load']) {
     if (Array.isArray(load)) {
       const config = {};
       for (const fn of load) {
@@ -76,7 +76,9 @@ export class TypedConfigModule {
     return load();
   }
 
-  private static async getRawConfigAsync(load: ConfigLoader | ConfigLoader[]) {
+  private static async getRawConfigAsync(
+    load: TypedConfigModuleAsyncOptions['load'],
+  ) {
     if (Array.isArray(load)) {
       const config = {};
       for (const fn of load) {
