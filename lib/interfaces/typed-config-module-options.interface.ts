@@ -1,9 +1,8 @@
 import { ClassConstructor } from 'class-transformer';
 import { ValidatorOptions } from 'class-validator';
 
-export type ConfigLoader = () =>
-  | Promise<Record<string, any>>
-  | Record<string, any>;
+export type ConfigLoader = () => Record<string, any>;
+export type AsyncConfigLoader = () => Promise<Record<string, any>>;
 
 export interface TypedConfigModuleOptions {
   /**
@@ -12,7 +11,7 @@ export interface TypedConfigModuleOptions {
   schema: ClassConstructor<any>;
 
   /**
-   * Function to load configurations, can be sync or async.
+   * Function(s) to load configurations, must be synchronous.
    */
   load: ConfigLoader | ConfigLoader[];
 
@@ -45,4 +44,12 @@ export interface TypedConfigModuleOptions {
    * @see https://github.com/typestack/class-validator
    */
   validationOptions?: ValidatorOptions;
+}
+
+export interface TypedConfigModuleAsyncOptions
+  extends TypedConfigModuleOptions {
+  /**
+   * Function(s) to load configurations, can be synchronous or asynchronous.
+   */
+  load: AsyncConfigLoader | AsyncConfigLoader[];
 }
