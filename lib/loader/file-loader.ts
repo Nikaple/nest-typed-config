@@ -1,6 +1,5 @@
 import { cosmiconfigSync, OptionsSync } from 'cosmiconfig';
 import { parse as parseToml } from '@iarna/toml';
-import { Config } from 'cosmiconfig/dist/types';
 import { basename, dirname } from 'path';
 import { debug } from '../utils/debug.util';
 
@@ -67,7 +66,7 @@ const getSearchOptions = (options: FileLoaderOptions) => {
  * @param options cosmiconfig initialize options. See: https://github.com/davidtheclark/cosmiconfig#cosmiconfigoptions
  */
 export const fileLoader = (options: FileLoaderOptions = {}) => {
-  return (): Config => {
+  return (): Record<string, any> => {
     const { searchPlaces, searchFrom } = getSearchOptions(options);
     const loaders = {
       '.toml': loadToml,
