@@ -51,5 +51,5 @@ export interface TypedConfigModuleAsyncOptions
   /**
    * Function(s) to load configurations, can be synchronous or asynchronous.
    */
-  load: AsyncConfigLoader | AsyncConfigLoader[];
+  load: ConfigLoader | AsyncConfigLoader | (ConfigLoader | AsyncConfigLoader)[];
 }

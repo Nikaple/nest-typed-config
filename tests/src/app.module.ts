@@ -87,7 +87,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRootAsync({
+        TypedConfigModule.forRoot({
           schema: Config,
           load: fileLoader({
             basename: '.config',
@@ -105,7 +105,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRootAsync({
+        TypedConfigModule.forRoot({
           schema: Config,
           load: fileLoader({
             absolutePath: join(__dirname, '.env.error.toml'),
@@ -131,7 +131,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRootAsync({
+        TypedConfigModule.forRoot({
           schema: Config,
           load: fileLoader(),
         }),
@@ -143,7 +143,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRootAsync({
+        TypedConfigModule.forRoot({
           schema: Config,
           load: fileLoader({
             absolutePath: join(__dirname, '.env.invalid.toml'),
@@ -157,7 +157,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRootAsync({
+        TypedConfigModule.forRoot({
           schema: Config,
           load: fileLoader({
             searchFrom: __dirname,
@@ -171,7 +171,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRootAsync({
+        TypedConfigModule.forRoot({
           schema: TableConfig,
           load: dotenvLoader(),
         }),
@@ -183,7 +183,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
-        TypedConfigModule.forRootAsync({
+        TypedConfigModule.forRoot({
           schema: Config,
           load: dotenvLoader(option),
           validationOptions: {
