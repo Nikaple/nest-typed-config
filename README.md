@@ -407,9 +407,9 @@ export class Config {
 }
 ```
 
-## Using config in decorators
+## Using config outside Nest's IoC container (Usage in decorators)
 
-> **CAUTION!** You can't use config in decorators through dependency injection, using it will make you struggle harder writing unit tests.
+> **CAUTION!** Using config outside Nest's IoC container will make you struggle harder writing unit tests, you should avoid this pattern as much as possible.
 
 Due to the nature of JavaScript loading modules, decorators are executed before Nest's module initialization. If you want to get config value in decorators like `@Controller()` or `@WebSocketGateway()`, config module should be initialized before application bootstrap.
 
