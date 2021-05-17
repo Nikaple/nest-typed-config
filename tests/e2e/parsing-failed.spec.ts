@@ -34,8 +34,6 @@ describe('Parsing failed', () => {
   });
 
   afterEach(async () => {
-    if (app) {
-      await app.close();
-    }
+    await app?.close();
   });
 });
