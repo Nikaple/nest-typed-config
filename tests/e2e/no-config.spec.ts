@@ -20,8 +20,6 @@ describe('No config', () => {
   });
 
   afterEach(async () => {
-    if (app) {
-      await app.close();
-    }
+    await app?.close();
   });
 });
