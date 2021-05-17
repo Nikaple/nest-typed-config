@@ -294,7 +294,8 @@ The `remoteLoader` function allows you to load configuration from a remote endpo
 #### Example
 
 ```ts
-TypedConfigModule.forRoot({
+// forRootAsync should be used when loading configuration asynchronously
+TypedConfigModule.forRootAsync({
     schema: RootConfig,
     load: remoteLoader('http://localhost:8080', { /* options */ }),
 })
@@ -346,7 +347,7 @@ You can use the `mapResponse` function to preprocess the server response before 
   }
 */
 
-TypedConfigModule.forRoot({
+TypedConfigModule.forRootAsync({
     schema: RootConfig,
     load: remoteLoader('http://localhost:8080', {
         type: response => response.fileType,
@@ -409,7 +410,14 @@ export class Config {
 
 ## Using config outside Nest's IoC container (Usage in decorators)
 
-> **CAUTION!** Using config outside Nest's IoC container will make you struggle harder writing unit tests, you should avoid this pattern as much as possible.
+### Caution!
+
+Using config outside Nest's IoC container will:
+
+1. make you struggle harder writing unit tests.
+2. force you to register `TypedConfigModule` synchronously using `forRoot`, since asynchronous configuration loading doesn't make sense under this situation.
+
+### How to
 
 Due to the nature of JavaScript loading modules, decorators are executed before Nest's module initialization. If you want to get config value in decorators like `@Controller()` or `@WebSocketGateway()`, config module should be initialized before application bootstrap.
 
