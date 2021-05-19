@@ -155,7 +155,7 @@ export class AppService {
 }
 ```
 
-For a full example, please visit our [examples](https://github1s.com/Nikaple/nest-typed-config/blob/main/examples/basic/src/app.module.ts) folder.
+For a full example, please visit [CodeSandbox](https://codesandbox.io/s/affectionate-tdd-1juv6?file=/src/config.ts), or our [examples](https://github.com/Nikaple/nest-typed-config/blob/main/examples/basic/src/app.module.ts) folder.
 
 
 ## Using loaders
@@ -482,7 +482,7 @@ export class AppController {
 }
 ```
 
-For a full example, please visit our [examples](https://github1s.com/Nikaple/nest-typed-config/blob/main/examples/preload/src/app.module.ts) folder.
+For a full example, please visit [CodeSandbox](https://codesandbox.io/s/restless-snowflake-l2eyx?file=/src/config.module.ts), or our [examples](https://github1s.com/Nikaple/nest-typed-config/blob/main/examples/preload/src/app.module.ts) folder.
 
 ## API
 
