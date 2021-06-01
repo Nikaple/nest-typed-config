@@ -137,7 +137,7 @@ export class TypedConfigModule {
     return config;
   }
 
-  private static getConfigErrorMessage(errors: ValidationError[]) {
+  static getConfigErrorMessage(errors: ValidationError[]): string {
     const messages = this.formatValidationError(errors)
       .map(({ property, value, constraints }) => {
         const constraintMessage = Object.entries(
