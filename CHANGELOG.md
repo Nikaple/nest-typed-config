@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/Nikaple/nest-typed-config/compare/1.3.1...1.4.0) (2021-06-03)
+
+
+### Bug Fixes
+
+* improve typing for forRootAsync ([6a96e36](https://github.com/Nikaple/nest-typed-config/commit/6a96e36ebddfc5d5c9f38bc073990945195c6c6f))
+
+
+### Features
+
+* expose getConfigErrorMessage ([cdc2263](https://github.com/Nikaple/nest-typed-config/commit/cdc22635558d4f0c31b33d45024a590866298a9a))
+
 ## [1.3.1](https://github.com/Nikaple/nest-typed-config/compare/1.3.0...1.3.1) (2021-05-17)
 
 
