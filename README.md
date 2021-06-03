@@ -408,6 +408,29 @@ export class Config {
 }
 ```
 
+## Custom validate function
+
+If the default `validate` function doesn't suite your use case, you can provide it like in the example below:
+
+```ts
+TypedConfigModule.forRoot({
+    schema: RootConfig,
+    validate: (rawConfig: any) => {
+        const config = plainToClass(RootConfig, rawConfig)
+        const schemaErrors = validateSync(config, {
+            forbidUnknownValues: true,
+            whitelist: true,
+        })
+
+        if (schemaErrors.length) {
+            throw new Error(TypedConfigModule.getConfigErrorMessage(schemaErrors))
+        }
+
+        return config as RootConfig
+  },
+})
+```
+
 ## Using config outside Nest's IoC container (Usage in decorators)
 
 ### Caution!
