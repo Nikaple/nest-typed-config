@@ -2,6 +2,7 @@ import { DynamicModule, Module } from '@nestjs/common';
 import { join } from 'path';
 import { parse as parseYaml } from 'yaml';
 import {
+  directoryLoader,
   remoteLoader,
   RemoteLoaderOptions,
   TypedConfigModule,
@@ -11,7 +12,7 @@ import {
   dotenvLoader,
   DotenvLoaderOptions,
 } from '../../lib/loader/dotenv-loader';
-import { Config, TableConfig } from './config.model';
+import { Config, DirectoryConfig, TableConfig } from './config.model';
 
 const loadYaml = function loadYaml(filepath: string, content: string) {
   try {
@@ -68,6 +69,20 @@ export class AppModule {
           schema: Config,
           load: fileLoader({
             absolutePath: join(__dirname, '.env.toml'),
+          }),
+        }),
+      ],
+    };
+  }
+
+  static withDirectory(): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        TypedConfigModule.forRoot({
+          schema: DirectoryConfig,
+          load: directoryLoader({
+            directory: join(__dirname, 'dir'),
           }),
         }),
       ],
