@@ -252,9 +252,9 @@ TypedConfigModule.forRoot({
 The `fileLoader` function optionally expects a `FileLoaderOptions` object as a first parameter:
 
 ```ts
-import { Options } from 'cosmiconfig';
+import { OptionsSync } from 'cosmiconfig';
 
-export interface FileLoaderOptions extends Partial<Options> {
+export interface FileLoaderOptions extends Partial<OptionsSync> {
   /**
    * basename of config file, defaults to `.env`.
    *
@@ -287,6 +287,79 @@ TypedConfigModule.forRoot({
 })
 ```
 
+### Using directory loader
+
+The `directoryLoader` function allows you to load configuration within a given directory.
+
+The basename of files will be interpreted as config namespace, for example:
+
+```
+.
+└─config
+    ├── app.toml
+    └── db.toml
+
+// app.toml
+foo = 1
+
+// db.toml
+bar = 1
+```
+
+The folder above will generate configuration as follows:
+
+```json
+{
+    "app": {
+        "foo": 1
+    },
+    "db": {
+        "bar": 1
+    }
+}
+```
+
+#### Example
+
+```ts
+TypedConfigModule.forRoot({
+    schema: RootConfig,
+    load: directoryLoader({
+        directory: '/absolute/path/to/config/directory',
+        /* other cosmiconfig options */
+    }),
+})
+```
+
+#### Passing options
+
+The `directoryLoader` function optionally expects a `DirectoryLoaderOptions` object as a first parameter:
+
+```ts
+import { OptionsSync } from 'cosmiconfig';
+
+export interface DirectoryLoaderOptions extends OptionsSync {
+  /**
+   * The directory containing all configuration files.
+   */
+  directory: string;
+}
+```
+
+If you want to add support for other extensions, you can use [`loaders`](https://github.com/davidtheclark/cosmiconfig#loaders) property provided by `cosmiconfig`:
+
+```ts
+TypedConfigModule.forRoot({
+    schema: RootConfig,
+    load: directoryLoader({
+        directory: '/path/to/configuration',
+        // .env.ini has the highest priority now
+        loaders: {
+          '.ini': iniLoader
+        }
+    }),
+})
+```
 ### Using remote loader
 
 The `remoteLoader` function allows you to load configuration from a remote endpoint, such as configuration center. Internally [axios](https://github.com/axios/axios) is used to perform http requests.

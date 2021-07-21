@@ -34,3 +34,15 @@ export class Config {
   @IsBoolean()
   public readonly isAuthEnabled!: boolean;
 }
+
+export class DirectoryConfig {
+  @Type(() => DatabaseConfig)
+  @ValidateNested()
+  @IsDefined()
+  public readonly database!: DatabaseConfig;
+
+  @Type(() => TableConfig)
+  @ValidateNested()
+  @IsDefined()
+  public readonly table!: TableConfig;
+}
