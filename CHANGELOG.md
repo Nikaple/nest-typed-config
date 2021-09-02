@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/Nikaple/nest-typed-config/compare/1.5.0...1.6.0) (2021-09-02)
+
+
+### Features
+
+* support include specific file for directory loader ([005cf47](https://github.com/Nikaple/nest-typed-config/commit/005cf475c08d13327799947251ba04810eced3d8))
+
 # [1.5.0](https://github.com/Nikaple/nest-typed-config/compare/1.4.0...1.5.0) (2021-07-21)
 
 
