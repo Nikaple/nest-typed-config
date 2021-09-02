@@ -89,6 +89,21 @@ export class AppModule {
     };
   }
 
+  static withDirectoryInclude(): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        TypedConfigModule.forRoot({
+          schema: DirectoryConfig,
+          load: directoryLoader({
+            directory: join(__dirname, 'dir2'),
+            include: /\.toml$/,
+          }),
+        }),
+      ],
+    };
+  }
+
   static withRawModule(): DynamicModule {
     return TypedConfigModule.forRoot({
       schema: Config,
