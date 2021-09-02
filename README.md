@@ -17,7 +17,6 @@
 - Validate your configuration with [class-validator](https://github.com/typestack/class-validator) and [class-transformer](https://github.com/typestack/class-transformer).
 - Provide easy to use options by default, meanwhile everything is customizable.
 
-
 ## Installation
 
 ```bash
@@ -46,11 +45,11 @@ Writing type casting is a pain and hard to maintain, and it's common to use non-
 ```ts
 // config.ts
 export class Config {
-    @IsString()
-    public readonly host!: string;
+  @IsString()
+  public readonly host!: string;
 
-    @IsNumber()
-    public readonly port!: number;
+  @IsNumber()
+  public readonly port!: number;
 }
 
 // app.service.ts
@@ -58,14 +57,13 @@ import { Config } from './config';
 
 @Injectable()
 export class AppService {
-    constructor(private readonly config: Config) {}
+  constructor(private readonly config: Config) {}
 
-    show() {
-        console.log(`http://${this.config.host}:${this.config.port}`)
-    }
+  show() {
+    console.log(`http://${this.config.host}:${this.config.port}`);
+  }
 }
 ```
-
 
 ## Quick Start
 
@@ -77,20 +75,20 @@ import { Allow } from 'class-validator';
 
 // validator is omitted for simplicity
 export class TableConfig {
-    @Allow()
-    public readonly name!: string;
+  @Allow()
+  public readonly name!: string;
 }
 
 export class DatabaseConfig {
-    @Type(() => TableConfig)
-    @Allow()
-    public readonly table!: TableConfig;
+  @Type(() => TableConfig)
+  @Allow()
+  public readonly table!: TableConfig;
 }
 
 export class RootConfig {
-    @Type(() => DatabaseConfig)
-    @Allow()
-    public readonly database!: DatabaseConfig;
+  @Type(() => DatabaseConfig)
+  @Allow()
+  public readonly database!: DatabaseConfig;
 }
 ```
 
@@ -98,8 +96,8 @@ Then, add a configuration file such as `.env.yaml` under project root directory:
 
 ```yaml
 database:
-    table:
-        name: example
+  table:
+    name: example
 ```
 
 After creating the configuration file, import `TypedConfigModule` and `fileLoader` to load configuration from file system.
@@ -114,14 +112,14 @@ import { RootConfig } from './config';
 
 // Register TypedConfigModule
 @Module({
-    imports: [
-        TypedConfigModule.forRoot({
-            schema: RootConfig,
-            load: fileLoader(),
-        }),
-    ],
-    providers: [AppService],
-    controllers: [AppController],
+  imports: [
+    TypedConfigModule.forRoot({
+      schema: RootConfig,
+      load: fileLoader(),
+    }),
+  ],
+  providers: [AppService],
+  controllers: [AppController],
 })
 export class AppModule {}
 ```
@@ -135,28 +133,27 @@ import { RootConfig, DatabaseConfig, TableConfig } from './config';
 
 @Injectable()
 export class AppService {
-    // inject any config or sub-config you like
-    constructor(
-        private config: RootConfig,
-        private databaseConfig: DatabaseConfig,
-        private tableConfig: TableConfig,
-    ) {}
+  // inject any config or sub-config you like
+  constructor(
+    private config: RootConfig,
+    private databaseConfig: DatabaseConfig,
+    private tableConfig: TableConfig,
+  ) {}
 
-    // enjoy type safety!
-    public show(): any {
-        const out = [
-            `root.name: ${this.config.name}`,
-            `root.database.name: ${this.databaseConfig.name}`,
-            `root.database.table.name: ${this.tableConfig.name}`,
-        ].join('\n');
+  // enjoy type safety!
+  public show(): any {
+    const out = [
+      `root.name: ${this.config.name}`,
+      `root.database.name: ${this.databaseConfig.name}`,
+      `root.database.table.name: ${this.tableConfig.name}`,
+    ].join('\n');
 
-        return `${out}\n`;
-    }
+    return `${out}\n`;
+  }
 }
 ```
 
 For a full example, please visit [CodeSandbox](https://codesandbox.io/s/affectionate-tdd-1juv6?file=/src/config.ts), or our [examples](https://github.com/Nikaple/nest-typed-config/blob/main/examples/basic/src/app.module.ts) folder.
-
 
 ## Using loaders
 
@@ -168,69 +165,71 @@ The `dotenvLoader` function allows you to load configuration with [dotenv](https
 
 ```ts
 TypedConfigModule.forRoot({
-    schema: RootConfig,
-    load: dotenvLoader({ /* options */ }),
-})
+  schema: RootConfig,
+  load: dotenvLoader({
+    /* options */
+  }),
+});
 ```
 
 #### Passing options
 
 The `dotenvLoader` function optionally expects a `DotenvLoaderOptions` object as a first parameter:
 
-```ts
+````ts
 export interface DotenvLoaderOptions {
-    /**
-     * If set, use the separator to parse environment variables to objects.
-     *
-     * @example
-     *
-     * ```bash
-     * app__port=8080
-     * db__host=127.0.0.1
-     * db__port=3000
-     * ```
-     *
-     * if `separator` is set to `__`, environment variables above will be parsed as:
-     *
-     * ```json
-     * {
-     *     "app": {
-     *         "port": 8080
-     *     },
-     *     "db": {
-     *         "host": "127.0.0.1",
-     *         "port": 3000
-     *     }
-     * }
-     * ```
-     */
-    separator?: string;
+  /**
+   * If set, use the separator to parse environment variables to objects.
+   *
+   * @example
+   *
+   * ```bash
+   * app__port=8080
+   * db__host=127.0.0.1
+   * db__port=3000
+   * ```
+   *
+   * if `separator` is set to `__`, environment variables above will be parsed as:
+   *
+   * ```json
+   * {
+   *     "app": {
+   *         "port": 8080
+   *     },
+   *     "db": {
+   *         "host": "127.0.0.1",
+   *         "port": 3000
+   *     }
+   * }
+   * ```
+   */
+  separator?: string;
 
-    /**
-     * If "true", environment files (`.env`) will be ignored.
-     */
-    ignoreEnvFile?: boolean;
+  /**
+   * If "true", environment files (`.env`) will be ignored.
+   */
+  ignoreEnvFile?: boolean;
 
-    /**
-     * If "true", predefined environment variables will not be validated.
-     */
-    ignoreEnvVars?: boolean;
+  /**
+   * If "true", predefined environment variables will not be validated.
+   */
+  ignoreEnvVars?: boolean;
 
-    /**
-     * Path to the environment file(s) to be loaded.
-     */
-    envFilePath?: string | string[];
+  /**
+   * Path to the environment file(s) to be loaded.
+   */
+  envFilePath?: string | string[];
 
-    /**
-     * A boolean value indicating the use of expanded variables.
-     * If .env contains expanded variables, they'll only be parsed if
-     * this property is set to true.
-     * 
-     * Internally, dotenv-expand is used to expand variables.
-     */
-    expandVariables?: boolean;
+  /**
+   * A boolean value indicating the use of expanded variables.
+   * If .env contains expanded variables, they'll only be parsed if
+   * this property is set to true.
+   *
+   * Internally, dotenv-expand is used to expand variables.
+   */
+  expandVariables?: boolean;
 }
-```
+````
 
 ### Using file loader
 
@@ -242,9 +241,11 @@ By default, `fileLoader` searches for `.env.{ext}` (ext = json, yaml, toml, js) 
 
 ```ts
 TypedConfigModule.forRoot({
-    schema: RootConfig,
-    load: fileLoader({ /* options */ }),
-})
+  schema: RootConfig,
+  load: fileLoader({
+    /* options */
+  }),
+});
 ```
 
 #### Passing options
@@ -277,14 +278,14 @@ If you want to add support for other extensions, you can use [`loaders`](https:/
 
 ```ts
 TypedConfigModule.forRoot({
-    schema: RootConfig,
-    load: fileLoader({
-        // .env.ini has the highest priority now
-        loaders: {
-          '.ini': iniLoader
-        }
-    }),
-})
+  schema: RootConfig,
+  load: fileLoader({
+    // .env.ini has the highest priority now
+    loaders: {
+      '.ini': iniLoader,
+    },
+  }),
+});
 ```
 
 ### Using directory loader
@@ -310,12 +311,12 @@ The folder above will generate configuration as follows:
 
 ```json
 {
-    "app": {
-        "foo": 1
-    },
-    "db": {
-        "bar": 1
-    }
+  "app": {
+    "foo": 1
+  },
+  "db": {
+    "bar": 1
+  }
 }
 ```
 
@@ -323,12 +324,12 @@ The folder above will generate configuration as follows:
 
 ```ts
 TypedConfigModule.forRoot({
-    schema: RootConfig,
-    load: directoryLoader({
-        directory: '/absolute/path/to/config/directory',
-        /* other cosmiconfig options */
-    }),
-})
+  schema: RootConfig,
+  load: directoryLoader({
+    directory: '/absolute/path/to/config/directory',
+    /* other cosmiconfig options */
+  }),
+});
 ```
 
 #### Passing options
@@ -343,6 +344,10 @@ export interface DirectoryLoaderOptions extends OptionsSync {
    * The directory containing all configuration files.
    */
   directory: string;
+  /**
+   * File regex to include.
+   */
+  include?: RegExp;
 }
 ```
 
@@ -350,16 +355,17 @@ If you want to add support for other extensions, you can use [`loaders`](https:/
 
 ```ts
 TypedConfigModule.forRoot({
-    schema: RootConfig,
-    load: directoryLoader({
-        directory: '/path/to/configuration',
-        // .env.ini has the highest priority now
-        loaders: {
-          '.ini': iniLoader
-        }
-    }),
-})
+  schema: RootConfig,
+  load: directoryLoader({
+    directory: '/path/to/configuration',
+    // .env.ini has the highest priority now
+    loaders: {
+      '.ini': iniLoader,
+    },
+  }),
+});
 ```
+
 ### Using remote loader
 
 The `remoteLoader` function allows you to load configuration from a remote endpoint, such as configuration center. Internally [axios](https://github.com/axios/axios) is used to perform http requests.
@@ -369,9 +375,11 @@ The `remoteLoader` function allows you to load configuration from a remote endpo
 ```ts
 // forRootAsync should be used when loading configuration asynchronously
 TypedConfigModule.forRootAsync({
-    schema: RootConfig,
-    load: remoteLoader('http://localhost:8080', { /* options */ }),
-})
+  schema: RootConfig,
+  load: remoteLoader('http://localhost:8080', {
+    /* options */
+  }),
+});
 ```
 
 #### Passing options
@@ -411,7 +419,7 @@ You can use the `mapResponse` function to preprocess the server response before 
 
 ```ts
 /*
-  Example server response: 
+  Example server response:
   {
     "code": 0,
     "fileName": ".env.yaml",
@@ -439,15 +447,19 @@ Loading configuration from file system is convenient for development, but when i
 
 ```ts
 TypedConfigModule.forRoot({
-    schema: RootConfig,
-    // Loaders having larger index take precedence over smaller ones,
-    // make sure dotenvLoader comes after fileLoader ensures that
-    // environment variables always have the highest priority
-    load: [
-        fileLoader({ /* options */ }),
-        dotenvLoader({ /* options */ }),
-    ]
-})
+  schema: RootConfig,
+  // Loaders having larger index take precedence over smaller ones,
+  // make sure dotenvLoader comes after fileLoader ensures that
+  // environment variables always have the highest priority
+  load: [
+    fileLoader({
+      /* options */
+    }),
+    dotenvLoader({
+      /* options */
+    }),
+  ],
+});
 ```
 
 ### Using custom loader
@@ -456,14 +468,14 @@ If native loaders provided by `nest-typed-config` can't meet your needs, you can
 
 ```ts
 TypedConfigModule.forRoot({
-    schema: RootConfig,
-    load: async () => {
-        return {
-            host: '127.0.0.1',
-            port: 3000
-        }
-    },
-})
+  schema: RootConfig,
+  load: async () => {
+    return {
+      host: '127.0.0.1',
+      port: 3000,
+    };
+  },
+});
 ```
 
 ## Default values
@@ -473,11 +485,11 @@ Just define your default values in config schema, and you are ready to go:
 ```ts
 // config.ts
 export class Config {
-    @IsString()
-    public readonly host: string = '127.0.0.1';
+  @IsString()
+  public readonly host: string = '127.0.0.1';
 
-    @IsNumber()
-    public readonly port: number = 3000;
+  @IsNumber()
+  public readonly port: number = 3000;
 }
 ```
 
@@ -487,21 +499,21 @@ If the default `validate` function doesn't suite your use case, you can provide 
 
 ```ts
 TypedConfigModule.forRoot({
-    schema: RootConfig,
-    validate: (rawConfig: any) => {
-        const config = plainToClass(RootConfig, rawConfig)
-        const schemaErrors = validateSync(config, {
-            forbidUnknownValues: true,
-            whitelist: true,
-        })
+  schema: RootConfig,
+  validate: (rawConfig: any) => {
+    const config = plainToClass(RootConfig, rawConfig);
+    const schemaErrors = validateSync(config, {
+      forbidUnknownValues: true,
+      whitelist: true,
+    });
 
-        if (schemaErrors.length) {
-            throw new Error(TypedConfigModule.getConfigErrorMessage(schemaErrors))
-        }
+    if (schemaErrors.length) {
+      throw new Error(TypedConfigModule.getConfigErrorMessage(schemaErrors));
+    }
 
-        return config as RootConfig
+    return config as RootConfig;
   },
-})
+});
 ```
 
 ## Using config outside Nest's IoC container (Usage in decorators)
@@ -540,7 +552,7 @@ Then create a configuration file:
 
 ```yaml
 route:
-    app: /app
+  app: /app
 ```
 
 After creating the configuration file, we can initialize our `ConfigModule` with `TypedConfigModule`, and select `RootConfig` from `ConfigModule` using `selectConfig` method.
