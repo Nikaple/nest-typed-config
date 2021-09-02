@@ -8,6 +8,10 @@ export interface DirectoryLoaderOptions extends OptionsSync {
    * The directory containing all configuration files.
    */
   directory: string;
+  /**
+   * File regex to include.
+   */
+  include?: RegExp;
 }
 
 /**
@@ -29,7 +33,9 @@ export const directoryLoader = ({
   ...options
 }: DirectoryLoaderOptions) => {
   return (): Record<string, any> => {
-    const files = readdirSync(directory);
+    const files = readdirSync(directory).filter(fileName =>
+      options.include ? options.include.test(fileName) : true,
+    );
     const fileNames = [
       ...new Set(files.map(file => file.replace(/\.\w+$/, ''))),
     ];
