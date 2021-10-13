@@ -79,7 +79,7 @@
   "peerDependencies": {
     "@nestjs/common": ">= 6.10.0 < 9",
     "reflect-metadata": "^0.1.12",
-    "rxjs": "^6.0.0"
+    "rxjs": ">= 6.0.0 < 8"
   },
   "lint-staged": {
     "*.ts": [
