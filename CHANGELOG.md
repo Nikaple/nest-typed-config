@@ -1,3 +1,5 @@
+## 1.6.4 (2021-10-20)
+
 ## [1.6.2](https://github.com/Nikaple/nest-typed-config/compare/1.6.1...1.6.2) (2021-10-20)
 
 ## [1.6.1](https://github.com/Nikaple/nest-typed-config/compare/1.6.0...1.6.1) (2021-10-09)
