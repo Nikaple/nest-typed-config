@@ -1,11 +1,9 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# This workflow release nest-typed-config to npm registry
 
-name: build
+name: release
 
 on:
   push:
-    branches: [main]
-  pull_request:
     branches: [main]
 
 env:
@@ -15,16 +13,13 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 14
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '14'
 
       - name: Install dependencies
         run: npm ci
@@ -40,5 +35,5 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build
-        run: npm run build
+      - name: Release
+        run: npm run release -- --ci
