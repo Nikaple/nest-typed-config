@@ -19,6 +19,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
 
       - name: Use Node.js 14
         uses: actions/setup-node@v1
