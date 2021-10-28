@@ -19,20 +19,11 @@ describe('Local toml', () => {
   it(`can only select existing config`, async () => {
     const module = AppModule.withRawModule();
 
-    try {
-      selectConfig(module, class {});
-    } catch (err) {
-      expect(err.message).toMatch(
-        /You can only select config which exists in providers/,
-      );
-    }
-
-    try {
-      selectConfig({ module: class {} }, class {});
-    } catch (err) {
-      expect(err.message).toMatch(
-        /You can only select config which exists in providers/,
-      );
-    }
+    expect(() => selectConfig(module, class {})).toThrowError(
+      'You can only select config which exists in providers',
+    );
+    expect(() => selectConfig({ module: class {} }, class {})).toThrowError(
+      'You can only select config which exists in providers',
+    );
   });
 });

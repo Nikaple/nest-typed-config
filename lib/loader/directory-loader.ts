@@ -1,4 +1,4 @@
-import { OptionsSync } from 'cosmiconfig';
+import type { OptionsSync } from 'cosmiconfig';
 import { readdirSync } from 'fs';
 import { fileLoader } from './file-loader';
 import fromPairs from 'lodash.frompairs';

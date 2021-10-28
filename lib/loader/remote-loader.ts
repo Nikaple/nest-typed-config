@@ -1,10 +1,13 @@
-import { HttpService } from '@nestjs/common';
-import { parse as parseToml } from '@iarna/toml';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import parseJson from 'parse-json';
-import { parse as parseYaml } from 'yaml';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { delay, map, retryWhen, take } from 'rxjs/operators';
 import { identity } from '../utils/identity.util';
+import { loadPackage } from '../utils/load-package.util';
+
+let parseJson: any;
+let parseYaml: any;
+let parseToml: any;
+let HttpService: any;
+let axios: any;
 
 type AxiosRequestConfigWithoutUrl = Omit<AxiosRequestConfig, 'url'>;
 
@@ -46,7 +49,10 @@ export interface RemoteLoaderOptions extends AxiosRequestConfigWithoutUrl {
 export const remoteLoader = <T = any>(
   url: string,
   options: RemoteLoaderOptions = {},
-) => {
+): (() => Promise<T>) => {
+  HttpService = loadPackage('@nestjs/axios', 'remoteLoader').HttpService;
+  axios = loadPackage('axios', 'remoteLoader');
+
   return async (): Promise<T> => {
     const {
       mapResponse = identity,
@@ -59,12 +65,12 @@ export const remoteLoader = <T = any>(
     const httpService = new HttpService(axios.create());
 
     const config = await httpService
-      .request<T>({
+      .request({
         url,
         ...options,
       })
       .pipe(
-        map(response => {
+        map((response: any) => {
           if (shouldRetry(response)) {
             throw new Error(
               `Error when fetching config, response.data: ${JSON.stringify(
@@ -94,10 +100,34 @@ export const remoteLoader = <T = any>(
       .toPromise();
 
     const parser = {
-      json: (content: string) => parseJson(content),
-      yaml: (content: string) => parseYaml(content),
-      yml: (content: string) => parseYaml(content),
-      toml: (content: string) => parseToml(content),
+      json: (content: string) => {
+        parseJson = loadPackage(
+          'parse-json',
+          "remoteLoader's ability to parse JSON files",
+        );
+        return parseJson(content);
+      },
+      yaml: (content: string) => {
+        parseYaml = loadPackage(
+          'yaml',
+          "remoteLoader's ability to parse YAML files",
+        ).parse;
+        return parseYaml(content);
+      },
+      yml: (content: string) => {
+        parseYaml = loadPackage(
+          'yaml',
+          "remoteLoader's ability to parse YML files",
+        ).parse;
+        return parseYaml(content);
+      },
+      toml: (content: string) => {
+        parseToml = loadPackage(
+          '@iarna/toml',
+          "remoteLoader's ability to parse TOML files",
+        ).parse;
+        return parseToml(content);
+      },
     };
 
     const realType = typeof type === 'function' ? type(config) : type;

@@ -3,7 +3,11 @@ import { Test } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 import { Config, DatabaseConfig, TableConfig } from '../src/config.model';
 
-describe('Local toml', () => {
+jest.mock('@iarna/toml', () => {
+  throw new Error('module not found');
+});
+
+describe('Special format', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
