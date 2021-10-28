@@ -27,24 +27,19 @@
     "release": "release-it"
   },
   "dependencies": {
-    "@iarna/toml": "^2.2.5",
-    "axios": "^0.21.1",
     "chalk": "^4.1.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
-    "cosmiconfig": "^7.0.0",
     "debug": "^4.3.1",
-    "dotenv": "^9.0.0",
-    "dotenv-expand": "^5.1.0",
     "lodash.frompairs": "^4.0.1",
     "lodash.merge": "^4.6.2",
-    "lodash.set": "^4.3.2",
-    "parse-json": "^5.2.0",
-    "yaml": "^1.10.2"
+    "lodash.set": "^4.3.2"
   },
   "devDependencies": {
     "@commitlint/cli": "12.1.1",
     "@commitlint/config-angular": "12.1.1",
+    "@iarna/toml": "^2.2.5",
+    "@nestjs/axios": "^0.0.3",
     "@nestjs/cli": "^7.6.0",
     "@nestjs/common": "7.6.15",
     "@nestjs/core": "7.6.15",
@@ -60,6 +55,9 @@
     "@types/node": "^7.10.14",
     "@typescript-eslint/eslint-plugin": "4.22.1",
     "@typescript-eslint/parser": "4.22.1",
+    "cosmiconfig": "^7.0.0",
+    "dotenv": "^9.0.0",
+    "dotenv-expand": "^5.1.0",
     "eslint": "7.25.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.22.1",
@@ -67,6 +65,7 @@
     "husky": "6.0.0",
     "jest": "^27.0.0-next.9",
     "lint-staged": "10.5.4",
+    "parse-json": "^5.2.0",
     "prettier": "2.2.1",
     "reflect-metadata": "0.1.13",
     "release-it": "14.6.1",
@@ -74,7 +73,17 @@
     "rxjs": "6.6.7",
     "ts-jest": "^27.0.0-next.12",
     "typedoc": "^0.20.36",
-    "typescript": "4.2.4"
+    "typescript": "4.2.4",
+    "yaml": "^1.10.2"
+  },
+  "optionalDependencies": {
+    "@iarna/toml": "^2.2.5",
+    "@nestjs/axios": "^0.0.3",
+    "cosmiconfig": "^7.0.0",
+    "dotenv": "^9.0.0",
+    "dotenv-expand": "^5.1.0",
+    "parse-json": "^5.2.0",
+    "yaml": "^1.10.2"
   },
   "peerDependencies": {
     "@nestjs/common": ">= 6.10.0 < 9",

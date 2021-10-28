@@ -1,13 +1,20 @@
-import { cosmiconfigSync, OptionsSync } from 'cosmiconfig';
-import { parse as parseToml } from '@iarna/toml';
+import type { OptionsSync } from 'cosmiconfig';
 import { basename, dirname } from 'path';
 import { debug } from '../utils/debug.util';
+import { loadPackage } from '../utils/load-package.util';
+
+let parseToml: any;
+let cosmiconfig: any;
 
 const loadToml = function loadToml(filepath: string, content: string) {
+  parseToml = loadPackage(
+    '@iarna/toml',
+    "fileLoader's ability to parse TOML files",
+  ).parse;
   try {
     const result = parseToml(content);
     return result;
-  } catch (error) {
+  } catch (error: any) {
     error.message = `TOML Error in ${filepath}:\n${error.message}`;
     throw error;
   }
@@ -65,7 +72,12 @@ const getSearchOptions = (options: FileLoaderOptions) => {
  * @see https://github.com/davidtheclark/cosmiconfig
  * @param options cosmiconfig initialize options. See: https://github.com/davidtheclark/cosmiconfig#cosmiconfigoptions
  */
-export const fileLoader = (options: FileLoaderOptions = {}) => {
+export const fileLoader = (
+  options: FileLoaderOptions = {},
+): (() => Record<string, any>) => {
+  cosmiconfig = loadPackage('cosmiconfig', 'fileLoader');
+
+  const { cosmiconfigSync } = cosmiconfig;
   return (): Record<string, any> => {
     const { searchPlaces, searchFrom } = getSearchOptions(options);
     const loaders = {
