@@ -18,7 +18,7 @@ const loadYaml = function loadYaml(filepath: string, content: string) {
   try {
     const result = parseYaml(content);
     return result;
-  } catch (error) {
+  } catch (error: any) {
     error.message = `YAML Error in ${filepath}:\n${error.message}`;
     throw error;
   }

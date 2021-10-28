@@ -67,7 +67,7 @@ export class TypedConfigModule {
         try {
           const conf = fn();
           merge(config, conf);
-        } catch (err) {
+        } catch (err: any) {
           debug(`Config load failed: ${err.message}`);
         }
       }
@@ -85,7 +85,7 @@ export class TypedConfigModule {
         try {
           const conf = await fn();
           merge(config, conf);
-        } catch (err) {
+        } catch (err: any) {
           debug(`Config load failed: ${err.message}`);
         }
       }

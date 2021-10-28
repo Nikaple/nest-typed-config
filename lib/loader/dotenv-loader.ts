@@ -5,10 +5,9 @@
  */
 
 import * as fs from 'fs';
-import * as dotenv from 'dotenv';
-import dotenvExpand from 'dotenv-expand';
 import { resolve } from 'path';
 import set from 'lodash.set';
+import { loadPackage } from '../utils/load-package.util';
 
 export interface DotenvLoaderOptions {
   /**
@@ -63,7 +62,11 @@ export interface DotenvLoaderOptions {
   expandVariables?: boolean;
 }
 
+let dotenv: any;
+let dotenvExpand: any;
+
 const loadEnvFile = (options: DotenvLoaderOptions): Record<string, any> => {
+  dotenv = loadPackage('dotenv', 'dotenvLoader');
   const envFilePaths = Array.isArray(options.envFilePath)
     ? options.envFilePath
     : [options.envFilePath || resolve(process.cwd(), '.env')];
@@ -76,6 +79,10 @@ const loadEnvFile = (options: DotenvLoaderOptions): Record<string, any> => {
         config,
       );
       if (options.expandVariables) {
+        dotenvExpand = loadPackage(
+          'dotenv-expand',
+          "dotenvLoader's ability to expandVariables",
+        );
         config = dotenvExpand({ parsed: config }).parsed!;
       }
     }

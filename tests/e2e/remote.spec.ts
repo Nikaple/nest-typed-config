@@ -16,9 +16,6 @@ describe('Remote loader', () => {
   beforeEach(async () => {
     const create = jest.fn().mockReturnValue(instance);
     axios.create = create as any;
-    (axios.CancelToken as any).source = jest.fn().mockReturnValue({
-      cancel: jest.fn(),
-    });
     instance.request.mockClear();
   });
 
@@ -117,8 +114,6 @@ describe('Remote loader', () => {
   });
 
   it(`should be able to specify retryInterval and retries`, async () => {
-    expect.assertions(2);
-
     const getTableConfig = async (option: RemoteLoaderOptions) => {
       instance.request.mockRejectedValueOnce(new Error(`Rejected #1`));
       instance.request.mockResolvedValueOnce({ data: { code: 400 } });
@@ -153,11 +148,9 @@ describe('Remote loader', () => {
     const tableConfig = await getTableConfig({ retries: 2 });
     expect(tableConfig.name).toBe('test');
 
-    try {
-      await getTableConfig({ retries: 1 });
-    } catch (err) {
-      expect(err.message).toMatch(/the number of retries has been exhausted/);
-    }
+    await expect(getTableConfig({ retries: 1 })).rejects.toThrow(
+      'the number of retries has been exhausted',
+    );
   });
 
   afterEach(async () => {
