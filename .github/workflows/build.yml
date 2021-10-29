@@ -4,9 +4,9 @@ name: build
 
 on:
   push:
-    branches: [main]
+    branches: [main, next, alpha]
   pull_request:
-    branches: [main]
+    branches: [main, next, alpha]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
