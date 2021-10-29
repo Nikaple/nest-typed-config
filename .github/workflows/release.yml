@@ -4,7 +4,7 @@ name: release
 
 on:
   push:
-    branches: [main, next]
+    branches: [main, next, alpha]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

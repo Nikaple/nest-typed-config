@@ -1,6 +1,6 @@
 {
   "name": "nest-typed-config",
-  "version": "2.0.0",
+  "version": "0.0.0-semantically-released",
   "description": "Intuitive, type-safe configuration module for Nest framework",
   "author": "Nikaple Zhou",
   "license": "MIT",
@@ -52,6 +52,7 @@
     "@nestjs/core": "7.6.15",
     "@nestjs/platform-express": "^7.6.15",
     "@nestjs/testing": "7.6.15",
+    "@semantic-release/git": "^10.0.0",
     "@types/debug": "^4.1.5",
     "@types/express": "^4.17.11",
     "@types/jest": "26.0.23",
@@ -95,6 +96,11 @@
     "@nestjs/common": ">= 6.10.0 < 9",
     "reflect-metadata": "^0.1.12",
     "rxjs": ">= 6.0.0 < 8"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/git"
+    ]
   },
   "lint-staged": {
     "*.ts": [
