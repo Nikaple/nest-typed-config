@@ -24,7 +24,7 @@
     "lint:dontfix": "eslint {lib/**/*.ts,test/**/*.ts,examples/**/*.ts}",
     "prepublish:npm": "npm run build",
     "prerelease": "npm run build",
-    "release": "release-it"
+    "release": "semantic-release"
   },
   "dependencies": {
     "@iarna/toml": "^2.2.5",
@@ -69,17 +69,22 @@
     "lint-staged": "10.5.4",
     "prettier": "2.2.1",
     "reflect-metadata": "0.1.13",
-    "release-it": "14.6.1",
     "rimraf": "3.0.2",
     "rxjs": "6.6.7",
     "ts-jest": "^27.0.0-next.12",
     "typedoc": "^0.20.36",
-    "typescript": "4.2.4"
+    "typescript": "4.2.4",
+    "semantic-release": "^18.0.0"
   },
   "peerDependencies": {
     "@nestjs/common": ">= 6.10.0 < 9",
     "reflect-metadata": "^0.1.12",
     "rxjs": ">= 6.0.0 < 8"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   },
   "lint-staged": {
     "*.ts": [
