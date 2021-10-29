@@ -23,12 +23,7 @@
 $ npm i --save nest-typed-config
 ```
 
-To use configuration loaders, additional dependencies is required to be installed. Please checkout the installation guide for corresponding loader:
-
-- [dotenv loader](#Installation-1)
-- [file loader](#Installation-2)
-- [directory loader](#Installation-3)
-- [remote loader](#Installation-4)
+`Nest-typed-config` will install the dependencies for all loaders by default. If you care about dependency size and bootstrap time, please checkout [the guide to skip optional dependencies](./OPTIONAL-DEP.md).
 
 ## Inspiration
 
@@ -164,18 +159,6 @@ For a full example, please visit [CodeSandbox](https://codesandbox.io/s/affectio
 
 The `dotenvLoader` function allows you to load configuration with [dotenv](https://github.com/motdotla/dotenv), which is similar to the [official configuration module](https://github.com/nestjs/config). You can use this loader to load configuration from `.env` files or environment variables.
 
-#### Installation
-
-To use `dotenvLoader`, you should install `dotenv` first. If you want to expand environment variables, `dotenv-expand` should be installed as well.
-
-```bash
-# For NPM
-$ npm i --save dotenv
-
-# If you want to expand environment variables, remember to install dotenv-expand
-$ npm i --save dotenv dotenv-expand
-```
-
 #### Example
 
 ```ts
@@ -251,18 +234,6 @@ export interface DotenvLoaderOptions {
 The `fileLoader` function allows you to load configuration with [cosmiconfig](https://github.com/davidtheclark/cosmiconfig). You can use this loader to load configuration from files with various extensions, such as `.json`, `.yaml`, `.toml` or `.js`.
 
 By default, `fileLoader` searches for `.env.{ext}` (ext = json, yaml, toml, js) configuration file starting at `process.cwd()`, and continues to search up the directory tree until it finds some acceptable configuration (or hits the home directory). Moreover, configuration of current environment takes precedence over general configuration (`.env.development.toml` is loaded instead of `.env.toml` when `NODE_ENV=development`)
-
-#### Installation
-
-To use `fileLoader`, you should install `cosmiconfig` first. If you want to load `.toml` configuration files, `@iarna/toml` should be installed as well.
-
-```bash
-# For NPM
-$ npm i --save cosmiconfig
-
-# If you want to load .toml configs, remember to install @iarna/toml
-$ npm i --save @iarna/toml
-```
 
 #### Example
 
@@ -347,18 +318,6 @@ The folder above will generate configuration as follows:
 }
 ```
 
-#### Installation
-
-To use `directoryLoader`, you should install `cosmiconfig` first. If you want to load `.toml` configuration files, `@iarna/toml` should be installed as well.
-
-```bash
-# For NPM
-$ npm i --save cosmiconfig
-
-# If you want to load .toml configs, remember to install @iarna/toml
-$ npm i --save @iarna/toml
-```
-
 #### Example
 
 ```ts
@@ -407,26 +366,7 @@ TypedConfigModule.forRoot({
 
 ### Using remote loader
 
-The `remoteLoader` function allows you to load configuration from a remote endpoint, such as configuration center. Internally [axios](https://github.com/axios/axios) is used to perform http requests.
-
-#### Installation
-
-To use `remoteLoader`, you should install `axios` first. Then, depending on the config file format, you should install corresponding config file parser. That is:
-
-- `parse-json` to parse `.json` configurations.
-- `yaml` to parse `.yml` or `.yaml` configurations.
-- `toml` to parse `.toml` configurations.
-
-```bash
-$ npm i --save axios
-
-# For .toml config
-$ npm i --save axios @iarna/toml
-# For .json config
-$ npm i --save axios parse-json
-# For .yaml/.yml config
-$ npm i --save axios yml
-```
+The `remoteLoader` function allows you to load configuration from a remote endpoint, such as configuration center. Internally [@nestjs/axios](https://github.com/nestjs/axios) is used to perform http requests.
 
 #### Example
 
