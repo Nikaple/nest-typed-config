@@ -491,6 +491,50 @@ export class Config {
 }
 ```
 
+## Type casting on environment variables
+
+Environment variables are always loaded as strings, but configuration schemas are not. In such case, you can transform the raw config with `normalize` function:
+
+```ts
+// config.ts
+export class Config {
+  @IsString()
+  public readonly host: string;
+
+  @IsNumber()
+  public readonly port: number;
+}
+
+// app.module.ts
+TypedConfigModule.forRoot({
+  schema: RootConfig,
+  load: dotenvLoader(),
+  normalize(config) {
+    config.port = parseInt(config.port, 10);
+    return config;
+  },
+});
+```
+
+## Custom getters
+
+You can define custom getters on config schema to extract common logic:
+
+```ts
+export class Config {
+  @IsString()
+  public readonly host: string = '127.0.0.1';
+
+  @IsNumber()
+  public readonly port: number = 3000;
+
+  @IsString()
+  public get url(): string {
+    return `http://${this.host}:${this.port}`;
+  }
+}
+```
+
 ## Custom validate function
 
 If the default `validate` function doesn't suite your use case, you can provide it like in the example below:
