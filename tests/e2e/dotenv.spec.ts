@@ -23,7 +23,6 @@ jest.mock('cosmiconfig', () => {
 
 describe('Dotenv loader', () => {
   let app: INestApplication;
-  let envBackup = {};
   const processExitStub = jest.fn();
   const consoleErrorStub = jest.fn();
 
@@ -37,7 +36,7 @@ describe('Dotenv loader', () => {
   };
 
   beforeEach(() => {
-    envBackup = process.env;
+    process.env = {};
     process.exit = processExitStub as any;
     console.error = consoleErrorStub as any;
 
@@ -81,6 +80,30 @@ describe('Dotenv loader', () => {
 
     const config = app.get(TableConfig);
     expect(config.name).toBe('no-option');
+  });
+
+  it(`should assign environment variables to process.env automatically`, async () => {
+    process.env = {
+      name: 'assign-process-env',
+    };
+    await init({
+      separator: '__',
+      envFilePath: join(__dirname, '../src/.env'),
+    });
+    expect(process.env.database__host).toBe('test');
+  });
+
+  it(`should not override environment variables which exists on process.env`, async () => {
+    process.env = {
+      name: 'assign-process-env',
+      database__host: 'existing',
+    };
+    await init({
+      separator: '__',
+      envFilePath: join(__dirname, '../src/.env'),
+    });
+    expect(process.env.database__host).toBe('existing');
+    expect(app.get(Config).database.host).toBe('existing');
   });
 
   it(`should be able to load config from environment variables`, async () => {
@@ -133,7 +156,5 @@ describe('Dotenv loader', () => {
 
   afterEach(async () => {
     await app?.close();
-
-    process.env = envBackup;
   });
 });
