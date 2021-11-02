@@ -8,6 +8,7 @@ import * as fs from 'fs';
 import { resolve } from 'path';
 import set from 'lodash.set';
 import { loadPackage } from '../utils/load-package.util';
+import { debug } from '../utils/debug.util';
 
 export interface DotenvLoaderOptions {
   /**
@@ -71,7 +72,7 @@ const loadEnvFile = (options: DotenvLoaderOptions): Record<string, any> => {
     ? options.envFilePath
     : [options.envFilePath || resolve(process.cwd(), '.env')];
 
-  let config: ReturnType<typeof dotenv.parse> = {};
+  let config: Record<string, string> = {};
   for (const envFilePath of envFilePaths) {
     if (fs.existsSync(envFilePath)) {
       config = Object.assign(
@@ -86,6 +87,16 @@ const loadEnvFile = (options: DotenvLoaderOptions): Record<string, any> => {
         config = dotenvExpand({ parsed: config }).parsed!;
       }
     }
+
+    Object.entries(config).forEach(([key, value]) => {
+      if (!Object.prototype.hasOwnProperty.call(process.env, key)) {
+        process.env[key] = value;
+      } else {
+        debug(
+          `"${key}" is already defined in \`process.env\` and will not be overwritten`,
+        );
+      }
+    });
   }
   return config;
 };
