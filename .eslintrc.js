@@ -16,7 +16,7 @@ module.exports = {
     jest: true,
   },
   rules: {
-    "prettier/prettier": "error",
+    'prettier/prettier': 'error',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
