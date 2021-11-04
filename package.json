@@ -29,6 +29,8 @@
     "doc": "typedoc lib/index.ts --tsconfig tsconfig.build.json",
     "lint": "eslint {lib/**/*.ts,tests/**/*.ts,examples/**/*.ts} --fix",
     "lint:dontfix": "eslint {lib/**/*.ts,test/**/*.ts,examples/**/*.ts}",
+    "format": "prettier --write .",
+    "format:dontfix": "prettier --check .",
     "prepublish:npm": "npm run build",
     "prerelease": "npm run build",
     "release": "semantic-release"

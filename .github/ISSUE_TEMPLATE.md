@@ -5,7 +5,8 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 -->
 
 ## I'm submitting a...
-<!-- 
+
+<!--
 Please search GitHub for a similar issue or PR before submitting.
 Check one of the following options with "x" -->
 <pre><code>
@@ -17,19 +18,20 @@ Check one of the following options with "x" -->
 </code></pre>
 
 ## Current behavior
+
 <!-- Describe how the issue manifests. -->
 
-
 ## Expected behavior
+
 <!-- Describe what the desired behavior would be. -->
 
-
 ## Minimal reproduction of the problem with instructions
+
 <!-- Please share a repo, a gist, or step-by-step instructions. -->
 
 ## What is the motivation / use case for changing the behavior?
-<!-- Describe the motivation or the concrete use case. -->
 
+<!-- Describe the motivation or the concrete use case. -->
 
 ## Environment
 

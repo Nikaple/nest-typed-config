@@ -3,9 +3,7 @@
     "module": "commonjs",
     "declaration": true,
     "strict": true,
-    "lib": [
-      "esnext"
-    ],
+    "lib": ["esnext"],
     "removeComments": false,
     "noLib": false,
     "emitDecoratorMetadata": true,
@@ -17,13 +15,6 @@
     "rootDir": ".",
     "skipLibCheck": true
   },
-  "include": [
-    "lib/**/*",
-    "tests/**/*",
-    "examples/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["lib/**/*", "tests/**/*", "examples/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
