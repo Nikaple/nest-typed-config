@@ -46,3 +46,12 @@ export class DirectoryConfig {
   @IsDefined()
   public readonly table!: TableConfig;
 }
+
+export class FooConfig {
+  @IsString()
+  foo!: string;
+}
+export class BazConfig {
+  @IsString()
+  baz!: string;
+}

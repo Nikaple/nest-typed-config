@@ -12,7 +12,13 @@ import {
   dotenvLoader,
   DotenvLoaderOptions,
 } from '../../lib/loader/dotenv-loader';
-import { Config, DirectoryConfig, TableConfig } from './config.model';
+import {
+  BazConfig,
+  Config,
+  DirectoryConfig,
+  FooConfig,
+  TableConfig,
+} from './config.model';
 
 const loadYaml = function loadYaml(filepath: string, content: string) {
   try {
@@ -61,6 +67,25 @@ export class AppModule {
     };
   }
 
+  static withMultipleSchemas(): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        TypedConfigModule.forRoot({
+          schema: FooConfig,
+          load: dotenvLoader({
+            envFilePath: join(__dirname, '../src/.env.part1'),
+          }),
+        }),
+        TypedConfigModule.forRoot({
+          schema: BazConfig,
+          load: dotenvLoader({
+            envFilePath: join(__dirname, '../src/.env.part2'),
+          }),
+        }),
+      ],
+    };
+  }
   static withToml(): DynamicModule {
     return {
       module: AppModule,
