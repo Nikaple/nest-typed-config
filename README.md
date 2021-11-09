@@ -535,6 +535,41 @@ export class Config {
 }
 ```
 
+## Multiple Schemas
+
+Just call `TypedConfigModule.forRoot` multiple times, and you're ready to go!
+
+> PS: Please do not share any class or sub-class between schemas, or Nest.js won't know which class to inject.
+
+```ts
+// config.ts
+export class FooConfig {
+  @IsString()
+  foo!: string;
+}
+export class BazConfig {
+  @IsString()
+  baz!: string;
+}
+
+// app.module.ts
+@Module({
+  imports: [
+    // load FooConfig from config file
+    TypedConfigModule.forRoot({
+      schema: FooConfig,
+      load: fileLoader(),
+    }),
+    // load BazConfig from environment variables
+    TypedConfigModule.forRoot({
+      schema: BazConfig,
+      load: dotenvLoader(),
+    }),
+  ],
+})
+export class AppModule {}
+```
+
 ## Custom validate function
 
 If the default `validate` function doesn't suite your use case, you can provide it like in the example below:
