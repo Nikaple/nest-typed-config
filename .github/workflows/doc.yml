@@ -37,7 +37,7 @@ jobs:
         run: npm run doc
 
       - name: Deploy to Github Pages
-        uses: crazy-max/ghaction-github-pages@v2.3.0
+        uses: crazy-max/ghaction-github-pages@v2.5.0
         with:
           # Build directory to deploy
           build_dir: docs
