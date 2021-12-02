@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+## [2.2.0](https://github.com/Nikaple/nest-typed-config/compare/v2.1.1...v2.2.0) (2021-12-02)
+
+### ✨ Features
+
+- update nestjs to v8, rxjs to v7 ([#24](https://github.com/Nikaple/nest-typed-config/issues/24)) [`c582819`](https://github.com/Nikaple/nest-typed-config/commit/c5828193743f41ddfefca00cda65f80a07d0a88b).
+
 ### [2.1.1](https://github.com/Nikaple/nest-typed-config/compare/v2.1.0...v2.1.1) (2021-12-02)
 
 ### 📚 Documentations
