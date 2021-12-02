@@ -1,4 +1,6 @@
+import type { HttpService as THttpService } from '@nestjs/axios';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { lastValueFrom } from 'rxjs';
 import { delay, map, retryWhen, take } from 'rxjs/operators';
 import { identity } from '../utils/identity.util';
 import { loadPackage } from '../utils/load-package.util';
@@ -62,42 +64,43 @@ export const remoteLoader = <T = any>(
       retries = 3,
     } = options;
 
-    const httpService = new HttpService(axios.create());
+    const httpService: THttpService = new HttpService(axios.create());
 
-    const config = await httpService
-      .request({
-        url,
-        ...options,
-      })
-      .pipe(
-        map((response: any) => {
-          if (shouldRetry(response)) {
-            throw new Error(
-              `Error when fetching config, response.data: ${JSON.stringify(
-                response.data,
-              )}`,
+    const config = await lastValueFrom(
+      httpService
+        .request({
+          url,
+          ...options,
+        })
+        .pipe(
+          map((response: any) => {
+            if (shouldRetry(response)) {
+              throw new Error(
+                `Error when fetching config, response.data: ${JSON.stringify(
+                  response.data,
+                )}`,
+              );
+            }
+            return mapResponse(response.data);
+          }),
+          retryWhen(errors => {
+            let retryCount = 0;
+            return errors.pipe(
+              delay(retryInterval),
+              map(error => {
+                if (retryCount >= retries) {
+                  throw new Error(
+                    `Fetch config with remote-loader failed, as the number of retries has been exhausted. ${error.message}`,
+                  );
+                }
+                retryCount += 1;
+                return error;
+              }),
+              take(retries + 1),
             );
-          }
-          return mapResponse(response.data);
-        }),
-        retryWhen(errors => {
-          let retryCount = 0;
-          return errors.pipe(
-            delay(retryInterval),
-            map(error => {
-              if (retryCount >= retries) {
-                throw new Error(
-                  `Fetch config with remote-loader failed, as the number of retries has been exhausted. ${error.message}`,
-                );
-              }
-              retryCount += 1;
-              return error;
-            }),
-            take(retries + 1),
-          );
-        }),
-      )
-      .toPromise();
+          }),
+        ),
+    );
 
     const parser = {
       json: (content: string) => {
