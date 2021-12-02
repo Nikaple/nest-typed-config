@@ -675,7 +675,7 @@ Please refer to our [API website](https://nikaple.github.io/nest-typed-config) f
 
 ## Changelog
 
-Please refer to [CHANGELOG.md](https://github.com/Nikaple/nest-typed-config/blob/main/CHANGELOG.md)
+Please refer to [changelog.md](https://github.com/Nikaple/nest-typed-config/blob/main/changelog.md)
 
 ## License
 
