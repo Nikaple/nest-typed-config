@@ -67,7 +67,7 @@
     "cosmiconfig": "7.0.1",
     "dotenv": "9.0.2",
     "dotenv-expand": "5.1.0",
-    "eslint": "7.25.0",
+    "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-prettier": "3.4.1",
