@@ -16,6 +16,9 @@ describe('Remote loader', () => {
   beforeEach(async () => {
     const create = jest.fn().mockReturnValue(instance);
     axios.create = create as any;
+    axios.CancelToken = {
+      source: jest.fn().mockReturnValue({ token: 'token', cancel: jest.fn() }),
+    } as any;
     instance.request.mockClear();
   });
 
@@ -133,7 +136,7 @@ describe('Remote loader', () => {
         imports: [
           AppModule.withRemoteConfig({
             retryInterval: 100,
-            shouldRetry: res => res.data.code === 400,
+            shouldRetry: (res: any) => res.data.code === 400,
             ...option,
           }),
         ],
