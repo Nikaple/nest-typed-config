@@ -74,7 +74,7 @@
     "husky": "7.0.4",
     "jest": "27.0.0-next.9",
     "lint-staged": "12.1.2",
-    "parse-json": "5.2.0",
+    "parse-json": "6.0.2",
     "prettier": "2.5.1",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
@@ -91,7 +91,7 @@
     "cosmiconfig": "^7.0.0",
     "dotenv": "^10.0.0",
     "dotenv-expand": "^5.1.0",
-    "parse-json": "^5.2.0",
+    "parse-json": "^6.0.0",
     "yaml": "^1.10.2"
   },
   "peerDependencies": {
