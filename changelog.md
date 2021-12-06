@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.2.1](https://github.com/Nikaple/nest-typed-config/compare/v2.2.0...v2.2.1) (2021-12-06)
+
+### 🐛 Fixes
+
+- **deps:** update dependency chalk to v4.1.2 ([#34](https://github.com/Nikaple/nest-typed-config/issues/34)) [`b8a5ccf`](https://github.com/Nikaple/nest-typed-config/commit/b8a5ccf5e287de3cbc41e60dbbde4c255f855acb).
+
+  Co-authored-by: Renovate Bot <bot@renovateapp.com>
+
 ## [2.2.0](https://github.com/Nikaple/nest-typed-config/compare/v2.1.1...v2.2.0) (2021-12-02)
 
 ### ✨ Features
