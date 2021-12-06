@@ -1,5 +1,8 @@
 {
-  "semanticCommits": true,
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "semanticCommits": "enabled",
+  "timezone": "Asia/Shanghai",
+  "schedule": ["after 1am every weekday", "before 8am every weekday"],
   "packageRules": [
     {
       "depTypeList": ["devDependencies"],
