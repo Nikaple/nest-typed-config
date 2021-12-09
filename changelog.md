@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.2.3](https://github.com/Nikaple/nest-typed-config/compare/v2.2.2...v2.2.3) (2021-12-09)
+
+### 🐛 Fixes
+
+- **deps:** update dependency class-validator to v0.13.2 ([#35](https://github.com/Nikaple/nest-typed-config/issues/35)) [`142c683`](https://github.com/Nikaple/nest-typed-config/commit/142c683a8722e3d4c91cc6314803919401716b1c).
+
+  Co-authored-by: Renovate Bot <bot@renovateapp.com>
+
 ### [2.2.2](https://github.com/Nikaple/nest-typed-config/compare/v2.2.1...v2.2.2) (2021-12-06)
 
 ### 🐛 Fixes
