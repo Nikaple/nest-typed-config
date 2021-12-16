@@ -28,7 +28,7 @@
     "test:cov": "jest --runInBand --coverage",
     "doc": "typedoc lib/index.ts --tsconfig tsconfig.build.json",
     "lint": "eslint {lib/**/*.ts,tests/**/*.ts,examples/**/*.ts} --fix",
-    "lint:dontfix": "eslint {lib/**/*.ts,test/**/*.ts,examples/**/*.ts}",
+    "lint:dontfix": "eslint {lib/**/*.ts,tests/**/*.ts,examples/**/*.ts}",
     "format": "prettier --write .",
     "format:dontfix": "prettier --check .",
     "prepublish:npm": "npm run build",
@@ -45,9 +45,9 @@
     "lodash.set": "4.3.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "14.1.0",
+    "@commitlint/cli": "15.0.0",
     "@iarna/toml": "2.2.5",
-    "@latipun7/commitlintrc": "1.1.0",
+    "@latipun7/commitlintrc": "1.1.3",
     "@latipun7/releaserc": "2.2.0",
     "@nestjs/axios": "0.0.3",
     "@nestjs/cli": "8.1.6",
@@ -72,7 +72,7 @@
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-prettier": "4.0.0",
     "husky": "7.0.4",
-    "jest": "27.0.0-next.9",
+    "jest": "27.4.5",
     "lint-staged": "12.1.2",
     "parse-json": "5.2.0",
     "prettier": "2.5.1",
@@ -80,7 +80,7 @@
     "rimraf": "3.0.2",
     "rxjs": "7.4.0",
     "semantic-release": "18.0.1",
-    "ts-jest": "27.0.0-next.12",
+    "ts-jest": "27.1.1",
     "typedoc": "0.22.10",
     "typescript": "4.5.4",
     "yaml": "1.10.2"
