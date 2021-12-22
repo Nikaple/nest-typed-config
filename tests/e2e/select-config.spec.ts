@@ -7,23 +7,21 @@ describe('Local toml', () => {
     const module = AppModule.withRawModule();
 
     const config = selectConfig(module, Config);
-    expect(config.isAuthEnabled).toBe(true);
+    expect(config?.isAuthEnabled).toBe(true);
 
     const databaseConfig = selectConfig(module, DatabaseConfig);
-    expect(databaseConfig.port).toBe(3000);
+    expect(databaseConfig?.port).toBe(3000);
 
     const tableConfig = selectConfig(module, TableConfig);
-    expect(tableConfig.name).toBe('test');
+    expect(tableConfig?.name).toBe('test');
   });
 
-  it(`can only select existing config`, async () => {
+  it(`can select not existing config`, async () => {
     const module = AppModule.withRawModule();
 
-    expect(() => selectConfig(module, class {})).toThrowError(
-      'You can only select config which exists in providers',
-    );
-    expect(() => selectConfig({ module: class {} }, class {})).toThrowError(
-      'You can only select config which exists in providers',
-    );
+    const config1 = selectConfig(module, class {});
+    expect(config1).toBeUndefined();
+    const config2 = selectConfig({ module: class {} }, class {});
+    expect(config2).toBeUndefined();
   });
 });
