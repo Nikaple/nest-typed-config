@@ -45,7 +45,7 @@
     "lodash.set": "4.3.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "15.0.0",
+    "@commitlint/cli": "16.0.0",
     "@iarna/toml": "2.2.5",
     "@latipun7/commitlintrc": "1.1.3",
     "@latipun7/releaserc": "2.2.0",
