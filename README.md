@@ -650,6 +650,8 @@ export const routeConfig = selectConfig(ConfigModule, RouteConfig);
 
 That's it! You can use `rootConfig` and `routeConfig` anywhere in your app now!
 
+> If target configuration model is marked with `@Optional()`, you should call `selectConfig` with `{ allowOptional: true }` to allow optional configuration.
+
 ```ts
 // app.controller.ts
 import { Controller, Get } from '@nestjs/common';
