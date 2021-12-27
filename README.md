@@ -491,7 +491,7 @@ export class Config {
 }
 ```
 
-## Type casting on environment variables
+## Transforming the raw configuration
 
 Environment variables are always loaded as strings, but configuration schemas are not. In such case, you can transform the raw config with `normalize` function:
 
@@ -649,6 +649,8 @@ export const routeConfig = selectConfig(ConfigModule, RouteConfig);
 ```
 
 That's it! You can use `rootConfig` and `routeConfig` anywhere in your app now!
+
+> If target configuration model is marked with `@Optional()`, you should call `selectConfig` with `{ allowOptional: true }` to allow optional configuration.
 
 ```ts
 // app.controller.ts
