@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+## [2.3.0](https://github.com/Nikaple/nest-typed-config/compare/v2.2.3...v2.3.0) (2021-12-27)
+
+### ✨ Features
+
+- support selecting optional configs with selectConfig ([#82](https://github.com/Nikaple/nest-typed-config/issues/82)) [`5852b52`](https://github.com/Nikaple/nest-typed-config/commit/5852b52ee621f4833f17d0a514e3428f5d299e27).
+
 ### [2.2.3](https://github.com/Nikaple/nest-typed-config/compare/v2.2.2...v2.2.3) (2021-12-09)
 
 ### 🐛 Fixes
