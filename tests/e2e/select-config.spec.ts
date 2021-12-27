@@ -16,7 +16,7 @@ describe('Local toml', () => {
     expect(tableConfig.name).toBe('test');
   });
 
-  it(`can only select existing config`, async () => {
+  it(`can only select existing config without 'allowOptional'`, async () => {
     const module = AppModule.withRawModule();
 
     expect(() => selectConfig(module, class {})).toThrowError(
@@ -25,5 +25,19 @@ describe('Local toml', () => {
     expect(() => selectConfig({ module: class {} }, class {})).toThrowError(
       'You can only select config which exists in providers',
     );
+  });
+
+  it(`can select optional config with 'allowOptional'`, async () => {
+    const module = AppModule.withRawModule();
+
+    expect(
+      selectConfig(module, class {}, { allowOptional: true }),
+    ).toBeUndefined();
+    expect(
+      selectConfig({ module: class {} }, class {}, { allowOptional: true }),
+    ).toBeUndefined();
+
+    const config = selectConfig(module, Config, { allowOptional: true });
+    expect(config?.isAuthEnabled).toBe(true);
   });
 });
