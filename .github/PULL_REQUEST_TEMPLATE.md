@@ -31,8 +31,8 @@ Issue Number: N/A
 
 ## Does this PR introduce a breaking change?
 
-[ ] Yes
-[ ] No
+- [ ] Yes
+- [ ] No
 
 <!-- If this PR contains a breaking change, please describe the impact and migration path for existing applications below. -->
 
