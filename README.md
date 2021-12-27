@@ -491,7 +491,7 @@ export class Config {
 }
 ```
 
-## Type casting on environment variables
+## Transforming the raw configuration
 
 Environment variables are always loaded as strings, but configuration schemas are not. In such case, you can transform the raw config with `normalize` function:
 
