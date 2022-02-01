@@ -222,6 +222,20 @@ export class AppModule {
     };
   }
 
+  static withYamlSubstitution(): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        TypedConfigModule.forRoot({
+          schema: Config,
+          load: fileLoader({
+            absolutePath: join(__dirname, '.env.sub.yaml'),
+          }),
+        }),
+      ],
+    };
+  }
+
   static withDotenvNoOption(): DynamicModule {
     return {
       module: AppModule,

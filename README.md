@@ -476,6 +476,33 @@ TypedConfigModule.forRoot({
 });
 ```
 
+## Uses of environment variable substitutions
+
+The `${PORT}` substitution feature lets you use environment variable in some nice ways.
+
+If you have config file with like the below one
+
+```yaml
+database:
+  host: 127.0.0.1
+  port: ${PORT}
+```
+
+And you have set environment variable for port
+
+```bash
+PORT=9000
+```
+
+then `fileloader` will resolve `${PORT}` placeholder and replace with environment variable.
+And you will get new config like below one
+
+```yaml
+database:
+  host: 127.0.0.1
+  port: 9000
+```
+
 ## Default values
 
 Just define your default values in config schema, and you are ready to go:

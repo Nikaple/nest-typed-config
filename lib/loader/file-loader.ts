@@ -2,6 +2,10 @@ import type { OptionsSync } from 'cosmiconfig';
 import { basename, dirname } from 'path';
 import { debug } from '../utils/debug.util';
 import { loadPackage } from '../utils/load-package.util';
+import {
+  PlaceholderMissingValueError,
+  PlaceholderOptions,
+} from '../interfaces';
 
 let parseToml: any;
 let cosmiconfig: any;
@@ -59,6 +63,52 @@ const getSearchOptions = (options: FileLoaderOptions) => {
 };
 
 /**
+ * Will fill in some placeholders.
+ * @param template - Text with placeholders for `data` properties.
+ * @param data - Data to interpolate into `template`.
+ *
+ * @param options - placeholderResolver options
+ * @example
+ ```
+ placeholderResolver('Hello ${name}', {
+    name: 'John',
+  });
+ //=> 'Hello John'
+ ```
+ */
+const placeholderResolver = (
+  template: string,
+  data: Record<string, any>,
+  options: PlaceholderOptions = {
+    ignoreMissing: false,
+    transform: ({ value }) => value,
+  },
+): string => {
+  const replace = (placeholder: any, key: string) => {
+    let value = data;
+    for (const property of key.split('.')) {
+      value = value ? value[property] : undefined;
+    }
+
+    const transformedValue = options?.transform?.({ value, key });
+    if (transformedValue === undefined) {
+      if (options?.ignoreMissing) {
+        return placeholder;
+      }
+
+      throw new PlaceholderMissingValueError(key);
+    }
+
+    return String(transformedValue);
+  };
+
+  // The regex tries to match either a number inside `${{ }}` or a valid JS identifier or key path.
+  const braceRegex = /\${(\d+|[a-z$_][\w\-$]*?(?:\.[\w\-$]*?)*?)}/gi;
+
+  return template.replace(braceRegex, replace);
+};
+
+/**
  * File loader loads configuration with `cosmiconfig` from file system.
  *
  * It is designed to be easy to use by default:
@@ -99,6 +149,10 @@ export const fileLoader = (
       `File-loader has loaded a configuration file from ${result.filepath}`,
     );
 
-    return result.config;
+    const replacedConfig = placeholderResolver(
+      JSON.stringify(result.config),
+      process.env,
+    );
+    return JSON.parse(replacedConfig);
   };
 };
