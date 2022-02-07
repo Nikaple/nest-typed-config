@@ -78,9 +78,14 @@ const placeholderResolver = (
   const replace = (placeholder: any, key: string) => {
     let value = data;
     for (const property of key.split('.')) {
-      value = value ? value[property] : undefined;
+      value = value[property];
     }
 
+    if (!value) {
+      throw new Error(
+        `Environment variable is not set for variable name: '${key}'`,
+      );
+    }
     return String(value);
   };
 
