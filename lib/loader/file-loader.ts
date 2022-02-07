@@ -2,10 +2,6 @@ import type { OptionsSync } from 'cosmiconfig';
 import { basename, dirname } from 'path';
 import { debug } from '../utils/debug.util';
 import { loadPackage } from '../utils/load-package.util';
-import {
-  PlaceholderMissingValueError,
-  PlaceholderOptions,
-} from '../interfaces';
 
 let parseToml: any;
 let cosmiconfig: any;
@@ -79,10 +75,6 @@ const getSearchOptions = (options: FileLoaderOptions) => {
 const placeholderResolver = (
   template: string,
   data: Record<string, any>,
-  options: PlaceholderOptions = {
-    ignoreMissing: false,
-    transform: ({ value }) => value,
-  },
 ): string => {
   const replace = (placeholder: any, key: string) => {
     let value = data;
@@ -90,16 +82,7 @@ const placeholderResolver = (
       value = value ? value[property] : undefined;
     }
 
-    const transformedValue = options?.transform?.({ value, key });
-    if (transformedValue === undefined) {
-      if (options?.ignoreMissing) {
-        return placeholder;
-      }
-
-      throw new PlaceholderMissingValueError(key);
-    }
-
-    return String(transformedValue);
+    return String(value);
   };
 
   // The regex tries to match either a number inside `${{ }}` or a valid JS identifier or key path.

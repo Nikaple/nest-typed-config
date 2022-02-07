@@ -53,31 +53,3 @@ export interface TypedConfigModuleAsyncOptions
    */
   load: ConfigLoader | AsyncConfigLoader | (ConfigLoader | AsyncConfigLoader)[];
 }
-
-export class PlaceholderMissingValueError extends Error {
-  name: 'MissingValueError';
-  key: string;
-
-  constructor(key: string) {
-    super(
-      `Missing a value for ${
-        key ? `the placeholder: ${key}` : 'a placeholder'
-      }`,
-    );
-    this.name = 'MissingValueError';
-    this.key = key;
-  }
-}
-
-export type PlaceholderOptions = {
-  /**
-   By default, throws a `MissingValueError` when a placeholder resolves to `undefined`. With this option set to `true`, it simply ignores it and leaves the placeholder as is.
-   @default false
-   */
-  ignoreMissing?: boolean;
-  /**
-   Performs arbitrary operation for each interpolation. If the returned value was `undefined`, it behaves differently depending on the `ignoreMissing` option. Otherwise, the returned value will be interpolated into a string (and escaped when double-braced) and embedded into the template.
-   @default ({value}) => value
-   */
-  transform: (data: { value: unknown; key: string }) => unknown;
-};
