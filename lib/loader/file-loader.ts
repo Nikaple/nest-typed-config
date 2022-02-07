@@ -63,7 +63,6 @@ const getSearchOptions = (options: FileLoaderOptions) => {
  * @param template - Text with placeholders for `data` properties.
  * @param data - Data to interpolate into `template`.
  *
- * @param options - placeholderResolver options
  * @example
  ```
  placeholderResolver('Hello ${name}', {
