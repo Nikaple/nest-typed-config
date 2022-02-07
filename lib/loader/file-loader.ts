@@ -36,6 +36,11 @@ export interface FileLoaderOptions extends Partial<OptionsSync> {
    * The directory to search from, defaults to `process.cwd()`. See: https://github.com/davidtheclark/cosmiconfig#explorersearch
    */
   searchFrom?: string;
+  /**
+   * If "true", ignore environment variable substitution.
+   * Default: true
+   */
+  ignoreEnvironmentVariableSubstitution?: boolean;
 }
 
 const getSearchOptions = (options: FileLoaderOptions) => {
@@ -136,10 +141,16 @@ export const fileLoader = (
       `File-loader has loaded a configuration file from ${result.filepath}`,
     );
 
-    const replacedConfig = placeholderResolver(
-      JSON.stringify(result.config),
-      process.env,
-    );
-    return JSON.parse(replacedConfig);
+    let config = result.config;
+
+    if (!(options.ignoreEnvironmentVariableSubstitution ?? true)) {
+      const replacedConfig = placeholderResolver(
+        JSON.stringify(result.config),
+        process.env,
+      );
+      config = JSON.parse(replacedConfig);
+    }
+
+    return config;
   };
 };

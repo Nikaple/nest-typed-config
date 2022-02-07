@@ -8,19 +8,26 @@ describe('Environment variable substitutions', () => {
 
   const tableName = 'users';
 
-  beforeEach(async () => {
+  const init = async (ignoreSubstitution: boolean) => {
     process.env['TABLE_NAME'] = tableName;
     const module = await Test.createTestingModule({
-      imports: [AppModule.withYamlSubstitution()],
+      imports: [AppModule.withYamlSubstitution(ignoreSubstitution)],
     }).compile();
 
     app = module.createNestApplication();
     await app.init();
-  });
+  };
 
-  it(`should load .env.yaml and substitute environment variable`, () => {
+  it(`should load .env.yaml and substitute environment variable`, async () => {
+    await init(false);
     const databaseConfig = app.get(DatabaseConfig);
     expect(databaseConfig.table.name).toBe(tableName);
+  });
+
+  it(`should load .env.yaml and substitute environment variable`, async () => {
+    await init(true);
+    const databaseConfig = app.get(DatabaseConfig);
+    expect(databaseConfig.table.name).toBe('${TABLE_NAME}');
   });
 
   afterEach(async () => {

@@ -269,6 +269,11 @@ export interface FileLoaderOptions extends Partial<OptionsSync> {
    * The directory to search from, defaults to `process.cwd()`. See: https://github.com/davidtheclark/cosmiconfig#explorersearch
    */
   searchFrom?: string;
+  /**
+   * If "true", ignore environment variable substitution.
+   * Default: true
+   */
+  ignoreEnvironmentVariableSubstitution?: boolean;
 }
 ```
 

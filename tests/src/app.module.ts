@@ -222,7 +222,7 @@ export class AppModule {
     };
   }
 
-  static withYamlSubstitution(): DynamicModule {
+  static withYamlSubstitution(ignoreSubstitution: boolean): DynamicModule {
     return {
       module: AppModule,
       imports: [
@@ -230,6 +230,7 @@ export class AppModule {
           schema: Config,
           load: fileLoader({
             absolutePath: join(__dirname, '.env.sub.yaml'),
+            ignoreEnvironmentVariableSubstitution: ignoreSubstitution,
           }),
         }),
       ],
