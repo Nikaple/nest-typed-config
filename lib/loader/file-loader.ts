@@ -36,6 +36,11 @@ export interface FileLoaderOptions extends Partial<OptionsSync> {
    * The directory to search from, defaults to `process.cwd()`. See: https://github.com/davidtheclark/cosmiconfig#explorersearch
    */
   searchFrom?: string;
+  /**
+   * If "true", ignore environment variable substitution.
+   * Default: true
+   */
+  ignoreEnvironmentVariableSubstitution?: boolean;
 }
 
 const getSearchOptions = (options: FileLoaderOptions) => {
@@ -56,6 +61,43 @@ const getSearchOptions = (options: FileLoaderOptions) => {
     ],
     searchFrom: options.searchFrom,
   };
+};
+
+/**
+ * Will fill in some placeholders.
+ * @param template - Text with placeholders for `data` properties.
+ * @param data - Data to interpolate into `template`.
+ *
+ * @example
+ ```
+ placeholderResolver('Hello ${name}', {
+    name: 'John',
+  });
+ //=> 'Hello John'
+ ```
+ */
+const placeholderResolver = (
+  template: string,
+  data: Record<string, any>,
+): string => {
+  const replace = (placeholder: any, key: string) => {
+    let value = data;
+    for (const property of key.split('.')) {
+      value = value[property];
+    }
+
+    if (!value) {
+      throw new Error(
+        `Environment variable is not set for variable name: '${key}'`,
+      );
+    }
+    return String(value);
+  };
+
+  // The regex tries to match either a number inside `${{ }}` or a valid JS identifier or key path.
+  const braceRegex = /\${(\d+|[a-z$_][\w\-$]*?(?:\.[\w\-$]*?)*?)}/gi;
+
+  return template.replace(braceRegex, replace);
 };
 
 /**
@@ -99,6 +141,16 @@ export const fileLoader = (
       `File-loader has loaded a configuration file from ${result.filepath}`,
     );
 
-    return result.config;
+    let config = result.config;
+
+    if (!(options.ignoreEnvironmentVariableSubstitution ?? true)) {
+      const replacedConfig = placeholderResolver(
+        JSON.stringify(result.config),
+        process.env,
+      );
+      config = JSON.parse(replacedConfig);
+    }
+
+    return config;
   };
 };

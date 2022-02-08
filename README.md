@@ -269,6 +269,11 @@ export interface FileLoaderOptions extends Partial<OptionsSync> {
    * The directory to search from, defaults to `process.cwd()`. See: https://github.com/davidtheclark/cosmiconfig#explorersearch
    */
   searchFrom?: string;
+  /**
+   * If "true", ignore environment variable substitution.
+   * Default: true
+   */
+  ignoreEnvironmentVariableSubstitution?: boolean;
 }
 ```
 
@@ -474,6 +479,33 @@ TypedConfigModule.forRoot({
     };
   },
 });
+```
+
+## Uses of environment variable substitutions
+
+The `${PORT}` substitution feature lets you use environment variable in some nice ways.
+
+If you have config file with like the below one
+
+```yaml
+database:
+  host: 127.0.0.1
+  port: ${PORT}
+```
+
+And you have set environment variable for port
+
+```bash
+PORT=9000
+```
+
+then `fileloader` will resolve `${PORT}` placeholder and replace with environment variable.
+And you will get new config like below one
+
+```yaml
+database:
+  host: 127.0.0.1
+  port: 9000
 ```
 
 ## Default values
