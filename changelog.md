@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+## [2.4.0](https://github.com/Nikaple/nest-typed-config/compare/v2.3.0...v2.4.0) (2022-02-08)
+
+### ✨ Features
+
+- support environment variable substitution ([#128](https://github.com/Nikaple/nest-typed-config/issues/128)) [`cb9bdc3`](https://github.com/Nikaple/nest-typed-config/commit/cb9bdc3599e6c296c1eeff4ab6b52b48311a2963).
+
 ## [2.3.0](https://github.com/Nikaple/nest-typed-config/compare/v2.2.3...v2.3.0) (2021-12-27)
 
 ### ✨ Features
