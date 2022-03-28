@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.4.1](https://github.com/Nikaple/nest-typed-config/compare/v2.4.0...v2.4.1) (2022-03-28)
+
+### 🐛 Fixes
+
+- add ignoreEnvironmentVariableSubstitution for directoryLoader [`60abf39`](https://github.com/Nikaple/nest-typed-config/commit/60abf3983598f0ede69ef4d25112c840ac5c102b).
+
 ## [2.4.0](https://github.com/Nikaple/nest-typed-config/compare/v2.3.0...v2.4.0) (2022-02-08)
 
 ### ✨ Features
