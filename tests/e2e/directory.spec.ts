@@ -34,7 +34,23 @@ describe('Directory loader', () => {
     expect(databaseConfig.port).toBe(3000);
   });
 
+  it(`should be able to substitute env variables`, async () => {
+    process.env['TABLE_NAME'] = 'table2';
+    const module = await Test.createTestingModule({
+      imports: [AppModule.withDirectorySubstitution()],
+    }).compile();
+
+    app = module.createNestApplication();
+    await app.init();
+    const config = app.get(DirectoryConfig);
+    expect(config.table.name).toEqual('table2');
+
+    const databaseConfig = app.get(DatabaseConfig);
+    expect(databaseConfig.port).toBe(3000);
+  });
+
   afterEach(async () => {
+    process.env['TABLE_NAME'] = '';
     await app?.close();
   });
 });
