@@ -237,6 +237,21 @@ export class AppModule {
     };
   }
 
+  static withDirectorySubstitution(): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        TypedConfigModule.forRoot({
+          schema: DirectoryConfig,
+          load: directoryLoader({
+            directory: join(__dirname, 'dir_sub'),
+            ignoreEnvironmentVariableSubstitution: false,
+          }),
+        }),
+      ],
+    };
+  }
+
   static withDotenvNoOption(): DynamicModule {
     return {
       module: AppModule,

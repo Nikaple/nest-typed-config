@@ -4,6 +4,14 @@
   "testEnvironment": "node",
   "testRegex": ".spec.ts$",
   "collectCoverageFrom": ["./lib/**/*.ts"],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  },
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
