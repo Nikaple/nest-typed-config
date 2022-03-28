@@ -351,6 +351,11 @@ export interface DirectoryLoaderOptions extends OptionsSync {
    * File regex to include.
    */
   include?: RegExp;
+  /**
+   * If "true", ignore environment variable substitution.
+   * Default: true
+   */
+  ignoreEnvironmentVariableSubstitution?: boolean;
 }
 ```
 
