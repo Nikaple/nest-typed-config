@@ -39,7 +39,7 @@
     "chalk": "4.1.2",
     "class-transformer": "0.4.0",
     "class-validator": "0.13.2",
-    "debug": "4.3.3",
+    "debug": "4.3.4",
     "lodash.frompairs": "4.0.1",
     "lodash.merge": "4.6.2",
     "lodash.set": "4.3.2"
