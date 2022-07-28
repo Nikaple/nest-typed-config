@@ -48,3 +48,4 @@ jobs:
 
       - name: Release
         run: npm run release
+
