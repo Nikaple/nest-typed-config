@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.4.2](https://github.com/Nikaple/nest-typed-config/compare/v2.4.1...v2.4.2) (2022-07-28)
+
+### 🐛 Fixes
+
+- trigger release workflow [`2ad170c`](https://github.com/Nikaple/nest-typed-config/commit/2ad170c7891fbe8a3f8410d9e4d1e2099dff663c).
+
+- trigger release workflow [`c4e2f17`](https://github.com/Nikaple/nest-typed-config/commit/c4e2f1703f482480e5c30282435c0919c03c2031).
+
 ### [2.4.1](https://github.com/Nikaple/nest-typed-config/compare/v2.4.0...v2.4.1) (2022-03-28)
 
 ### 🐛 Fixes
