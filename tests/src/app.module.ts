@@ -18,6 +18,7 @@ import {
   DirectoryConfig,
   FooConfig,
   TableConfig,
+  ConfigWithDefaultValues,
 } from './config.model';
 
 const loadYaml = function loadYaml(filepath: string, content: string) {
@@ -291,6 +292,23 @@ export class AppModule {
         TypedConfigModule.forRootAsync({
           schema: Config,
           load: remoteLoader('http://localhost', loaderOptions),
+        }),
+      ],
+    };
+  }
+
+  static withConfigWithDefaultValues(): DynamicModule {
+    return {
+      module: AppModule,
+      imports: [
+        TypedConfigModule.forRoot({
+          schema: ConfigWithDefaultValues,
+          load: dotenvLoader(),
+          normalize(config) {
+            return {
+              propertyWithDefaultValue: config.UNDEFINED_ENV_PROPERTY,
+            };
+          },
         }),
       ],
     };
