@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.4.4](https://github.com/Nikaple/nest-typed-config/compare/v2.4.3...v2.4.4) (2022-08-22)
+
+### 🐛 Fixes
+
+- try to require class-validator/transform from root node_modules first [`4ad3c56`](https://github.com/Nikaple/nest-typed-config/commit/4ad3c567aee0daca02c2886d0d834da0d38d88f6).
+
+  closes [#149](https://github.com/Nikaple/nest-typed-config/issues/149);
+
 ### [2.4.3](https://github.com/Nikaple/nest-typed-config/compare/v2.4.2...v2.4.3) (2022-08-22)
 
 ### 🐛 Fixes
