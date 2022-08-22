@@ -1,5 +1,5 @@
-import { ClassConstructor } from 'class-transformer';
-import { ValidatorOptions } from 'class-validator';
+import type { ClassConstructor } from 'class-transformer';
+import type { ValidatorOptions } from 'class-validator';
 
 export type ConfigLoader = () => Record<string, any>;
 export type AsyncConfigLoader = () => Promise<Record<string, any>>;
