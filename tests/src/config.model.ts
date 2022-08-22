@@ -55,3 +55,8 @@ export class BazConfig {
   @IsString()
   baz!: string;
 }
+
+export class ConfigWithDefaultValues {
+  @IsInt()
+  readonly propertyWithDefaultValue: number = 4321;
+}
