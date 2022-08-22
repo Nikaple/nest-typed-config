@@ -120,7 +120,9 @@ export class TypedConfigModule {
     Config: ClassConstructor<any>,
     options?: Partial<ValidatorOptions>,
   ) {
-    const config = plainToClass(Config, rawConfig);
+    const config = plainToClass(Config, rawConfig, {
+      exposeDefaultValues: true,
+    });
     // defaults to strictest validation rules
     const schemaErrors = validateSync(config, {
       forbidUnknownValues: true,
