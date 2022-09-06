@@ -3,6 +3,7 @@ import { join } from 'path';
 import { parse as parseYaml } from 'yaml';
 import {
   directoryLoader,
+  FileLoaderOptions,
   remoteLoader,
   RemoteLoaderOptions,
   TypedConfigModule,
@@ -223,7 +224,7 @@ export class AppModule {
     };
   }
 
-  static withYamlSubstitution(ignoreSubstitution: boolean): DynamicModule {
+  static withYamlSubstitution(options: FileLoaderOptions): DynamicModule {
     return {
       module: AppModule,
       imports: [
@@ -231,7 +232,7 @@ export class AppModule {
           schema: Config,
           load: fileLoader({
             absolutePath: join(__dirname, '.env.sub.yaml'),
-            ignoreEnvironmentVariableSubstitution: ignoreSubstitution,
+            ...options,
           }),
         }),
       ],

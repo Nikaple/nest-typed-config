@@ -356,6 +356,11 @@ export interface DirectoryLoaderOptions extends OptionsSync {
    * Default: true
    */
   ignoreEnvironmentVariableSubstitution?: boolean;
+  /**
+   * If "true", disallow undefined environment variables.
+   * Default: true
+   */
+  disallowUndefinedEnvironmentVariables?: boolean;
 }
 ```
 
