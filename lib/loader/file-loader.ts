@@ -41,6 +41,11 @@ export interface FileLoaderOptions extends Partial<OptionsSync> {
    * Default: true
    */
   ignoreEnvironmentVariableSubstitution?: boolean;
+  /**
+   * If "true", disallow undefined environment variables.
+   * Default: true
+   */
+  disallowUndefinedEnvironmentVariables?: boolean;
 }
 
 const getSearchOptions = (options: FileLoaderOptions) => {
@@ -79,6 +84,7 @@ const getSearchOptions = (options: FileLoaderOptions) => {
 const placeholderResolver = (
   template: string,
   data: Record<string, any>,
+  disallowUndefinedEnvironmentVariables: boolean,
 ): string => {
   const replace = (placeholder: any, key: string) => {
     let value = data;
@@ -86,7 +92,7 @@ const placeholderResolver = (
       value = value[property];
     }
 
-    if (!value) {
+    if (!value && disallowUndefinedEnvironmentVariables) {
       throw new Error(
         `Environment variable is not set for variable name: '${key}'`,
       );
@@ -147,6 +153,7 @@ export const fileLoader = (
       const replacedConfig = placeholderResolver(
         JSON.stringify(result.config),
         process.env,
+        options.disallowUndefinedEnvironmentVariables ?? true,
       );
       config = JSON.parse(replacedConfig);
     }

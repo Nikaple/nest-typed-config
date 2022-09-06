@@ -1,5 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
+import { FileLoaderOptions } from '../../lib';
 import { AppModule } from '../src/app.module';
 import { DatabaseConfig } from '../src/config.model';
 
@@ -8,10 +9,10 @@ describe('Environment variable substitutions', () => {
 
   const tableName = 'users';
 
-  const init = async (ignoreSubstitution: boolean) => {
+  const init = async (options: FileLoaderOptions) => {
     process.env['TABLE_NAME'] = tableName;
     const module = await Test.createTestingModule({
-      imports: [AppModule.withYamlSubstitution(ignoreSubstitution)],
+      imports: [AppModule.withYamlSubstitution(options)],
     }).compile();
 
     app = module.createNestApplication();
@@ -19,13 +20,13 @@ describe('Environment variable substitutions', () => {
   };
 
   it(`should load .env.yaml and substitute environment variable`, async () => {
-    await init(false);
+    await init({ ignoreEnvironmentVariableSubstitution: false });
     const databaseConfig = app.get(DatabaseConfig);
     expect(databaseConfig.table.name).toBe(tableName);
   });
 
   it(`should load .env.yaml and substitute environment variable`, async () => {
-    await init(true);
+    await init({ ignoreEnvironmentVariableSubstitution: true });
     const databaseConfig = app.get(DatabaseConfig);
     expect(databaseConfig.table.name).toBe('${TABLE_NAME}');
   });
