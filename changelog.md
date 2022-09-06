@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.4.6](https://github.com/Nikaple/nest-typed-config/compare/v2.4.5...v2.4.6) (2022-09-06)
+
+### 🐛 Fixes
+
+- add an option to allow empty env variables [`73faa15`](https://github.com/Nikaple/nest-typed-config/commit/73faa1546eac2451684bdc88005fb5b2d1cd3828).
+
+  closes [#195](https://github.com/Nikaple/nest-typed-config/issues/195);
+
 ### [2.4.5](https://github.com/Nikaple/nest-typed-config/compare/v2.4.4...v2.4.5) (2022-08-31)
 
 ### 🐛 Fixes
