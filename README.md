@@ -724,3 +724,7 @@ Please refer to [changelog.md](https://github.com/Nikaple/nest-typed-config/blob
 ## License
 
 [MIT](LICENSE).
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Nikaple/nest-typed-config&type=Date)](https://star-history.com/#Nikaple/nest-typed-config&Date)
