@@ -509,6 +509,14 @@ And you have set environment variable for port
 PORT=9000
 ```
 
+And set ignoreEnvironmentVariableSubstitution to false in the FileLoaderOptions
+
+```
+load: fileLoader({
+  ignoreEnvironmentVariableSubstitution: false,
+}),
+```
+
 then `fileloader` will resolve `${PORT}` placeholder and replace with environment variable.
 And you will get new config like below one
 
