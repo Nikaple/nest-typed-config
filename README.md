@@ -69,7 +69,7 @@ Let's define the configuration model first. It can be nested at arbitrary depth.
 
 ```ts
 // config.ts
-import { Allow } from 'class-validator';
+import { Allow, ValidateNested } from 'class-validator';
 
 // validator is omitted for simplicity
 export class TableConfig {
@@ -79,13 +79,13 @@ export class TableConfig {
 
 export class DatabaseConfig {
   @Type(() => TableConfig)
-  @Allow()
+  @ValidateNested()
   public readonly table!: TableConfig;
 }
 
 export class RootConfig {
   @Type(() => DatabaseConfig)
-  @Allow()
+  @ValidateNested()
   public readonly database!: DatabaseConfig;
 }
 ```
@@ -661,7 +661,7 @@ Suppose we need to inject routing information from the configuration, then we ca
 ```ts
 // config.ts
 import { Type } from 'class-transformer';
-import { IsDefined, IsNumber, IsString } from 'class-validator';
+import { ValidateNested, IsString } from 'class-validator';
 
 export class RouteConfig {
   @IsString()
@@ -669,7 +669,7 @@ export class RouteConfig {
 }
 
 export class RootConfig {
-  @IsDefined()
+  @ValidateNested()
   @Type(() => RouteConfig)
   public readonly route!: RouteConfig;
 }
