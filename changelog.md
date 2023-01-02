@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.4.7](https://github.com/Nikaple/nest-typed-config/compare/v2.4.6...v2.4.7) (2023-01-02)
+
+### 📚 Documentations
+
+- use `@ValidatedNested` when needed [`2aff0b7`](https://github.com/Nikaple/nest-typed-config/commit/2aff0b7a18eebdd59daafce7ce899d842ff43558).
+
+  closes [#210](https://github.com/Nikaple/nest-typed-config/issues/210);
+
 ### [2.4.6](https://github.com/Nikaple/nest-typed-config/compare/v2.4.5...v2.4.6) (2022-09-06)
 
 ### 🐛 Fixes
