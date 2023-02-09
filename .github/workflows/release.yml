@@ -24,10 +24,10 @@ jobs:
           git config --global user.name "GitHub Action"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Use Node.js 14
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '18'
 
       - name: Install dependencies
         run: npm ci
