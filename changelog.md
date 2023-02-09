@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+## [2.5.0](https://github.com/Nikaple/nest-typed-config/compare/v2.4.8...v2.5.0) (2023-02-09)
+
+### ✨ Features
+
+- drop Node.js 12.x support [`f7edab2`](https://github.com/Nikaple/nest-typed-config/commit/f7edab2a1724d34a121d279e2f8a441a01090830).
+
 ### [2.4.8](https://github.com/Nikaple/nest-typed-config/compare/v2.4.7...v2.4.8) (2023-02-09)
 
 ### 🔐 Security Patches
