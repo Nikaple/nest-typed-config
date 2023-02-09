@@ -75,7 +75,7 @@
     "jest": "27.5.1",
     "lint-staged": "13.1.1",
     "parse-json": "5.2.0",
-    "prettier": "2.7.1",
+    "prettier": "2.8.4",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "7.5.6",
