@@ -73,7 +73,7 @@ export const remoteLoader = <T = any>(
           ...options,
         })
         .pipe(
-          map((response: any) => {
+          map(response => {
             if (shouldRetry(response)) {
               throw new Error(
                 `Error when fetching config, response.data: ${JSON.stringify(
