@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.4.8](https://github.com/Nikaple/nest-typed-config/compare/v2.4.7...v2.4.8) (2023-02-09)
+
+### 🔐 Security Patches
+
+- fixed issue with class-validator dependency cve ([#214](https://github.com/Nikaple/nest-typed-config/issues/214)) [`b12063f`](https://github.com/Nikaple/nest-typed-config/commit/b12063f4fe9bbc651b62aa8832030fd94beb0ad4).
+
+  Co-authored-by: Akatsuki Levi <akatsukilevi@yahoo.co.jp>
+
 ### [2.4.7](https://github.com/Nikaple/nest-typed-config/compare/v2.4.6...v2.4.7) (2023-01-02)
 
 ### 📚 Documentations
