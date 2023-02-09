@@ -22,19 +22,19 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Lint
-        run: npm run lint:dontfix
+        run: pnpm run lint:dontfix
 
       - name: Check Formatting
-        run: npm run format:dontfix
+        run: pnpm run format:dontfix
 
       - name: Coverage
-        run: npm run test:cov
+        run: pnpm run test:cov
 
       - name: Generate documentation
-        run: npm run doc
+        run: pnpm run doc
 
       - name: Deploy to Github Pages
         uses: crazy-max/ghaction-github-pages@v3.1.0
