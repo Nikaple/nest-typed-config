@@ -73,7 +73,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "husky": "8.0.3",
     "jest": "27.5.1",
-    "lint-staged": "13.0.3",
+    "lint-staged": "13.1.1",
     "parse-json": "5.2.0",
     "prettier": "2.7.1",
     "reflect-metadata": "0.1.13",
