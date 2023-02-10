@@ -74,7 +74,7 @@
     "@typescript-eslint/parser": "5.51.0",
     "cosmiconfig": "8.0.0",
     "dotenv": "10.0.0",
-    "dotenv-expand": "5.1.0",
+    "dotenv-expand": "10.0.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-import": "2.27.5",
@@ -98,7 +98,7 @@
     "@nestjs/axios": "^0.1.0",
     "cosmiconfig": "^8.0.0",
     "dotenv": "^10.0.0",
-    "dotenv-expand": "^5.1.0",
+    "dotenv-expand": "^10.0.0",
     "parse-json": "^5.2.0",
     "yaml": "^1.10.2"
   },
