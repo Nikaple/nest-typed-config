@@ -57,7 +57,7 @@
     "@latipun7/commitlintrc": "1.1.3",
     "@latipun7/releaserc": "^2.1.0",
     "@nestjs/axios": "2.0.0",
-    "axios": "1.3.3",
+    "axios": "1.3.4",
     "@nestjs/cli": "9.2.0",
     "@nestjs/common": "9.3.9",
     "@nestjs/core": "9.3.9",
