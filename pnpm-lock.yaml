@@ -45,7 +45,7 @@ specifiers:
   parse-json: '>= 5.2.0'
   prettier: 2.8.4
   reflect-metadata: 0.1.13
-  rimraf: 4.2.0
+  rimraf: 4.3.0
   rxjs: 7.8.0
   semantic-release: ^20.0.0
   ts-jest: 29.0.5
@@ -99,7 +99,7 @@ devDependencies:
   lint-staged: 13.1.2
   prettier: 2.8.4
   reflect-metadata: 0.1.13
-  rimraf: 4.2.0
+  rimraf: 4.3.0
   rxjs: 7.8.0
   semantic-release: 20.1.0
   ts-jest: 29.0.5_orzzknleilowtsz34rkaotjvzm
@@ -6718,8 +6718,8 @@ packages:
     hasBin: true
     dev: true
 
-  /rimraf/4.2.0:
-    resolution: {integrity: sha512-tPt+gLORNVqRCk0NwuJ5SlMEcOGvt4CCU8sUPqgCFtCbnoNCTd9Q6vq7JlBbxQlACiH14OR28y7piA2Bak9Sxw==}
+  /rimraf/4.3.0:
+    resolution: {integrity: sha512-5qVDXPbByA1qSJEWMv1qAwKsoS22vVpsL2QyxCKBw4gf6XiFo1K3uRLY6uSOOBFDwnqAZtnbILqWKKlzh8bkGg==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
