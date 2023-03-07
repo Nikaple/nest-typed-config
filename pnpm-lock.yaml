@@ -45,7 +45,7 @@ specifiers:
   parse-json: '>= 5.2.0'
   prettier: 2.8.4
   reflect-metadata: 0.1.13
-  rimraf: 4.3.0
+  rimraf: 4.3.1
   rxjs: 7.8.0
   semantic-release: ^20.0.0
   ts-jest: 29.0.5
@@ -99,7 +99,7 @@ devDependencies:
   lint-staged: 13.1.2
   prettier: 2.8.4
   reflect-metadata: 0.1.13
-  rimraf: 4.3.0
+  rimraf: 4.3.1
   rxjs: 7.8.0
   semantic-release: 20.1.0
   ts-jest: 29.0.5_doipufordlnvh5g4adbwayvyvy
@@ -6738,11 +6738,12 @@ packages:
   /rimraf/4.1.2:
     resolution: {integrity: sha512-BlIbgFryTbw3Dz6hyoWFhKk+unCcHMSkZGrTFVAx2WmttdBSonsdtRlwiuTbDqTKr+UlXIUqJVS4QT5tUzGENQ==}
     engines: {node: '>=14'}
+    deprecated: Please upgrade to 4.3.1 or higher to fix a potentially damaging issue regarding symbolic link following. See https://github.com/isaacs/rimraf/issues/259 for details.
     hasBin: true
     dev: true
 
-  /rimraf/4.3.0:
-    resolution: {integrity: sha512-5qVDXPbByA1qSJEWMv1qAwKsoS22vVpsL2QyxCKBw4gf6XiFo1K3uRLY6uSOOBFDwnqAZtnbILqWKKlzh8bkGg==}
+  /rimraf/4.3.1:
+    resolution: {integrity: sha512-GfHJHBzFQra23IxDzIdBqhOWfbtdgS1/dCHrDy+yvhpoJY5TdwdT28oWaHWfRpKFDLd3GZnGTx6Mlt4+anbsxQ==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
