@@ -9,13 +9,12 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 <!--
 Please search GitHub for a similar issue or PR before submitting.
 Check one of the following options with "x" -->
-<pre><code>
-[ ] Regression <!--(a behavior that used to work and stopped working in a new release)-->
-[ ] Bug report
-[ ] Feature request
-[ ] Documentation issue or request
-[ ] Support request
-</code></pre>
+
+- [ ] Regression <!--(a behavior that used to work and stopped working in a new release)-->
+- [ ] Bug report
+- [ ] Feature request
+- [ ] Documentation issue or request
+- [ ] Support request
 
 ## Current behavior
 
@@ -37,6 +36,7 @@ Check one of the following options with "x" -->
 
 <pre><code>
 Nest version: X.Y.Z
+Nest-Typed-Config version: X.Y.Z
 <!-- Check whether this is still an issue in the most recent Nest version -->
  
 For Tooling issues:
