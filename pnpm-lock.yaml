@@ -30,8 +30,8 @@ specifiers:
   class-validator: ^0.14.0
   cosmiconfig: '>= 8.0.0'
   debug: 4.3.4
-  dotenv: '>= 10.0.0'
-  dotenv-expand: '>= 5.1.0'
+  dotenv: '>= 16.0.0'
+  dotenv-expand: '>= 10.0.0'
   eslint: 7.32.0
   eslint-config-prettier: 8.7.0
   eslint-plugin-import: 2.27.5
@@ -66,8 +66,8 @@ optionalDependencies:
   '@iarna/toml': 2.2.5
   '@nestjs/axios': 0.1.1_zkuxv5v5cgiixd4ugzrmz3lkf4
   cosmiconfig: 8.0.0
-  dotenv: 10.0.0
-  dotenv-expand: 5.1.0
+  dotenv: 16.0.3
+  dotenv-expand: 10.0.0
   parse-json: 5.2.0
   yaml: 2.2.1
 
@@ -3197,15 +3197,16 @@ packages:
       is-obj: 2.0.0
     dev: true
 
-  /dotenv-expand/5.1.0:
-    resolution: {integrity: sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==}
+  /dotenv-expand/10.0.0:
+    resolution: {integrity: sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==}
+    engines: {node: '>=12'}
     requiresBuild: true
     dev: false
     optional: true
 
-  /dotenv/10.0.0:
-    resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
-    engines: {node: '>=10'}
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
     requiresBuild: true
     dev: false
     optional: true
