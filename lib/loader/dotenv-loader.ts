@@ -84,7 +84,7 @@ const loadEnvFile = (options: DotenvLoaderOptions): Record<string, any> => {
           'dotenv-expand',
           "dotenvLoader's ability to expandVariables",
         );
-        config = dotenvExpand({ parsed: config }).parsed!;
+        config = dotenvExpand.expand({ parsed: config }).parsed!;
       }
     }
 

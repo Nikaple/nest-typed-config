@@ -97,8 +97,8 @@
     "@iarna/toml": ">= 2.2.5",
     "@nestjs/axios": ">= 0.1.0",
     "cosmiconfig": ">= 8.0.0",
-    "dotenv": ">= 10.0.0",
-    "dotenv-expand": ">= 5.1.0",
+    "dotenv": ">= 16.0.0",
+    "dotenv-expand": ">= 10.0.0",
     "parse-json": ">= 5.2.0",
     "yaml": ">= 1.10.2"
   },
