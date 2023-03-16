@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.5.2](https://github.com/Nikaple/nest-typed-config/compare/v2.5.1...v2.5.2) (2023-03-16)
+
+### 🐛 Fixes
+
+- use expand method to expand dotenv config [`e589b7f`](https://github.com/Nikaple/nest-typed-config/commit/e589b7f756f89a9edc6389af7ec8748d8a246fe8).
+
 ### [2.5.1](https://github.com/Nikaple/nest-typed-config/compare/v2.5.0...v2.5.1) (2023-02-10)
 
 ### 🐛 Fixes

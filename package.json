@@ -1,6 +1,6 @@
 {
   "name": "nest-typed-config",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "description": "Intuitive, type-safe configuration module for Nest framework",
   "author": "Nikaple Zhou",
   "license": "MIT",
