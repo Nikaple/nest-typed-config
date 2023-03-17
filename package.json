@@ -72,7 +72,7 @@
     "@types/node": "18.15.3",
     "@typescript-eslint/eslint-plugin": "5.55.0",
     "@typescript-eslint/parser": "5.55.0",
-    "cosmiconfig": "8.1.0",
+    "cosmiconfig": "8.1.2",
     "dotenv": "16.0.3",
     "dotenv-expand": "10.0.0",
     "eslint": "7.32.0",
