@@ -89,7 +89,7 @@
     "rxjs": "7.8.0",
     "semantic-release": "^20.0.0",
     "ts-jest": "29.0.5",
-    "typedoc": "0.23.27",
+    "typedoc": "0.23.28",
     "typescript": "5.0.2",
     "yaml": "2.2.1"
   },
