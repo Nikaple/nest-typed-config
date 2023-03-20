@@ -43,7 +43,7 @@ specifiers:
   lodash.merge: 4.6.2
   lodash.set: 4.3.2
   parse-json: '>= 5.2.0'
-  prettier: 2.8.4
+  prettier: 2.8.5
   reflect-metadata: 0.1.13
   rimraf: 4.4.0
   rxjs: 7.8.0
@@ -93,11 +93,11 @@ devDependencies:
   eslint: 7.32.0
   eslint-config-prettier: 8.7.0_eslint@7.32.0
   eslint-plugin-import: 2.27.5_ew2hfyjc7lyiaknlzjlgcfybo4
-  eslint-plugin-prettier: 4.2.1_uiswlpulcu4wppk3zxswnxg2xq
+  eslint-plugin-prettier: 4.2.1_eeefweuby3um5zmtcfiot4fm3q
   husky: 8.0.3
   jest: 29.5.0_@types+node@18.15.3
   lint-staged: 13.2.0
-  prettier: 2.8.4
+  prettier: 2.8.5
   reflect-metadata: 0.1.13
   rimraf: 4.4.0
   rxjs: 7.8.0
@@ -3457,7 +3457,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_uiswlpulcu4wppk3zxswnxg2xq:
+  /eslint-plugin-prettier/4.2.1_eeefweuby3um5zmtcfiot4fm3q:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.com/eslint-plugin-prettier/-/eslint-plugin-prettier-4.2.1.tgz}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -3470,7 +3470,7 @@ packages:
     dependencies:
       eslint: 7.32.0
       eslint-config-prettier: 8.7.0_eslint@7.32.0
-      prettier: 2.8.4
+      prettier: 2.8.5
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -6370,8 +6370,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier/2.8.4:
-    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.com/prettier/-/prettier-2.8.4.tgz}
+  /prettier/2.8.5:
+    resolution: {integrity: sha512-3gzuxrHbKUePRBB4ZeU08VNkUcqEHaUaouNt0m7LGP4Hti/NuB07C7PPTM/LkWqXoJYJn2McEo5+kxPNrtQkLQ==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
