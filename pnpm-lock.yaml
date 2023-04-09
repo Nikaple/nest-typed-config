@@ -49,7 +49,7 @@ specifiers:
   rxjs: 7.8.0
   semantic-release: ^21.0.0
   ts-jest: 29.1.0
-  typedoc: 0.23.28
+  typedoc: 0.24.1
   typescript: 5.0.4
   yaml: '>= 1.10.2'
 
@@ -103,7 +103,7 @@ devDependencies:
   rxjs: 7.8.0
   semantic-release: 21.0.0
   ts-jest: 29.1.0_tobmchb5uviuq5lwsinkw5fvje
-  typedoc: 0.23.28_typescript@5.0.4
+  typedoc: 0.24.1_typescript@5.0.4
   typescript: 5.0.4
 
 packages:
@@ -7556,8 +7556,8 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc/0.23.28_typescript@5.0.4:
-    resolution: {integrity: sha512-9x1+hZWTHEQcGoP7qFmlo4unUoVJLB0H/8vfO/7wqTnZxg4kPuji9y3uRzEu0ZKez63OJAUmiGhUrtukC6Uj3w==}
+  /typedoc/0.24.1_typescript@5.0.4:
+    resolution: {integrity: sha512-u4HwjZcSQhQSkkhLjgcs0ooAf6HrFVLDHHrwU2xZW8WxH0KnGZlNkaWxiOcK5Gagj7mxJSgwWx0dv8ACDAOXAQ==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
