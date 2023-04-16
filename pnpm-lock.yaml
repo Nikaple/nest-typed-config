@@ -49,7 +49,7 @@ specifiers:
   rxjs: 7.8.0
   semantic-release: ^21.0.0
   ts-jest: 29.1.0
-  typedoc: 0.24.1
+  typedoc: 0.24.4
   typescript: 5.0.4
   yaml: '>= 1.10.2'
 
@@ -103,7 +103,7 @@ devDependencies:
   rxjs: 7.8.0
   semantic-release: 21.0.0
   ts-jest: 29.1.0_tobmchb5uviuq5lwsinkw5fvje
-  typedoc: 0.24.1_typescript@5.0.4
+  typedoc: 0.24.4_typescript@5.0.4
   typescript: 5.0.4
 
 packages:
@@ -5559,6 +5559,12 @@ packages:
     hasBin: true
     dev: true
 
+  /marked/4.3.0:
+    resolution: {integrity: sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==}
+    engines: {node: '>= 12'}
+    hasBin: true
+    dev: true
+
   /mdurl/1.0.1:
     resolution: {integrity: sha512-/sKlQJCBYVY9Ers9hqzKou4H6V5UWc/M59TH2dvkt+84itfnq7uFOMLpOiOS4ujvHP4etln18fmIxA5R5fll0g==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.com/mdurl/-/mdurl-1.0.1.tgz}
     dev: true
@@ -7583,16 +7589,16 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc/0.24.1_typescript@5.0.4:
-    resolution: {integrity: sha512-u4HwjZcSQhQSkkhLjgcs0ooAf6HrFVLDHHrwU2xZW8WxH0KnGZlNkaWxiOcK5Gagj7mxJSgwWx0dv8ACDAOXAQ==}
+  /typedoc/0.24.4_typescript@5.0.4:
+    resolution: {integrity: sha512-vQuliyGhJEGeKzzCFHbkS3m0gHoIL6cfr0fHf6eX658iGELtq2J9mWe0b+X5McEYgFoMuHFt5Py3Zug6Sxjn/Q==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
       typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x
     dependencies:
       lunr: 2.3.9
-      marked: 4.2.12
-      minimatch: 7.4.2
+      marked: 4.3.0
+      minimatch: 9.0.0
       shiki: 0.14.1
       typescript: 5.0.4
     dev: true
