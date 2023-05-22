@@ -15,7 +15,7 @@ specifiers:
   '@nestjs/core': 9.4.1
   '@nestjs/platform-express': 9.4.1
   '@nestjs/testing': 9.4.1
-  '@types/debug': 4.1.7
+  '@types/debug': 4.1.8
   '@types/express': 4.17.17
   '@types/jest': 29.5.1
   '@types/lodash.frompairs': 4.0.7
@@ -80,7 +80,7 @@ devDependencies:
   '@nestjs/core': 9.4.1_rq7prklbdxk7xn4mjz4eefer7m
   '@nestjs/platform-express': 9.4.1_3dh6qt5swkvcuunvrrvkvh4ncy
   '@nestjs/testing': 9.4.1_spwar4mz5e2ngc2cuveouwct4u
-  '@types/debug': 4.1.7
+  '@types/debug': 4.1.8
   '@types/express': 4.17.17
   '@types/jest': 29.5.1
   '@types/lodash.frompairs': 4.0.7
@@ -1630,8 +1630,8 @@ packages:
       '@types/node': 18.16.14
     dev: true
 
-  /@types/debug/4.1.7:
-    resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.com/@types/debug/-/debug-4.1.7.tgz}
+  /@types/debug/4.1.8:
+    resolution: {integrity: sha512-/vPO1EPOs306Cvhwv7KfVfYvOJqA/S/AXjaHQiJboCZzcNDb+TIJFN9/2C9DZ//ijSKWioNyUxD792QmDJ+HKQ==}
     dependencies:
       '@types/ms': 0.7.31
     dev: true
@@ -1739,7 +1739,7 @@ packages:
     dev: true
 
   /@types/ms/0.7.31:
-    resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.com/@types/ms/-/ms-0.7.31.tgz}
+    resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: true
 
   /@types/node/18.16.14:
