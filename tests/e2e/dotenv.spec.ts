@@ -154,6 +154,35 @@ describe('Dotenv loader', () => {
     expect(tableConfig.name).toBe('expand');
   });
 
+  it(`should be able to load config from transformed environment variables keys`, async () => {
+    process.env = {
+      isAuthEnabled: 'true',
+      DATABASE__HOST: 'should-be-used',
+      DATABASE__PORT: '4000',
+      DATABASE__TABLE__NAME: 'should-be-used',
+    };
+
+    const module = await Test.createTestingModule({
+      imports: [
+        AppModule.withDotenv({
+          separator: '__',
+          keyTransformer: key =>
+            key.replace(/[A-Z0-9]{2,}/g, match => match.toLowerCase()),
+          ignoreEnvFile: true,
+        }),
+      ],
+    }).compile();
+
+    app = module.createNestApplication();
+    await app.init();
+
+    const config = app.get(Config);
+    expect(config.isAuthEnabled).toBe(true);
+    expect(config.database.host).toBe('should-be-used');
+    expect(config.database.port).toBe(4000);
+    expect(config.database.table.name).toBe('should-be-used');
+  });
+
   afterEach(async () => {
     await app?.close();
   });

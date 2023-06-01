@@ -39,6 +39,19 @@ export interface DotenvLoaderOptions {
   separator?: string;
 
   /**
+   * If set, this function will transform all environment variable keys prior to parsing.
+   *
+   * Be aware: If you transform multiple keys to the same value only one will remain!
+   *
+   * @example
+   *
+   * .env file: `PORT=8080` and `keyTransformer: key => key.toLowerCase()` results in `{"port": 8080}`
+   *
+   * @param key environment variable key
+   */
+  keyTransformer?: (key: string) => string;
+
+  /**
    * If "true", environment files (`.env`) will be ignored.
    */
   ignoreEnvFile?: boolean;
@@ -107,7 +120,7 @@ const loadEnvFile = (options: DotenvLoaderOptions): Record<string, any> => {
  */
 export const dotenvLoader = (options: DotenvLoaderOptions = {}) => {
   return (): Record<string, any> => {
-    const { ignoreEnvFile, ignoreEnvVars, separator } = options;
+    const { separator, keyTransformer, ignoreEnvFile, ignoreEnvVars } = options;
 
     let config = ignoreEnvFile ? {} : loadEnvFile(options);
 
@@ -116,6 +129,16 @@ export const dotenvLoader = (options: DotenvLoaderOptions = {}) => {
         ...config,
         ...process.env,
       };
+    }
+
+    if (keyTransformer !== undefined) {
+      config = Object.entries(config).reduce<Record<string, any>>(
+        (acc, [key, value]) => {
+          acc[keyTransformer(key)] = value;
+          return acc;
+        },
+        {},
+      );
     }
 
     if (typeof separator === 'string') {
