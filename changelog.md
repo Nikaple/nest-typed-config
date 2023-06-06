@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+## [2.6.0](https://github.com/Nikaple/nest-typed-config/compare/v2.5.2...v2.6.0) (2023-06-06)
+
+### ✨ Features
+
+- **dotenv-loader:** add key transformer option [`1e80f42`](https://github.com/Nikaple/nest-typed-config/commit/1e80f4252e94665806aca1df06411d98fef11707).
+
+  Add option to transform environment variable keys before parsing them.
+  This allows changes to be made prior to parsing which makes having to
+  use complex normalize functions obsolete.
+
 ### [2.5.2](https://github.com/Nikaple/nest-typed-config/compare/v2.5.1...v2.5.2) (2023-03-16)
 
 ### 🐛 Fixes
