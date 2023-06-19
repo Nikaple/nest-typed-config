@@ -58,7 +58,7 @@
     "@latipun7/releaserc": "^2.1.0",
     "@nestjs/axios": "3.0.0",
     "axios": "1.4.0",
-    "@nestjs/cli": "10.0.2",
+    "@nestjs/cli": "10.0.3",
     "@nestjs/common": "9.4.3",
     "@nestjs/core": "9.4.3",
     "@nestjs/platform-express": "9.4.3",
