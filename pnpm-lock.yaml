@@ -5,7 +5,7 @@ overrides:
   axios: 0.27.2
 
 specifiers:
-  '@commitlint/cli': 17.6.5
+  '@commitlint/cli': 17.6.6
   '@iarna/toml': '>= 2.2.5'
   '@latipun7/commitlintrc': 1.1.3
   '@latipun7/releaserc': ^2.1.0
@@ -72,8 +72,8 @@ optionalDependencies:
   yaml: 2.2.2
 
 devDependencies:
-  '@commitlint/cli': 17.6.5
-  '@latipun7/commitlintrc': 1.1.3_@commitlint+cli@17.6.5
+  '@commitlint/cli': 17.6.6
+  '@latipun7/commitlintrc': 1.1.3_@commitlint+cli@17.6.6
   '@latipun7/releaserc': 2.2.0_sd2hw4gqb2skcsgokbofvitiiu
   '@nestjs/cli': 10.0.3
   '@nestjs/common': 10.0.3_welcnyot5bzd5wa2aovbkxpi4i
@@ -503,13 +503,13 @@ packages:
     dev: true
     optional: true
 
-  /@commitlint/cli/17.6.5:
-    resolution: {integrity: sha512-3PQrWr/uo6lzF5k7n5QuosCYnzaxP9qGBp3jhWP0Vmsa7XA6wrl9ccPqfQyXpSbQE3zBROVO3TDqgPKe4tfmLQ==}
+  /@commitlint/cli/17.6.6:
+    resolution: {integrity: sha512-sTKpr2i/Fjs9OmhU+beBxjPavpnLSqZaO6CzwKVq2Tc4UYVTMFgpKOslDhUBVlfAUBfjVO8ParxC/MXkIOevEA==}
     engines: {node: '>=v14'}
     hasBin: true
     dependencies:
       '@commitlint/format': 17.4.4
-      '@commitlint/lint': 17.6.5
+      '@commitlint/lint': 17.6.6
       '@commitlint/load': 17.5.0
       '@commitlint/read': 17.5.1
       '@commitlint/types': 17.4.4
@@ -556,19 +556,19 @@ packages:
       chalk: 4.1.2
     dev: true
 
-  /@commitlint/is-ignored/17.6.5:
-    resolution: {integrity: sha512-CQvAPt9gX7cuUbMrIaIMKczfWJqqr6m8IlJs0F2zYwyyMTQ87QMHIj5jJ5HhOaOkaj6dvTMVGx8Dd1I4xgUuoQ==}
+  /@commitlint/is-ignored/17.6.6:
+    resolution: {integrity: sha512-4Fw875faAKO+2nILC04yW/2Vy/wlV3BOYCSQ4CEFzriPEprc1Td2LILmqmft6PDEK5Sr14dT9tEzeaZj0V56Gg==}
     engines: {node: '>=v14'}
     dependencies:
       '@commitlint/types': 17.4.4
-      semver: 7.5.0
+      semver: 7.5.2
     dev: true
 
-  /@commitlint/lint/17.6.5:
-    resolution: {integrity: sha512-BSJMwkE4LWXrOsiP9KoHG+/heSDfvOL/Nd16+ojTS/DX8HZr8dNl8l3TfVr/d/9maWD8fSegRGtBtsyGuugFrw==}
+  /@commitlint/lint/17.6.6:
+    resolution: {integrity: sha512-5bN+dnHcRLkTvwCHYMS7Xpbr+9uNi0Kq5NR3v4+oPNx6pYXt8ACuw9luhM/yMgHYwW0ajIR20wkPAFkZLEMGmg==}
     engines: {node: '>=v14'}
     dependencies:
-      '@commitlint/is-ignored': 17.6.5
+      '@commitlint/is-ignored': 17.6.6
       '@commitlint/parse': 17.6.5
       '@commitlint/rules': 17.6.5
       '@commitlint/types': 17.4.4
@@ -1017,7 +1017,7 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@latipun7/commitlintrc/1.1.3_@commitlint+cli@17.6.5:
+  /@latipun7/commitlintrc/1.1.3_@commitlint+cli@17.6.6:
     resolution: {integrity: sha512-9MMuq2Z7VZAzpCR9WxNhb3jGKqioj9AfEfOtN+X4XYw2D5huq8zrP8Vux+V6HQo60URYKMgwdC78KybbtPBsug==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.com/@latipun7/commitlintrc/-/commitlintrc-1.1.3.tgz}
     engines: {node: '>=14.8.0'}
     peerDependencies:
@@ -1033,7 +1033,7 @@ packages:
       inquirer:
         optional: true
     dependencies:
-      '@commitlint/cli': 17.6.5
+      '@commitlint/cli': 17.6.6
       conventional-changelog-conventionalcommits: 4.6.3
     dev: true
 
@@ -1500,7 +1500,7 @@ packages:
       read-pkg: 7.1.0
       registry-auth-token: 5.0.1
       semantic-release: 21.0.0
-      semver: 7.5.0
+      semver: 7.5.2
       tempy: 3.0.0
     dev: true
 
@@ -3915,7 +3915,7 @@ packages:
       minimatch: 3.1.2
       node-abort-controller: 3.1.1
       schema-utils: 3.3.0
-      semver: 7.5.0
+      semver: 7.5.2
       tapable: 2.2.1
       typescript: 5.1.3
       webpack: 5.87.0
@@ -5084,7 +5084,7 @@ packages:
       jest-util: 29.5.0
       natural-compare: 1.4.0
       pretty-format: 29.5.0
-      semver: 7.5.0
+      semver: 7.5.2
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5798,7 +5798,7 @@ packages:
     resolution: {integrity: sha512-HkwdiLzE/LeuOMIQq/dJq70oNyRc88+wt5CH/RXYseE00LkA/c4PkS6Ti1vE4OHYUiKjkwuxjWq9pItgrz8UJw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.com/node-abi/-/node-abi-3.32.0.tgz}
     engines: {node: '>=10'}
     dependencies:
-      semver: 7.5.0
+      semver: 7.5.2
     dev: true
 
   /node-abort-controller/3.1.1:
@@ -5850,7 +5850,7 @@ packages:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.11.0
-      semver: 7.5.0
+      semver: 7.5.2
       validate-npm-package-license: 3.0.4
     dev: true
 
@@ -6826,7 +6826,7 @@ packages:
     resolution: {integrity: sha512-0Ju4+6A8iOnpL/Thra7dZsSlOHYAHIeMxfhWQRI1/VLcT3WDBZKKtQt/QkBOsiIN9ZpuvHE6cGZ0x4glCMmfiA==}
     engines: {node: '>=12'}
     dependencies:
-      semver: 7.5.0
+      semver: 7.5.2
     dev: true
 
   /semver-regex/4.0.5:
@@ -6854,6 +6854,14 @@ packages:
 
   /semver/7.5.0:
     resolution: {integrity: sha512-+XC0AD/R7Q2mPSRuy2Id0+CGTZ98+8f+KvwirxOKIEyid+XSx6HbC63p+O4IndTHuX5Z+JxQ0TghCkO5Cg/2HA==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      lru-cache: 6.0.0
+    dev: true
+
+  /semver/7.5.2:
+    resolution: {integrity: sha512-SoftuTROv/cRjCze/scjGyiDtcUyxw1rgYQSZY7XTmtR5hX+dm76iDbTH8TkLPHCQmlbQVSSbNZCPM2hb0knnQ==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
