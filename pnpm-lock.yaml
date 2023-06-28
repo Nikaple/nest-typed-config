@@ -38,7 +38,7 @@ specifiers:
   eslint-plugin-prettier: 4.2.1
   husky: 8.0.3
   jest: 29.5.0
-  lint-staged: 13.2.2
+  lint-staged: 13.2.3
   lodash.frompairs: 4.0.1
   lodash.merge: 4.6.2
   lodash.set: 4.3.2
@@ -96,7 +96,7 @@ devDependencies:
   eslint-plugin-prettier: 4.2.1_wbjvq5l5nilmuxvc4ylcjwialu
   husky: 8.0.3
   jest: 29.5.0_@types+node@18.16.18
-  lint-staged: 13.2.2
+  lint-staged: 13.2.3
   prettier: 2.8.8
   reflect-metadata: 0.1.13
   rimraf: 5.0.1
@@ -5290,8 +5290,8 @@ packages:
       uc.micro: 1.0.6
     dev: true
 
-  /lint-staged/13.2.2:
-    resolution: {integrity: sha512-71gSwXKy649VrSU09s10uAT0rWCcY3aewhMaHyl2N84oBk4Xs9HgxvUp3AYu+bNsK4NrOYYxvSgg7FyGJ+jGcA==}
+  /lint-staged/13.2.3:
+    resolution: {integrity: sha512-zVVEXLuQIhr1Y7R7YAWx4TZLdvuzk7DnmrsTNL0fax6Z3jrpFcas+vKbzxhhvp6TA55m1SQuWkpzI1qbfDZbAg==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
