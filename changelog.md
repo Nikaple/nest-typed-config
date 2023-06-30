@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+## [2.7.0](https://github.com/Nikaple/nest-typed-config/compare/v2.6.0...v2.7.0) (2023-06-30)
+
+### ✨ Features
+
+- trigger ci [`b1d5e72`](https://github.com/Nikaple/nest-typed-config/commit/b1d5e72563cd9bc6c9feddc6b000f29f3d05d127).
+
 ## [2.6.0](https://github.com/Nikaple/nest-typed-config/compare/v2.5.2...v2.6.0) (2023-06-06)
 
 ### ✨ Features
