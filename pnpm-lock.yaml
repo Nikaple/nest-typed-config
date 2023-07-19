@@ -10,7 +10,7 @@ specifiers:
   '@latipun7/commitlintrc': 1.1.3
   '@latipun7/releaserc': ^2.1.0
   '@nestjs/axios': '>= 0.1.0'
-  '@nestjs/cli': 10.1.9
+  '@nestjs/cli': 10.1.10
   '@nestjs/common': 10.1.0
   '@nestjs/core': 10.1.0
   '@nestjs/platform-express': 10.1.0
@@ -75,7 +75,7 @@ devDependencies:
   '@commitlint/cli': 17.6.7
   '@latipun7/commitlintrc': 1.1.3_@commitlint+cli@17.6.7
   '@latipun7/releaserc': 2.2.0_sd2hw4gqb2skcsgokbofvitiiu
-  '@nestjs/cli': 10.1.9
+  '@nestjs/cli': 10.1.10
   '@nestjs/common': 10.1.0_welcnyot5bzd5wa2aovbkxpi4i
   '@nestjs/core': 10.1.0_ekda24jlfr2eith4gu5ipw76pi
   '@nestjs/platform-express': 10.1.0_hbea26ufw2zquywaxfa5b5stgu
@@ -1109,8 +1109,8 @@ packages:
     dev: false
     optional: true
 
-  /@nestjs/cli/10.1.9:
-    resolution: {integrity: sha512-kD+QZUPZ5T9dCfp5pjYXQ+tulLiszARQiXuTi56ZvsKg0MVW3jrF90zfMD5thU5XyfmUYFCpB1kpCMXiOYhLcg==}
+  /@nestjs/cli/10.1.10:
+    resolution: {integrity: sha512-5adPl6m2X0uOrK4IPUbzBJUqZ//UKsKi9c7yAR3uCu+moSDMieG/YeKt+zGLnF2gaCdHdgeWWoxI0nfMVE5uCA==}
     engines: {node: '>= 16'}
     hasBin: true
     peerDependencies:
