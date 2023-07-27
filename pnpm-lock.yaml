@@ -33,7 +33,7 @@ specifiers:
   dotenv: '>= 16.0.0'
   dotenv-expand: '>= 10.0.0'
   eslint: 7.32.0
-  eslint-config-prettier: 8.8.0
+  eslint-config-prettier: 8.9.0
   eslint-plugin-import: 2.27.5
   eslint-plugin-prettier: 4.2.1
   husky: 8.0.3
@@ -91,9 +91,9 @@ devDependencies:
   '@typescript-eslint/parser': 5.62.0_gsjcde7vtyx77zujqq4bik42o4
   axios: 0.27.2_debug@4.3.4
   eslint: 7.32.0
-  eslint-config-prettier: 8.8.0_eslint@7.32.0
+  eslint-config-prettier: 8.9.0_eslint@7.32.0
   eslint-plugin-import: 2.27.5_6gthzuybl4nrnwlpznxavwjpna
-  eslint-plugin-prettier: 4.2.1_wbjvq5l5nilmuxvc4ylcjwialu
+  eslint-plugin-prettier: 4.2.1_4pjbmcw6xityo53o2gpotr7a44
   husky: 8.0.3
   jest: 29.6.2_@types+node@18.17.1
   lint-staged: 13.2.3
@@ -3402,8 +3402,8 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /eslint-config-prettier/8.8.0_eslint@7.32.0:
-    resolution: {integrity: sha512-wLbQiFre3tdGgpDv67NQKnJuTlcUVYHas3k+DZCc2U2BadthoEY4B7hLPvAxaqdyOGCzuLfii2fqGph10va7oA==}
+  /eslint-config-prettier/8.9.0_eslint@7.32.0:
+    resolution: {integrity: sha512-+sbni7NfVXnOpnRadUA8S28AUlsZt9GjgFvABIRL9Hkn8KqNzOp+7Lw4QWtrwn20KzU3wqu1QoOj2m+7rKRqkA==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
@@ -3483,7 +3483,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_wbjvq5l5nilmuxvc4ylcjwialu:
+  /eslint-plugin-prettier/4.2.1_4pjbmcw6xityo53o2gpotr7a44:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.com/eslint-plugin-prettier/-/eslint-plugin-prettier-4.2.1.tgz}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -3495,7 +3495,7 @@ packages:
         optional: true
     dependencies:
       eslint: 7.32.0
-      eslint-config-prettier: 8.8.0_eslint@7.32.0
+      eslint-config-prettier: 8.9.0_eslint@7.32.0
       prettier: 2.8.8
       prettier-linter-helpers: 1.0.0
     dev: true
