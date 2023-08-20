@@ -61,11 +61,17 @@ export class TypedConfigModule {
     if (Array.isArray(load)) {
       const config = {};
       for (const fn of load) {
+        // we shouldn't silently catch errors here, because app shouldn't start without the proper config
+        // same way as it doesn't start without the proper database connection
+        // and the same way as it now fail for the single loader
         try {
-          const conf = fn();
+          const conf = fn(config);
           merge(config, conf);
-        } catch (err: any) {
-          debug(`Config load failed: ${err.message}`);
+        } catch (e: any) {
+          debug(
+            `Config load failed: ${e}. Details: ${JSON.stringify(e.details)}`,
+          );
+          throw e;
         }
       }
       return config;
@@ -80,10 +86,13 @@ export class TypedConfigModule {
       const config = {};
       for (const fn of load) {
         try {
-          const conf = await fn();
+          const conf = await fn(config);
           merge(config, conf);
-        } catch (err: any) {
-          debug(`Config load failed: ${err.message}`);
+        } catch (e: any) {
+          debug(
+            `Config load failed: ${e}. Details: ${JSON.stringify(e.details)}`,
+          );
+          throw e;
         }
       }
       return config;

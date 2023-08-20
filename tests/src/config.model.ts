@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import {
   IsBoolean,
   IsDefined,
@@ -26,6 +26,8 @@ export class DatabaseConfig {
   public readonly table!: TableConfig;
 }
 
+export class DatabaseConfigAlias extends DatabaseConfig {}
+
 export class Config {
   @Type(() => DatabaseConfig)
   @ValidateNested()
@@ -34,6 +36,21 @@ export class Config {
 
   @IsBoolean()
   public readonly isAuthEnabled!: boolean;
+}
+
+export class ConfigWithAlias extends Config {
+  @Type(() => DatabaseConfigAlias)
+  @ValidateNested()
+  @IsDefined()
+  public readonly databaseAlias!: DatabaseConfigAlias;
+}
+
+export class DatabaseConfigWithAliasAndAuthCopy extends ConfigWithAlias {
+  @Transform(({ value }) =>
+    typeof value === 'boolean' ? value : value === 'true',
+  )
+  @IsBoolean()
+  public readonly isAuthEnabledCopy!: boolean;
 }
 
 export class DirectoryConfig {
@@ -52,6 +69,7 @@ export class FooConfig {
   @IsString()
   foo!: string;
 }
+
 export class BazConfig {
   @IsString()
   baz!: string;
