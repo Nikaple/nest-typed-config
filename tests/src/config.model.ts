@@ -7,6 +7,7 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
+import { applyDecorators } from '@nestjs/common';
 
 export class TableConfig {
   @IsString()
@@ -26,7 +27,19 @@ export class DatabaseConfig {
   public readonly table!: TableConfig;
 }
 
-export class DatabaseConfigAlias extends DatabaseConfig {}
+export class DatabaseConfigAlias extends DatabaseConfig {
+  @IsInt()
+  @Type(() => Number)
+  public readonly port!: number;
+}
+
+export class DatabaseConfigAliasCopy extends DatabaseConfigAlias {}
+
+const ToBoolean = applyDecorators(
+  Transform(({ value }) =>
+    typeof value === 'boolean' ? value : value === 'true',
+  ),
+);
 
 export class Config {
   @Type(() => DatabaseConfig)
@@ -38,6 +51,25 @@ export class Config {
   public readonly isAuthEnabled!: boolean;
 }
 
+export class ConfigWithDefaultValuesForEnvs {
+  @IsBoolean()
+  @ToBoolean
+  public readonly isAuthEnabled!: boolean;
+
+  @IsString()
+  public readonly defaultEmptyString!: string;
+
+  @Type(() => DatabaseConfigAliasCopy)
+  @ValidateNested()
+  @IsDefined()
+  public readonly database!: DatabaseConfigAliasCopy;
+
+  @Type(() => DatabaseConfigAlias)
+  @ValidateNested()
+  @IsDefined()
+  public readonly databaseAlias!: DatabaseConfigAlias;
+}
+
 export class ConfigWithAlias extends Config {
   @Type(() => DatabaseConfigAlias)
   @ValidateNested()
@@ -46,9 +78,7 @@ export class ConfigWithAlias extends Config {
 }
 
 export class DatabaseConfigWithAliasAndAuthCopy extends ConfigWithAlias {
-  @Transform(({ value }) =>
-    typeof value === 'boolean' ? value : value === 'true',
-  )
+  @ToBoolean
   @IsBoolean()
   public readonly isAuthEnabledCopy!: boolean;
 }

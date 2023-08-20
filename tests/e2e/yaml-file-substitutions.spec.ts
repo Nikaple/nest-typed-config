@@ -1,8 +1,10 @@
 import { AppModule, TestYamlFile } from '../src/app.module';
 import {
   ConfigWithAlias,
+  ConfigWithDefaultValuesForEnvs,
   DatabaseConfig,
   DatabaseConfigAlias,
+  DatabaseConfigAliasCopy,
   DatabaseConfigWithAliasAndAuthCopy,
 } from '../src/config.model';
 import { INestApplication } from '@nestjs/common';
@@ -51,6 +53,25 @@ describe('Environment variable substitutions success cases', () => {
     const databaseConfigAlias = app.get(DatabaseConfigAlias);
     const alias = instanceToPlain(databaseConfigAlias);
     expect(alias).toStrictEqual(instanceToPlain(databaseConfig));
+  });
+
+  it(`should load yaml and fill default values successfully`, async () => {
+    await init(
+      { ignoreEnvironmentVariableSubstitution: false },
+      ['.env-with-default.sub.yaml'],
+      ConfigWithDefaultValuesForEnvs,
+    );
+    const config = app.get(ConfigWithDefaultValuesForEnvs);
+    const databaseConfig = app.get(DatabaseConfigAliasCopy);
+    const databaseConfigAlias = app.get(DatabaseConfigAlias);
+    const alias = instanceToPlain(databaseConfigAlias);
+
+    expect(alias).toStrictEqual(instanceToPlain(databaseConfig));
+    expect(alias.port).toBe(12345);
+    expect(alias.table.name).toBe(tableName);
+    expect(alias.host).toBe('my-default-host.com');
+    expect(config.isAuthEnabled).toBe(false);
+    expect(config.defaultEmptyString).toBe('');
   });
 
   it(`self substitution advanced case`, async () => {
