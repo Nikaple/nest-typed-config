@@ -3,6 +3,8 @@ import { basename, dirname } from 'path';
 import { debug } from '../utils/debug.util';
 import { loadPackage } from '../utils/load-package.util';
 
+const DEFAULT_VALUE_SEPARATOR = ':-';
+
 let parseToml: any;
 let cosmiconfig: any;
 
@@ -165,7 +167,9 @@ function transformFileLoaderResult(
     const match = obj.match(/\$\{(.+?)\}/g);
     if (match) {
       for (const placeholder of match) {
-        const variable = placeholder.slice(2, -1);
+        const { variable, defaultValue } =
+          extractVariableNameAndDefaultValue(placeholder);
+
         let resolvedValue = resolveReference(variable, context);
 
         if (obj === resolvedValue) {
@@ -219,6 +223,8 @@ function transformFileLoaderResult(
                 .replace(placeholder, resolvedValue.toString());
             }
           }
+        } else if (defaultValue !== undefined) {
+          obj = defaultValue;
         } else if (disallowUndefinedEnvironmentVariables) {
           throw new Error(
             `Environment variable is not set for variable name: '${variable}'`,
@@ -262,4 +268,21 @@ function transformFileLoaderResult(
     visited.delete(obj);
   }
   return obj;
+}
+
+function extractVariableNameAndDefaultValue(placeholder: string): {
+  variable: string;
+  defaultValue?: string;
+} {
+  const placeholderWithoutBrackets = placeholder.slice(2, -1);
+  const splitValues = placeholderWithoutBrackets.split(DEFAULT_VALUE_SEPARATOR);
+  const defaultValue =
+    splitValues.length === 1
+      ? undefined
+      : splitValues.slice(1).join(DEFAULT_VALUE_SEPARATOR);
+
+  return {
+    variable: splitValues[0],
+    defaultValue,
+  };
 }
