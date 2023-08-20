@@ -3,12 +3,12 @@ import { join } from 'path';
 import { parse as parseYaml } from 'yaml';
 import {
   directoryLoader,
+  fileLoader,
   FileLoaderOptions,
   remoteLoader,
   RemoteLoaderOptions,
   TypedConfigModule,
 } from '../../lib';
-import { fileLoader } from '../../lib';
 import {
   dotenvLoader,
   DotenvLoaderOptions,
@@ -16,11 +16,12 @@ import {
 import {
   BazConfig,
   Config,
+  ConfigWithDefaultValues,
   DirectoryConfig,
   FooConfig,
   TableConfig,
-  ConfigWithDefaultValues,
 } from './config.model';
+import { ClassConstructor } from 'class-transformer';
 
 const loadYaml = function loadYaml(filepath: string, content: string) {
   try {
@@ -31,6 +32,24 @@ const loadYaml = function loadYaml(filepath: string, content: string) {
     throw error;
   }
 };
+
+export type TestYamlFile =
+  | '.env.sub.yaml'
+  | '.env-advanced.sub.yaml'
+  | '.env-object-cross-referencing.sub.yaml'
+  | '.env-advanced-self-referencing-tricky.sub.yaml'
+  | '.env-advanced-chain-reference-wrong-value.sub.yaml'
+  | '.env-second-with-hardcoded-host-file.sub.yaml'
+  | '.env-field-name-the-same-as-env.sub.yaml'
+  | '.env-circular-between2.sub.yaml'
+  | '.env-circular-between3.sub.yaml'
+  | '.env-second-file.sub.yaml'
+  | '.env-self-reference.sub.yaml'
+  | '.env-reference-array-of-objects.sub.yaml'
+  | '.env-reference-object.sub.yaml'
+  | '.env-reference-array-of-primitives.sub.yaml'
+  | '.env-advanced-backward-reference.sub.yaml'
+  | '.env-with-default.sub.yaml';
 
 @Module({})
 export class AppModule {
@@ -88,6 +107,7 @@ export class AppModule {
       ],
     };
   }
+
   static withToml(): DynamicModule {
     return {
       module: AppModule,
@@ -224,16 +244,22 @@ export class AppModule {
     };
   }
 
-  static withYamlSubstitution(options: FileLoaderOptions): DynamicModule {
+  static withYamlSubstitution(
+    options: FileLoaderOptions,
+    schema: ClassConstructor<any> = Config,
+    fileNames: Array<TestYamlFile> = ['.env.sub.yaml'],
+  ): DynamicModule {
     return {
       module: AppModule,
       imports: [
         TypedConfigModule.forRoot({
-          schema: Config,
-          load: fileLoader({
-            absolutePath: join(__dirname, '.env.sub.yaml'),
-            ...options,
-          }),
+          schema,
+          load: fileNames.map(f =>
+            fileLoader({
+              absolutePath: join(__dirname, f),
+              ...options,
+            }),
+          ),
         }),
       ],
     };

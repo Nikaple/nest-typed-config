@@ -1,8 +1,8 @@
 import type { ClassConstructor } from 'class-transformer';
 import type { ValidatorOptions } from 'class-validator';
 
-export type ConfigLoader = () => Record<string, any>;
-export type AsyncConfigLoader = () => Promise<Record<string, any>>;
+export type ConfigLoader = (...args: any) => Record<string, any>;
+export type AsyncConfigLoader = (...args: any) => Promise<Record<string, any>>;
 
 export interface TypedConfigModuleOptions {
   /**
