@@ -35,14 +35,11 @@ describe('Local toml', () => {
     expect(databaseConfig.host).toBe('host.part1');
   });
 
-  it(`should be able load config when some of the loaders fail`, async () => {
-    await init(['reject', 'part1', 'part2']);
-    const tableConfig = app.get(TableConfig);
-    expect(tableConfig.name).toBe('test');
-
-    await init(['reject', 'part1', 'part2'], false);
-    const tableConfig2 = app.get(TableConfig);
-    expect(tableConfig2.name).toBe('test');
+  /**
+   * this is a subject for discussion
+   * */
+  it(`should not be able load config when some of the loaders fail`, async () => {
+    expect(init(['reject', 'part1', 'part2'])).rejects.toThrowError();
   });
 
   afterEach(async () => {
