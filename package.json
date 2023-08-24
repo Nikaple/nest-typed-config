@@ -90,7 +90,7 @@
     "semantic-release": "^21.0.0",
     "ts-jest": "29.1.1",
     "typedoc": "0.24.8",
-    "typescript": "5.1.6",
+    "typescript": "5.2.2",
     "yaml": "2.3.1"
   },
   "optionalDependencies": {
