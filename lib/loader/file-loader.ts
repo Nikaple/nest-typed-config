@@ -177,7 +177,7 @@ function transformFileLoaderResult(
         if (resolvedValue !== null) {
           if (typeof resolvedValue === 'string') {
             // resolve reference first
-            if (resolvedValue.match(/\$\{(.+?)\}/)) {
+            if (resolvedValue.match(/(?!(?<=\\))\$\{(.+?)\}/)) {
               try {
                 resolvedValue = transformFileLoaderResult(
                   resolvedValue,
