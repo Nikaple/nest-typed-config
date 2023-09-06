@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+## [2.8.0](https://github.com/Nikaple/nest-typed-config/compare/v2.7.0...v2.8.0) (2023-09-06)
+
+### ✨ Features
+
+- expand values implementation for cosmic file loaders [`e7d77b3`](https://github.com/Nikaple/nest-typed-config/commit/e7d77b3d97ff4f37a80d6fd4d895f0169aaf6171).
+
 ## [2.7.0](https://github.com/Nikaple/nest-typed-config/compare/v2.6.0...v2.7.0) (2023-06-30)
 
 ### ✨ Features
