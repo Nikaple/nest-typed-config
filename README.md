@@ -504,16 +504,17 @@ TypedConfigModule.forRoot({
 });
 ```
 
-## Uses of environment variable substitutions
+## Uses of variable substitutions
 
-The `${PORT}` substitution feature lets you use environment variable in some nice ways.
+The `${PORT}` substitution feature lets you use environment variable in some nice ways. You can also provide default values, and reference another variable in a config
 
 If you have config file with like the below one
 
 ```yaml
 database:
   host: 127.0.0.1
-  port: ${PORT}
+  port: ${PORT:-12345}
+  url: ${database.host}:${database:port}
 ```
 
 And you have set environment variable for port
@@ -537,6 +538,33 @@ And you will get new config like below one
 database:
   host: 127.0.0.1
   port: 9000
+  url: 127.0.0.1:9000
+```
+
+if you won't set environment variable for port, then you will get new config like below one
+
+```yaml
+database:
+  host: 127.0.0.1
+  port: 12345
+  url: 127.0.0.1:12345
+```
+
+> [!NOTE]
+> when you use variable substitution the values can be string in case if you use default variable or env variable, and you need to apply transformer to class fields to get the correct type of the value.
+
+```ts
+export class Config {
+  @IsString()
+  public readonly host!: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  public readonly port!: number;
+
+  @IsString()
+  public readonly url!: string;
+}
 ```
 
 ## Default values
