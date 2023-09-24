@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+## [2.9.0](https://github.com/Nikaple/nest-typed-config/compare/v2.8.0...v2.9.0) (2023-09-24)
+
+### ✨ Features
+
+- implemented ability to set default values for file loaders, with dotenv-expand syntax [`b39c92c`](https://github.com/Nikaple/nest-typed-config/commit/b39c92c6b6eb823c5eb566f1a0dd60862bd45016).
+
+### 📚 Documentations
+
+- updated documentation for substitution feature [`b7a7563`](https://github.com/Nikaple/nest-typed-config/commit/b7a7563243591e5bd9dd31290cb43230054b744d).
+
 ## [2.8.0](https://github.com/Nikaple/nest-typed-config/compare/v2.7.0...v2.8.0) (2023-09-06)
 
 ### ✨ Features
