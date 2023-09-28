@@ -6,7 +6,7 @@
 
 import * as fs from 'fs';
 import { resolve } from 'path';
-import set from 'lodash.set';
+import set from 'set-value';
 import { loadPackage } from '../utils/load-package.util';
 import { debug } from '../utils/debug.util';
 
