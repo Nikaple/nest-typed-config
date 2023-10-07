@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.9.1](https://github.com/Nikaple/nest-typed-config/compare/v2.9.0...v2.9.1) (2023-10-07)
+
+### 🐛 Fixes
+
+- **deps:** fix lodash.set vulnerability issue [`99cb046`](https://github.com/Nikaple/nest-typed-config/commit/99cb04638bd10719f90a997576a1198dd422f639).
+
 ## [2.9.0](https://github.com/Nikaple/nest-typed-config/compare/v2.8.0...v2.9.0) (2023-09-24)
 
 ### ✨ Features
