@@ -49,7 +49,8 @@ export type TestYamlFile =
   | '.env-reference-object.sub.yaml'
   | '.env-reference-array-of-primitives.sub.yaml'
   | '.env-advanced-backward-reference.sub.yaml'
-  | '.env-with-default.sub.yaml';
+  | '.env-with-default.sub.yaml'
+  | '.env-missing.yaml';
 
 @Module({})
 export class AppModule {

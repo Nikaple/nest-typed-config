@@ -100,8 +100,11 @@ export const fileLoader = (
       searchPlaces,
       ...options,
       loaders,
-      transform: (result: Record<string, any>) => {
-        if (options.ignoreEnvironmentVariableSubstitution ?? true) {
+      transform: (result: Record<string, any> | null) => {
+        if (
+          !result ||
+          (options.ignoreEnvironmentVariableSubstitution ?? true)
+        ) {
           return result;
         }
 

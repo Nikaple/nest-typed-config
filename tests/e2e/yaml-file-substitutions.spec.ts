@@ -225,6 +225,18 @@ describe('Environment variable substitutions error cases', () => {
     );
   });
 
+  it('should not attempt substitution if the loader failed', async () => {
+    expect(() =>
+      AppModule.withYamlSubstitution(
+        {
+          ignoreEnvironmentVariableSubstitution: true,
+        },
+        ConfigWithAlias,
+        ['.env-missing.yaml'],
+      ),
+    ).toThrowError(`Failed to find configuration file.`);
+  });
+
   it('array primitives substitution', async () => {
     expect(() =>
       AppModule.withYamlSubstitution(
