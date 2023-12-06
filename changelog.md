@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.9.2](https://github.com/Nikaple/nest-typed-config/compare/v2.9.1...v2.9.2) (2023-12-06)
+
+### 🐛 Fixes
+
+- do not attempt substitution if the loader failed [`3a929bc`](https://github.com/Nikaple/nest-typed-config/commit/3a929bca51a876a2f765367e45cf9a010c2409be).
+
 ### [2.9.1](https://github.com/Nikaple/nest-typed-config/compare/v2.9.0...v2.9.1) (2023-10-07)
 
 ### 🐛 Fixes
