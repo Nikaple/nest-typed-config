@@ -495,7 +495,7 @@ If native loaders provided by `nest-typed-config` can't meet your needs, you can
 ```ts
 TypedConfigModule.forRoot({
   schema: RootConfig,
-  load: async () => {
+  load: () => {
     return {
       host: '127.0.0.1',
       port: 3000,
