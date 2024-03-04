@@ -40,7 +40,7 @@ jobs:
         run: pnpm run doc
 
       - name: Deploy to Github Pages
-        uses: crazy-max/ghaction-github-pages@v3.1.0
+        uses: crazy-max/ghaction-github-pages@v3.2.0
         with:
           # Build directory to deploy
           build_dir: docs
