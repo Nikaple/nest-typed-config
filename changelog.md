@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.9.4](https://github.com/Nikaple/nest-typed-config/compare/v2.9.3...v2.9.4) (2025-02-14)
+
+### 🐛 Fixes
+
+- support Nest.js v11 [`69e043c`](https://github.com/Nikaple/nest-typed-config/commit/69e043c60dd2ab447a0ae8d2ed132a414c9b8964).
+
 ### [2.9.3](https://github.com/Nikaple/nest-typed-config/compare/v2.9.2...v2.9.3) (2024-03-04)
 
 ### 🐛 Fixes
