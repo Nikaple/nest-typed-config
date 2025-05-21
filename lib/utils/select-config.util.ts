@@ -1,5 +1,5 @@
-import type { DynamicModule, ValueProvider } from '@nestjs/common';
-import type { ClassConstructor } from 'class-transformer';
+import { DynamicModule, ValueProvider } from '@nestjs/common';
+import { ClassConstructor } from 'class-transformer';
 
 export interface SelectConfigOptions {
   /**

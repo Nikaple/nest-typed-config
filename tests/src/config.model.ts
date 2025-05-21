@@ -1,4 +1,4 @@
-import 'reflect-metadata';
+import { applyDecorators } from '@nestjs/common';
 import { Transform, Type } from 'class-transformer';
 import {
   IsBoolean,
@@ -7,7 +7,6 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { applyDecorators } from '@nestjs/common';
 
 export class TableConfig {
   @IsString()

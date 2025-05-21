@@ -1,16 +1,19 @@
-import { Module, DynamicModule, Provider } from '@nestjs/common';
-import { red, yellow, cyan, blue } from 'chalk';
-import type { ClassConstructor } from 'class-transformer';
-import type { ValidatorOptions, ValidationError } from 'class-validator';
+import { DynamicModule, Module, Provider } from '@nestjs/common';
+import { blue, cyan, red, yellow } from 'chalk';
+import { ClassConstructor, plainToClass } from 'class-transformer';
+import {
+  validateSync,
+  ValidationError,
+  ValidatorOptions,
+} from 'class-validator';
 import merge from 'lodash.merge';
 import {
   TypedConfigModuleAsyncOptions,
   TypedConfigModuleOptions,
 } from './interfaces/typed-config-module-options.interface';
+import { debug } from './utils/debug.util';
 import { forEachDeep } from './utils/for-each-deep.util';
 import { identity } from './utils/identity.util';
-import { debug } from './utils/debug.util';
-import { validateSync, plainToClass } from './utils/imports.util';
 
 @Module({})
 export class TypedConfigModule {
