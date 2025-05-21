@@ -1,12 +1,10 @@
 {
-  "name": "nest-typed-config",
-  "version": "2.9.4",
+  "name": "@coast/nest-typed-config",
+  "version": "3.0.0",
   "description": "Intuitive, type-safe configuration module for Nest framework",
-  "author": "Nikaple Zhou",
+  "author": "Coast Engineering",
   "license": "MIT",
   "packageManager": "pnpm@7.33.1",
-  "url": "https://github.com/Nikaple/nest-typed-config",
-  "homepage": "https://github.com/Nikaple/nest-typed-config",
   "files": [
     "index.js",
     "index.d.ts",
@@ -14,13 +12,6 @@
     "lib",
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Nikaple/nest-typed-config"
-  },
-  "bugs": {
-    "url": "https://github.com/Nikaple/nest-typed-config/issues"
-  },
   "scripts": {
     "prepare": "husky install",
     "build": "rimraf -rf dist && tsc -p tsconfig.build.json",
