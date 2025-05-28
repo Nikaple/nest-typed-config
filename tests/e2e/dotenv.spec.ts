@@ -106,6 +106,20 @@ describe('Dotenv loader', () => {
     expect(app.get(Config).database.host).toBe('existing');
   });
 
+  it(`should override environment variables which exists on process.env`, async () => {
+    process.env = {
+      name: 'assign-process-env',
+      database__host: 'existing',
+    };
+    await init({
+      separator: '__',
+      envFilePath: join(__dirname, '../src/.env'),
+      overrideEnvVars: true,
+    });
+    expect(process.env.database__host).toBe('test');
+    expect(app.get(Config).database.host).toBe('test');
+  });
+
   it(`should be able to load config from environment variables`, async () => {
     process.env = {
       isAuthEnabled: 'true',
