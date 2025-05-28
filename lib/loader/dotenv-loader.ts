@@ -74,6 +74,11 @@ export interface DotenvLoaderOptions {
    * Internally, dotenv-expand is used to expand variables.
    */
   expandVariables?: boolean;
+
+  /**
+   * If "true", already defined environment variables will be overwritten.
+   */
+  overrideEnvVars?: boolean;
 }
 
 let dotenv: any;
@@ -102,7 +107,10 @@ const loadEnvFile = (options: DotenvLoaderOptions): Record<string, any> => {
     }
 
     Object.entries(config).forEach(([key, value]) => {
-      if (!Object.prototype.hasOwnProperty.call(process.env, key)) {
+      if (
+        options.overrideEnvVars ||
+        !Object.prototype.hasOwnProperty.call(process.env, key)
+      ) {
         process.env[key] = value;
       } else {
         debug(
