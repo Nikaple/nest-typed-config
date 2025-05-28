@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+## [2.10.0](https://github.com/Nikaple/nest-typed-config/compare/v2.9.4...v2.10.0) (2025-05-28)
+
+### ✨ Features
+
+- implement ability to override environment variables with dotenv loader ([#510](https://github.com/Nikaple/nest-typed-config/issues/510)) [`42b488d`](https://github.com/Nikaple/nest-typed-config/commit/42b488df91d43d2f5e0dd4ef56be4323edc491db).
+
+  Co-authored-by: picu <curdin.pitsch@wuerth-it.com>
+
 ### [2.9.4](https://github.com/Nikaple/nest-typed-config/compare/v2.9.3...v2.9.4) (2025-02-14)
 
 ### 🐛 Fixes
