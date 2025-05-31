@@ -4,7 +4,7 @@
   "description": "Intuitive, type-safe configuration module for Nest framework",
   "author": "Nikaple Zhou",
   "license": "MIT",
-  "packageManager": "pnpm@7.33.1",
+  "packageManager": "pnpm@7.33.7",
   "url": "https://github.com/Nikaple/nest-typed-config",
   "homepage": "https://github.com/Nikaple/nest-typed-config",
   "files": [
