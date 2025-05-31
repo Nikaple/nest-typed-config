@@ -5,13 +5,11 @@ import { loadPackage } from '../utils/load-package.util';
 
 const DEFAULT_VALUE_SEPARATOR = ':-';
 
-let parseToml: any;
-let cosmiconfig: any;
-
 const loadToml = function loadToml(filepath: string, content: string) {
-  parseToml = loadPackage(
+  const parseToml = loadPackage(
     '@iarna/toml',
     "fileLoader's ability to parse TOML files",
+    () => require('@iarna/toml'),
   ).parse;
   try {
     const result = parseToml(content);
@@ -87,7 +85,9 @@ const getSearchOptions = (options: FileLoaderOptions) => {
 export const fileLoader = (
   options: FileLoaderOptions = {},
 ): (() => Record<string, any>) => {
-  cosmiconfig = loadPackage('cosmiconfig', 'fileLoader');
+  const cosmiconfig = loadPackage('cosmiconfig', 'fileLoader', () =>
+    require('cosmiconfig'),
+  );
 
   const { cosmiconfigSync } = cosmiconfig;
   return (additionalContext: Record<string, any> = {}): Record<string, any> => {

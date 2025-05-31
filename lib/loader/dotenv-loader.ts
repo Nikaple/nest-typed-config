@@ -81,11 +81,8 @@ export interface DotenvLoaderOptions {
   overrideEnvVars?: boolean;
 }
 
-let dotenv: any;
-let dotenvExpand: any;
-
 const loadEnvFile = (options: DotenvLoaderOptions): Record<string, any> => {
-  dotenv = loadPackage('dotenv', 'dotenvLoader');
+  const dotenv = loadPackage('dotenv', 'dotenvLoader', () => require('dotenv'));
   const envFilePaths = Array.isArray(options.envFilePath)
     ? options.envFilePath
     : [options.envFilePath || resolve(process.cwd(), '.env')];
@@ -98,9 +95,10 @@ const loadEnvFile = (options: DotenvLoaderOptions): Record<string, any> => {
         config,
       );
       if (options.expandVariables) {
-        dotenvExpand = loadPackage(
+        const dotenvExpand = loadPackage(
           'dotenv-expand',
           "dotenvLoader's ability to expandVariables",
+          () => require('dotenv-expand'),
         );
         config = dotenvExpand.expand({ parsed: config }).parsed!;
       }

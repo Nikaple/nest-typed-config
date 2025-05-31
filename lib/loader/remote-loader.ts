@@ -5,12 +5,6 @@ import { delay, map, retryWhen, take } from 'rxjs/operators';
 import { identity } from '../utils/identity.util';
 import { loadPackage } from '../utils/load-package.util';
 
-let parseJson: any;
-let parseYaml: any;
-let parseToml: any;
-let HttpService: any;
-let axios: any;
-
 type AxiosRequestConfigWithoutUrl = Omit<AxiosRequestConfig, 'url'>;
 
 export type RemoteLoaderConfigType = 'json' | 'yaml' | 'toml' | 'yml';
@@ -52,8 +46,10 @@ export const remoteLoader = <T = any>(
   url: string,
   options: RemoteLoaderOptions = {},
 ): (() => Promise<T>) => {
-  HttpService = loadPackage('@nestjs/axios', 'remoteLoader').HttpService;
-  axios = loadPackage('axios', 'remoteLoader');
+  const HttpService = loadPackage('@nestjs/axios', 'remoteLoader', () =>
+    require('@nestjs/axios'),
+  ).HttpService;
+  const axios = loadPackage('axios', 'remoteLoader', () => require('axios'));
 
   return async (): Promise<T> => {
     const {
@@ -104,30 +100,34 @@ export const remoteLoader = <T = any>(
 
     const parser = {
       json: (content: string) => {
-        parseJson = loadPackage(
+        const parseJson = loadPackage(
           'parse-json',
           "remoteLoader's ability to parse JSON files",
+          () => require('parse-json'),
         );
         return parseJson(content);
       },
       yaml: (content: string) => {
-        parseYaml = loadPackage(
+        const parseYaml = loadPackage(
           'yaml',
           "remoteLoader's ability to parse YAML files",
+          () => require('yaml'),
         ).parse;
         return parseYaml(content);
       },
       yml: (content: string) => {
-        parseYaml = loadPackage(
+        const parseYaml = loadPackage(
           'yaml',
           "remoteLoader's ability to parse YML files",
+          () => require('yaml'),
         ).parse;
         return parseYaml(content);
       },
       toml: (content: string) => {
-        parseToml = loadPackage(
+        const parseToml = loadPackage(
           '@iarna/toml',
           "remoteLoader's ability to parse TOML files",
+          () => require('@iarna/toml'),
         ).parse;
         return parseToml(content);
       },
