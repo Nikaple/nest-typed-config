@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+### [2.10.1](https://github.com/Nikaple/nest-typed-config/compare/v2.10.0...v2.10.1) (2025-05-31)
+
+### 🐛 Fixes
+
+- support webpack bundle. Closes [#499](https://github.com/Nikaple/nest-typed-config/issues/499) [`4284084`](https://github.com/Nikaple/nest-typed-config/commit/428408476ad4c3dc1e3898bbc44b1f91c9069452).
+
 ## [2.10.0](https://github.com/Nikaple/nest-typed-config/compare/v2.9.4...v2.10.0) (2025-05-28)
 
 ### ✨ Features
