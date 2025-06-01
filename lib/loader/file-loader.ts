@@ -6,7 +6,7 @@ import { loadPackage } from '../utils/load-package.util';
 const DEFAULT_VALUE_SEPARATOR = ':-';
 
 const loadToml = function loadToml(filepath: string, content: string) {
-  const parseToml = loadPackage(
+  const parseToml = loadPackage<Awaited<typeof import('@iarna/toml')>>(
     '@iarna/toml',
     "fileLoader's ability to parse TOML files",
     () => require('@iarna/toml'),
@@ -85,8 +85,10 @@ const getSearchOptions = (options: FileLoaderOptions) => {
 export const fileLoader = (
   options: FileLoaderOptions = {},
 ): (() => Record<string, any>) => {
-  const cosmiconfig = loadPackage('cosmiconfig', 'fileLoader', () =>
-    require('cosmiconfig'),
+  const cosmiconfig = loadPackage<Awaited<typeof import('cosmiconfig')>>(
+    'cosmiconfig',
+    'fileLoader',
+    () => require('cosmiconfig'),
   );
 
   const { cosmiconfigSync } = cosmiconfig;
@@ -100,7 +102,7 @@ export const fileLoader = (
       searchPlaces,
       ...options,
       loaders,
-      transform: (result: Record<string, any> | null) => {
+      transform: result => {
         if (
           !result ||
           (options.ignoreEnvironmentVariableSubstitution ?? true)

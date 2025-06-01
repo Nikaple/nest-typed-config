@@ -3,17 +3,165 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+## [2.3.0](https://github.com/Nikaple/nest-typed-config/compare/v2.2.3...v2.3.0) (2025-06-01)
+
+### ✨ Features
+
+- **dotenv-loader:** add key transformer option [`bb7128b`](https://github.com/Nikaple/nest-typed-config/commit/bb7128b99f1e6c1935f1ad322186d2895d967bd0).
+
+  Add option to transform environment variable keys before parsing them.
+  This allows changes to be made prior to parsing which makes having to
+  use complex normalize functions obsolete.
+
+- drop Node.js 12.x support [`49e3508`](https://github.com/Nikaple/nest-typed-config/commit/49e3508c4301d8bd3c590ebcefc1e470003856be).
+
+- expand values implementation for cosmic file loaders [`edd4d49`](https://github.com/Nikaple/nest-typed-config/commit/edd4d4959a60162eb89418391619b3bcd6763cf8).
+
+- implement ability to override environment variables with dotenv loader ([#510](https://github.com/Nikaple/nest-typed-config/issues/510)) [`1017118`](https://github.com/Nikaple/nest-typed-config/commit/101711805150f61935e31fdd89a3240b4478b2ea).
+
+  Co-authored-by: picu <curdin.pitsch@wuerth-it.com>
+
+- implemented ability to set default values for file loaders, with dotenv-expand syntax [`b8860b1`](https://github.com/Nikaple/nest-typed-config/commit/b8860b1beeb0ab3aa221b4b138a38016d9463eb8).
+
+- support environment variable substitution ([#128](https://github.com/Nikaple/nest-typed-config/issues/128)) [`0116497`](https://github.com/Nikaple/nest-typed-config/commit/0116497e237ed6fda38765024040919efd4a8430).
+
+- support selecting optional configs with selectConfig ([#82](https://github.com/Nikaple/nest-typed-config/issues/82)) [`fbca6d7`](https://github.com/Nikaple/nest-typed-config/commit/fbca6d759f1f75c0c8a5f8ab9498b43b37c3309d).
+
+- trigger ci [`c17c90c`](https://github.com/Nikaple/nest-typed-config/commit/c17c90cbcf7d0ca081aa03207489d9d94dc98861).
+
+### 🐛 Fixes
+
+- add an option to allow empty env variables [`fdafad6`](https://github.com/Nikaple/nest-typed-config/commit/fdafad66c2ce27427062a8f614dbf6ab675c3e13).
+
+  closes [#195](https://github.com/Nikaple/nest-typed-config/issues/195);
+
+- add ignoreEnvironmentVariableSubstitution for directoryLoader [`3cac232`](https://github.com/Nikaple/nest-typed-config/commit/3cac232ac3f72aacec6b7c4f106873e273d5bf2e).
+
+- allow reflect-metadata versions in the 0.2 series [`87017e4`](https://github.com/Nikaple/nest-typed-config/commit/87017e4f5edecf835f1bdff00ade350d6c20290b).
+
+- **ci:** build before release [`af2bb2b`](https://github.com/Nikaple/nest-typed-config/commit/af2bb2b17f17c0108a660ef2a73248750d433e42).
+
+- **deps:** fix lodash.set vulnerability issue [`a5e3d4a`](https://github.com/Nikaple/nest-typed-config/commit/a5e3d4a657ccaecdcb410eecbe489718d4e38658).
+
+- **deps:** update dependency debug to v4.3.4 [`d046524`](https://github.com/Nikaple/nest-typed-config/commit/d046524101eb550f095bd71859707e30c4c7e312).
+
+- do not attempt substitution if the loader failed [`dd1153a`](https://github.com/Nikaple/nest-typed-config/commit/dd1153ae090b2739eccc9ea1ee28e475c8d0d4f4).
+
+- support Nest.js v11 [`51d486f`](https://github.com/Nikaple/nest-typed-config/commit/51d486f05e04c013b57eaa27fbde0d17205e71c5).
+
+- support webpack bundle. Closes [#499](https://github.com/Nikaple/nest-typed-config/issues/499) [`9a3cd6f`](https://github.com/Nikaple/nest-typed-config/commit/9a3cd6f450882e2a5bc8e049a81040b11de17ade).
+
+- trigger release workflow [`b233baf`](https://github.com/Nikaple/nest-typed-config/commit/b233baf9309d8f6884dd209263353d56fa2c0b69).
+
+- trigger release workflow [`b03aed5`](https://github.com/Nikaple/nest-typed-config/commit/b03aed53fcb524d8eec048392dc125642cf46c90).
+
+- try to require class-validator/transform from root node_modules first [`b9d6c1f`](https://github.com/Nikaple/nest-typed-config/commit/b9d6c1f36acc280d97b322d536f999a6da0572e6).
+
+  closes [#149](https://github.com/Nikaple/nest-typed-config/issues/149);
+
+- use default values for undefined properties [`1213bec`](https://github.com/Nikaple/nest-typed-config/commit/1213beca096dbc3a602320801c3e1f2c4419a8c1).
+
+- use expand method to expand dotenv config [`4ca698b`](https://github.com/Nikaple/nest-typed-config/commit/4ca698b04ff1e910d2b3465e1ab3dbaa540b2b1b).
+
+### 🔐 Security Patches
+
+- fixed issue with class-validator dependency cve ([#214](https://github.com/Nikaple/nest-typed-config/issues/214)) [`3713b92`](https://github.com/Nikaple/nest-typed-config/commit/3713b926880306167a86a136984a621d56758fc0).
+
+  Co-authored-by: Akatsuki Levi <akatsukilevi@yahoo.co.jp>
+
+### 📚 Documentations
+
+- updated documentation for substitution feature [`deaebe9`](https://github.com/Nikaple/nest-typed-config/commit/deaebe9fec8717306117041b8fb6d46172788d62).
+
+- use `@ValidatedNested` when needed [`831355c`](https://github.com/Nikaple/nest-typed-config/commit/831355cb5677e04e72ec5e531193269495f153bf).
+
+  closes [#210](https://github.com/Nikaple/nest-typed-config/issues/210);
+
+## [2.3.0](https://github.com/Nikaple/nest-typed-config/compare/v2.2.3...v2.3.0) (2025-05-31)
+
+### ✨ Features
+
+- **dotenv-loader:** add key transformer option [`bb7128b`](https://github.com/Nikaple/nest-typed-config/commit/bb7128b99f1e6c1935f1ad322186d2895d967bd0).
+
+  Add option to transform environment variable keys before parsing them.
+  This allows changes to be made prior to parsing which makes having to
+  use complex normalize functions obsolete.
+
+- drop Node.js 12.x support [`49e3508`](https://github.com/Nikaple/nest-typed-config/commit/49e3508c4301d8bd3c590ebcefc1e470003856be).
+
+- expand values implementation for cosmic file loaders [`edd4d49`](https://github.com/Nikaple/nest-typed-config/commit/edd4d4959a60162eb89418391619b3bcd6763cf8).
+
+- implement ability to override environment variables with dotenv loader ([#510](https://github.com/Nikaple/nest-typed-config/issues/510)) [`1017118`](https://github.com/Nikaple/nest-typed-config/commit/101711805150f61935e31fdd89a3240b4478b2ea).
+
+  Co-authored-by: picu <curdin.pitsch@wuerth-it.com>
+
+- implemented ability to set default values for file loaders, with dotenv-expand syntax [`b8860b1`](https://github.com/Nikaple/nest-typed-config/commit/b8860b1beeb0ab3aa221b4b138a38016d9463eb8).
+
+- support environment variable substitution ([#128](https://github.com/Nikaple/nest-typed-config/issues/128)) [`0116497`](https://github.com/Nikaple/nest-typed-config/commit/0116497e237ed6fda38765024040919efd4a8430).
+
+- support selecting optional configs with selectConfig ([#82](https://github.com/Nikaple/nest-typed-config/issues/82)) [`fbca6d7`](https://github.com/Nikaple/nest-typed-config/commit/fbca6d759f1f75c0c8a5f8ab9498b43b37c3309d).
+
+- trigger ci [`c17c90c`](https://github.com/Nikaple/nest-typed-config/commit/c17c90cbcf7d0ca081aa03207489d9d94dc98861).
+
+### 🐛 Fixes
+
+- add an option to allow empty env variables [`fdafad6`](https://github.com/Nikaple/nest-typed-config/commit/fdafad66c2ce27427062a8f614dbf6ab675c3e13).
+
+  closes [#195](https://github.com/Nikaple/nest-typed-config/issues/195);
+
+- add ignoreEnvironmentVariableSubstitution for directoryLoader [`3cac232`](https://github.com/Nikaple/nest-typed-config/commit/3cac232ac3f72aacec6b7c4f106873e273d5bf2e).
+
+- allow reflect-metadata versions in the 0.2 series [`87017e4`](https://github.com/Nikaple/nest-typed-config/commit/87017e4f5edecf835f1bdff00ade350d6c20290b).
+
+- **ci:** build before release [`af2bb2b`](https://github.com/Nikaple/nest-typed-config/commit/af2bb2b17f17c0108a660ef2a73248750d433e42).
+
+- **deps:** fix lodash.set vulnerability issue [`a5e3d4a`](https://github.com/Nikaple/nest-typed-config/commit/a5e3d4a657ccaecdcb410eecbe489718d4e38658).
+
+- **deps:** update dependency debug to v4.3.4 [`d046524`](https://github.com/Nikaple/nest-typed-config/commit/d046524101eb550f095bd71859707e30c4c7e312).
+
+- do not attempt substitution if the loader failed [`dd1153a`](https://github.com/Nikaple/nest-typed-config/commit/dd1153ae090b2739eccc9ea1ee28e475c8d0d4f4).
+
+- support Nest.js v11 [`51d486f`](https://github.com/Nikaple/nest-typed-config/commit/51d486f05e04c013b57eaa27fbde0d17205e71c5).
+
+- support webpack bundle. Closes [#499](https://github.com/Nikaple/nest-typed-config/issues/499) [`9a3cd6f`](https://github.com/Nikaple/nest-typed-config/commit/9a3cd6f450882e2a5bc8e049a81040b11de17ade).
+
+- trigger release workflow [`b233baf`](https://github.com/Nikaple/nest-typed-config/commit/b233baf9309d8f6884dd209263353d56fa2c0b69).
+
+- trigger release workflow [`b03aed5`](https://github.com/Nikaple/nest-typed-config/commit/b03aed53fcb524d8eec048392dc125642cf46c90).
+
+- try to require class-validator/transform from root node_modules first [`b9d6c1f`](https://github.com/Nikaple/nest-typed-config/commit/b9d6c1f36acc280d97b322d536f999a6da0572e6).
+
+  closes [#149](https://github.com/Nikaple/nest-typed-config/issues/149);
+
+- use default values for undefined properties [`1213bec`](https://github.com/Nikaple/nest-typed-config/commit/1213beca096dbc3a602320801c3e1f2c4419a8c1).
+
+- use expand method to expand dotenv config [`4ca698b`](https://github.com/Nikaple/nest-typed-config/commit/4ca698b04ff1e910d2b3465e1ab3dbaa540b2b1b).
+
+### 🔐 Security Patches
+
+- fixed issue with class-validator dependency cve ([#214](https://github.com/Nikaple/nest-typed-config/issues/214)) [`3713b92`](https://github.com/Nikaple/nest-typed-config/commit/3713b926880306167a86a136984a621d56758fc0).
+
+  Co-authored-by: Akatsuki Levi <akatsukilevi@yahoo.co.jp>
+
+### 📚 Documentations
+
+- updated documentation for substitution feature [`deaebe9`](https://github.com/Nikaple/nest-typed-config/commit/deaebe9fec8717306117041b8fb6d46172788d62).
+
+- use `@ValidatedNested` when needed [`831355c`](https://github.com/Nikaple/nest-typed-config/commit/831355cb5677e04e72ec5e531193269495f153bf).
+
+  closes [#210](https://github.com/Nikaple/nest-typed-config/issues/210);
+
 ### [2.10.1](https://github.com/Nikaple/nest-typed-config/compare/v2.10.0...v2.10.1) (2025-05-31)
 
 ### 🐛 Fixes
 
-- support webpack bundle. Closes [#499](https://github.com/Nikaple/nest-typed-config/issues/499) [`4284084`](https://github.com/Nikaple/nest-typed-config/commit/428408476ad4c3dc1e3898bbc44b1f91c9069452).
+- support webpack bundle. Closes [#499](https://github.com/Nikaple/nest-typed-config/issues/499) [`9a3cd6f`](https://github.com/Nikaple/nest-typed-config/commit/9a3cd6f450882e2a5bc8e049a81040b11de17ade).
 
 ## [2.10.0](https://github.com/Nikaple/nest-typed-config/compare/v2.9.4...v2.10.0) (2025-05-28)
 
 ### ✨ Features
 
-- implement ability to override environment variables with dotenv loader ([#510](https://github.com/Nikaple/nest-typed-config/issues/510)) [`42b488d`](https://github.com/Nikaple/nest-typed-config/commit/42b488df91d43d2f5e0dd4ef56be4323edc491db).
+- implement ability to override environment variables with dotenv loader ([#510](https://github.com/Nikaple/nest-typed-config/issues/510)) [`1017118`](https://github.com/Nikaple/nest-typed-config/commit/101711805150f61935e31fdd89a3240b4478b2ea).
 
   Co-authored-by: picu <curdin.pitsch@wuerth-it.com>
 
@@ -21,53 +169,53 @@ This project adheres to [Semantic Versioning](https://semver.org) and [Conventio
 
 ### 🐛 Fixes
 
-- support Nest.js v11 [`69e043c`](https://github.com/Nikaple/nest-typed-config/commit/69e043c60dd2ab447a0ae8d2ed132a414c9b8964).
+- support Nest.js v11 [`51d486f`](https://github.com/Nikaple/nest-typed-config/commit/51d486f05e04c013b57eaa27fbde0d17205e71c5).
 
 ### [2.9.3](https://github.com/Nikaple/nest-typed-config/compare/v2.9.2...v2.9.3) (2024-03-04)
 
 ### 🐛 Fixes
 
-- allow reflect-metadata versions in the 0.2 series [`91caf1a`](https://github.com/Nikaple/nest-typed-config/commit/91caf1a4535b3ff8a86be049da5829e859e4eef6).
+- allow reflect-metadata versions in the 0.2 series [`87017e4`](https://github.com/Nikaple/nest-typed-config/commit/87017e4f5edecf835f1bdff00ade350d6c20290b).
 
 ### [2.9.2](https://github.com/Nikaple/nest-typed-config/compare/v2.9.1...v2.9.2) (2023-12-06)
 
 ### 🐛 Fixes
 
-- do not attempt substitution if the loader failed [`3a929bc`](https://github.com/Nikaple/nest-typed-config/commit/3a929bca51a876a2f765367e45cf9a010c2409be).
+- do not attempt substitution if the loader failed [`dd1153a`](https://github.com/Nikaple/nest-typed-config/commit/dd1153ae090b2739eccc9ea1ee28e475c8d0d4f4).
 
 ### [2.9.1](https://github.com/Nikaple/nest-typed-config/compare/v2.9.0...v2.9.1) (2023-10-07)
 
 ### 🐛 Fixes
 
-- **deps:** fix lodash.set vulnerability issue [`99cb046`](https://github.com/Nikaple/nest-typed-config/commit/99cb04638bd10719f90a997576a1198dd422f639).
+- **deps:** fix lodash.set vulnerability issue [`a5e3d4a`](https://github.com/Nikaple/nest-typed-config/commit/a5e3d4a657ccaecdcb410eecbe489718d4e38658).
 
 ## [2.9.0](https://github.com/Nikaple/nest-typed-config/compare/v2.8.0...v2.9.0) (2023-09-24)
 
 ### ✨ Features
 
-- implemented ability to set default values for file loaders, with dotenv-expand syntax [`b39c92c`](https://github.com/Nikaple/nest-typed-config/commit/b39c92c6b6eb823c5eb566f1a0dd60862bd45016).
+- implemented ability to set default values for file loaders, with dotenv-expand syntax [`b8860b1`](https://github.com/Nikaple/nest-typed-config/commit/b8860b1beeb0ab3aa221b4b138a38016d9463eb8).
 
 ### 📚 Documentations
 
-- updated documentation for substitution feature [`b7a7563`](https://github.com/Nikaple/nest-typed-config/commit/b7a7563243591e5bd9dd31290cb43230054b744d).
+- updated documentation for substitution feature [`deaebe9`](https://github.com/Nikaple/nest-typed-config/commit/deaebe9fec8717306117041b8fb6d46172788d62).
 
 ## [2.8.0](https://github.com/Nikaple/nest-typed-config/compare/v2.7.0...v2.8.0) (2023-09-06)
 
 ### ✨ Features
 
-- expand values implementation for cosmic file loaders [`e7d77b3`](https://github.com/Nikaple/nest-typed-config/commit/e7d77b3d97ff4f37a80d6fd4d895f0169aaf6171).
+- expand values implementation for cosmic file loaders [`edd4d49`](https://github.com/Nikaple/nest-typed-config/commit/edd4d4959a60162eb89418391619b3bcd6763cf8).
 
 ## [2.7.0](https://github.com/Nikaple/nest-typed-config/compare/v2.6.0...v2.7.0) (2023-06-30)
 
 ### ✨ Features
 
-- trigger ci [`b1d5e72`](https://github.com/Nikaple/nest-typed-config/commit/b1d5e72563cd9bc6c9feddc6b000f29f3d05d127).
+- trigger ci [`c17c90c`](https://github.com/Nikaple/nest-typed-config/commit/c17c90cbcf7d0ca081aa03207489d9d94dc98861).
 
 ## [2.6.0](https://github.com/Nikaple/nest-typed-config/compare/v2.5.2...v2.6.0) (2023-06-06)
 
 ### ✨ Features
 
-- **dotenv-loader:** add key transformer option [`1e80f42`](https://github.com/Nikaple/nest-typed-config/commit/1e80f4252e94665806aca1df06411d98fef11707).
+- **dotenv-loader:** add key transformer option [`bb7128b`](https://github.com/Nikaple/nest-typed-config/commit/bb7128b99f1e6c1935f1ad322186d2895d967bd0).
 
   Add option to transform environment variable keys before parsing them.
   This allows changes to be made prior to parsing which makes having to
@@ -77,25 +225,25 @@ This project adheres to [Semantic Versioning](https://semver.org) and [Conventio
 
 ### 🐛 Fixes
 
-- use expand method to expand dotenv config [`e589b7f`](https://github.com/Nikaple/nest-typed-config/commit/e589b7f756f89a9edc6389af7ec8748d8a246fe8).
+- use expand method to expand dotenv config [`4ca698b`](https://github.com/Nikaple/nest-typed-config/commit/4ca698b04ff1e910d2b3465e1ab3dbaa540b2b1b).
 
 ### [2.5.1](https://github.com/Nikaple/nest-typed-config/compare/v2.5.0...v2.5.1) (2023-02-10)
 
 ### 🐛 Fixes
 
-- **ci:** build before release [`6c6a1e2`](https://github.com/Nikaple/nest-typed-config/commit/6c6a1e22e5846077254d911f5bac312aa444852f).
+- **ci:** build before release [`af2bb2b`](https://github.com/Nikaple/nest-typed-config/commit/af2bb2b17f17c0108a660ef2a73248750d433e42).
 
 ## [2.5.0](https://github.com/Nikaple/nest-typed-config/compare/v2.4.8...v2.5.0) (2023-02-09)
 
 ### ✨ Features
 
-- drop Node.js 12.x support [`f7edab2`](https://github.com/Nikaple/nest-typed-config/commit/f7edab2a1724d34a121d279e2f8a441a01090830).
+- drop Node.js 12.x support [`49e3508`](https://github.com/Nikaple/nest-typed-config/commit/49e3508c4301d8bd3c590ebcefc1e470003856be).
 
 ### [2.4.8](https://github.com/Nikaple/nest-typed-config/compare/v2.4.7...v2.4.8) (2023-02-09)
 
 ### 🔐 Security Patches
 
-- fixed issue with class-validator dependency cve ([#214](https://github.com/Nikaple/nest-typed-config/issues/214)) [`b12063f`](https://github.com/Nikaple/nest-typed-config/commit/b12063f4fe9bbc651b62aa8832030fd94beb0ad4).
+- fixed issue with class-validator dependency cve ([#214](https://github.com/Nikaple/nest-typed-config/issues/214)) [`3713b92`](https://github.com/Nikaple/nest-typed-config/commit/3713b926880306167a86a136984a621d56758fc0).
 
   Co-authored-by: Akatsuki Levi <akatsukilevi@yahoo.co.jp>
 
@@ -103,7 +251,7 @@ This project adheres to [Semantic Versioning](https://semver.org) and [Conventio
 
 ### 📚 Documentations
 
-- use `@ValidatedNested` when needed [`2aff0b7`](https://github.com/Nikaple/nest-typed-config/commit/2aff0b7a18eebdd59daafce7ce899d842ff43558).
+- use `@ValidatedNested` when needed [`831355c`](https://github.com/Nikaple/nest-typed-config/commit/831355cb5677e04e72ec5e531193269495f153bf).
 
   closes [#210](https://github.com/Nikaple/nest-typed-config/issues/210);
 
@@ -111,7 +259,7 @@ This project adheres to [Semantic Versioning](https://semver.org) and [Conventio
 
 ### 🐛 Fixes
 
-- add an option to allow empty env variables [`73faa15`](https://github.com/Nikaple/nest-typed-config/commit/73faa1546eac2451684bdc88005fb5b2d1cd3828).
+- add an option to allow empty env variables [`fdafad6`](https://github.com/Nikaple/nest-typed-config/commit/fdafad66c2ce27427062a8f614dbf6ab675c3e13).
 
   closes [#195](https://github.com/Nikaple/nest-typed-config/issues/195);
 
@@ -119,13 +267,13 @@ This project adheres to [Semantic Versioning](https://semver.org) and [Conventio
 
 ### 🐛 Fixes
 
-- **deps:** update dependency debug to v4.3.4 [`3ad47dc`](https://github.com/Nikaple/nest-typed-config/commit/3ad47dc9e3bd5b41d3fc308485debdc17d4967fa).
+- **deps:** update dependency debug to v4.3.4 [`d046524`](https://github.com/Nikaple/nest-typed-config/commit/d046524101eb550f095bd71859707e30c4c7e312).
 
 ### [2.4.4](https://github.com/Nikaple/nest-typed-config/compare/v2.4.3...v2.4.4) (2022-08-22)
 
 ### 🐛 Fixes
 
-- try to require class-validator/transform from root node_modules first [`4ad3c56`](https://github.com/Nikaple/nest-typed-config/commit/4ad3c567aee0daca02c2886d0d834da0d38d88f6).
+- try to require class-validator/transform from root node_modules first [`b9d6c1f`](https://github.com/Nikaple/nest-typed-config/commit/b9d6c1f36acc280d97b322d536f999a6da0572e6).
 
   closes [#149](https://github.com/Nikaple/nest-typed-config/issues/149);
 
@@ -139,15 +287,15 @@ This project adheres to [Semantic Versioning](https://semver.org) and [Conventio
 
 ### 🐛 Fixes
 
-- trigger release workflow [`2ad170c`](https://github.com/Nikaple/nest-typed-config/commit/2ad170c7891fbe8a3f8410d9e4d1e2099dff663c).
+- trigger release workflow [`b233baf`](https://github.com/Nikaple/nest-typed-config/commit/b233baf9309d8f6884dd209263353d56fa2c0b69).
 
-- trigger release workflow [`c4e2f17`](https://github.com/Nikaple/nest-typed-config/commit/c4e2f1703f482480e5c30282435c0919c03c2031).
+- trigger release workflow [`b03aed5`](https://github.com/Nikaple/nest-typed-config/commit/b03aed53fcb524d8eec048392dc125642cf46c90).
 
 ### [2.4.1](https://github.com/Nikaple/nest-typed-config/compare/v2.4.0...v2.4.1) (2022-03-28)
 
 ### 🐛 Fixes
 
-- add ignoreEnvironmentVariableSubstitution for directoryLoader [`60abf39`](https://github.com/Nikaple/nest-typed-config/commit/60abf3983598f0ede69ef4d25112c840ac5c102b).
+- add ignoreEnvironmentVariableSubstitution for directoryLoader [`3cac232`](https://github.com/Nikaple/nest-typed-config/commit/3cac232ac3f72aacec6b7c4f106873e273d5bf2e).
 
 ## [2.4.0](https://github.com/Nikaple/nest-typed-config/compare/v2.3.0...v2.4.0) (2022-02-08)
 
@@ -165,7 +313,7 @@ This project adheres to [Semantic Versioning](https://semver.org) and [Conventio
 
 ### 🐛 Fixes
 
-- **deps:** update dependency class-validator to v0.13.2 ([#35](https://github.com/Nikaple/nest-typed-config/issues/35)) [`142c683`](https://github.com/Nikaple/nest-typed-config/commit/142c683a8722e3d4c91cc6314803919401716b1c).
+- **deps:** update dependency class-validator to v0.13.2 ([#35](https://github.com/Nikaple/nest-typed-config/issues/35)) [`8eef51c`](https://github.com/Nikaple/nest-typed-config/commit/8eef51c744a3ed4f88309b295998606f2701dfeb).
 
   Co-authored-by: Renovate Bot <bot@renovateapp.com>
 
@@ -173,7 +321,7 @@ This project adheres to [Semantic Versioning](https://semver.org) and [Conventio
 
 ### 🐛 Fixes
 
-- **deps:** update dependency debug to v4.3.3 ([#36](https://github.com/Nikaple/nest-typed-config/issues/36)) [`9a0805f`](https://github.com/Nikaple/nest-typed-config/commit/9a0805f6217a0c5f22db3a6a0d76539307b86e1f).
+- **deps:** update dependency debug to v4.3.3 ([#36](https://github.com/Nikaple/nest-typed-config/issues/36)) [`dc5b076`](https://github.com/Nikaple/nest-typed-config/commit/dc5b076fdf55a321964ccef08ff44d1e7122cef8).
 
   Co-authored-by: Renovate Bot <bot@renovateapp.com>
 
@@ -181,7 +329,7 @@ This project adheres to [Semantic Versioning](https://semver.org) and [Conventio
 
 ### 🐛 Fixes
 
-- **deps:** update dependency chalk to v4.1.2 ([#34](https://github.com/Nikaple/nest-typed-config/issues/34)) [`b8a5ccf`](https://github.com/Nikaple/nest-typed-config/commit/b8a5ccf5e287de3cbc41e60dbbde4c255f855acb).
+- **deps:** update dependency chalk to v4.1.2 ([#34](https://github.com/Nikaple/nest-typed-config/issues/34)) [`341c626`](https://github.com/Nikaple/nest-typed-config/commit/341c626851c8b6159f1c4d6331af5cefd11ffa54).
 
   Co-authored-by: Renovate Bot <bot@renovateapp.com>
 
@@ -189,79 +337,79 @@ This project adheres to [Semantic Versioning](https://semver.org) and [Conventio
 
 ### ✨ Features
 
-- update nestjs to v8, rxjs to v7 ([#24](https://github.com/Nikaple/nest-typed-config/issues/24)) [`c582819`](https://github.com/Nikaple/nest-typed-config/commit/c5828193743f41ddfefca00cda65f80a07d0a88b).
+- update nestjs to v8, rxjs to v7 ([#24](https://github.com/Nikaple/nest-typed-config/issues/24)) [`efea3f6`](https://github.com/Nikaple/nest-typed-config/commit/efea3f6278f8a4dc33dff6d005a1e61695442764).
 
 ### [2.1.1](https://github.com/Nikaple/nest-typed-config/compare/v2.1.0...v2.1.1) (2021-12-02)
 
 ### 📚 Documentations
 
-- update changelog file name [`ab615bb`](https://github.com/Nikaple/nest-typed-config/commit/ab615bb78c5f04ed0e62d010b558fa660451d1c1).
+- update changelog file name [`c3c63f6`](https://github.com/Nikaple/nest-typed-config/commit/c3c63f6e09780a933597f052e97822a369c9c6b4).
 
 ### [2.1.0](https://github.com/Nikaple/nest-typed-config/compare/v2.0.1...v2.1.0) (2021-11-04)
 
 ### ✨ Features
 
-- dotenv loader will assign env variables to process.env [`aee546f`](https://github.com/Nikaple/nest-typed-config/commit/aee546f8e69d786773ea05f67c42163a0c28acdf).
+- dotenv loader will assign env variables to process.env [`2e09bad`](https://github.com/Nikaple/nest-typed-config/commit/2e09bad858d9158b460f6298698f4c6b5d8739c2).
 
 ### 📚 Documentations
 
-- add docs for normalize option and getters [`77a7f81`](https://github.com/Nikaple/nest-typed-config/commit/77a7f8141acdabf3c6eaad590691fcb3a04d3319).
+- add docs for normalize option and getters [`a45f54d`](https://github.com/Nikaple/nest-typed-config/commit/a45f54df8ddc1b4706df40cfb9533be48bd59d66).
 
 ## [1.6.0](https://github.com/Nikaple/nest-typed-config/compare/1.5.0...1.6.0) (2021-09-02)
 
 ### ✨ Features
 
-- support include specific file for directory loader ([005cf47](https://github.com/Nikaple/nest-typed-config/commit/005cf475c08d13327799947251ba04810eced3d8))
+- support include specific file for directory loader ([c54b857](https://github.com/Nikaple/nest-typed-config/commit/c54b857fd3a8e1ac901e6d5a1a74103b7e0e7fd8))
 
 ## [1.5.0](https://github.com/Nikaple/nest-typed-config/compare/1.4.0...1.5.0) (2021-07-21)
 
 ### ✨ Features
 
-- support directory loader ([3915521](https://github.com/Nikaple/nest-typed-config/commit/39155212462da375fc7bfec59861686cad27ba96))
+- support directory loader ([1ae405b](https://github.com/Nikaple/nest-typed-config/commit/1ae405b095e96f40e0a714cac997af887439abd7))
 
 ## [1.4.0](https://github.com/Nikaple/nest-typed-config/compare/1.3.1...1.4.0) (2021-06-03)
 
 ### 🐛 Fixes
 
-- improve typing for forRootAsync ([6a96e36](https://github.com/Nikaple/nest-typed-config/commit/6a96e36ebddfc5d5c9f38bc073990945195c6c6f))
+- improve typing for forRootAsync ([add3b4b](https://github.com/Nikaple/nest-typed-config/commit/add3b4b974b63c4b29779cef754f9a5e6833dce3))
 
 ### ✨ Features
 
-- expose getConfigErrorMessage ([cdc2263](https://github.com/Nikaple/nest-typed-config/commit/cdc22635558d4f0c31b33d45024a590866298a9a))
+- expose getConfigErrorMessage ([631e550](https://github.com/Nikaple/nest-typed-config/commit/631e5500876cf08ec79526c5c8e8bc3894337db7))
 
 ### [1.3.1](https://github.com/Nikaple/nest-typed-config/compare/1.3.0...1.3.1) (2021-05-17)
 
 ### 🐛 Fixes
 
-- improve typing for forRoot and forRootAsync ([32acbbb](https://github.com/Nikaple/nest-typed-config/commit/32acbbb576d770a9ef99785c574020fa29b6fa2d))
+- improve typing for forRoot and forRootAsync ([46e15cb](https://github.com/Nikaple/nest-typed-config/commit/46e15cb3486bf16030f16334b7c3f8ccb308a9cf))
 
 ## [1.3.0](https://github.com/Nikaple/nest-typed-config/compare/1.2.0...1.3.0) (2021-05-10)
 
 ### ✨ Features
 
-- support using config in decorators with selectConfig ([09cdb95](https://github.com/Nikaple/nest-typed-config/commit/09cdb955aea2ec68c0609748b50ce66381c1414c))
+- support using config in decorators with selectConfig ([532e978](https://github.com/Nikaple/nest-typed-config/commit/532e9784984f6d0694d1aef6d7850023574db9b9))
 
 ## [1.2.0](https://github.com/Nikaple/nest-typed-config/compare/1.1.0...1.2.0) (2021-05-09)
 
 ### ✨ Features
 
-- support multiple loaders, support custom basename for file-loader ([f111754](https://github.com/Nikaple/nest-typed-config/commit/f111754c469475525d565fe478c67b2ca20baa6f))
+- support multiple loaders, support custom basename for file-loader ([0d72673](https://github.com/Nikaple/nest-typed-config/commit/0d726732bb631a31aabdfe4ce1700aa32cb34bae))
 
 ## [1.1.0](https://github.com/Nikaple/nest-typed-config/compare/1.0.3...1.1.0) (2021-05-08)
 
 ### ✨ Features
 
-- **remote-loader:** support retry when failed to fetch config ([e22463a](https://github.com/Nikaple/nest-typed-config/commit/e22463a160d0b0ba926c7466609fc10ad470bdce))
+- **remote-loader:** support retry when failed to fetch config ([a327775](https://github.com/Nikaple/nest-typed-config/commit/a327775ad1f7832f81804b67280e0c369d824f93))
 
 ## [1.0.3](https://github.com/Nikaple/nest-typed-config/compare/1.0.2...1.0.3) (2021-05-07)
 
 ### 🐛 Fixes
 
-- isGlobal works properly now ([3dd2154](https://github.com/Nikaple/nest-typed-config/commit/3dd2154d2a93e96bad79894d3dfa9fcf77e6e6bd))
+- isGlobal works properly now ([01fc48a](https://github.com/Nikaple/nest-typed-config/commit/01fc48a9def304995b209a48e3f2a88e9c2a09a2))
 
 ## [1.0.2](https://github.com/Nikaple/nest-typed-config/compare/1.0.2...1.0.3) (2021-05-07)
 
 ### 🐛 Fixes
 
-- **file-loader:** fix absolutePath option not working on windows ([f45bd04](https://github.com/Nikaple/nest-typed-config/commit/f45bd0454614c2695f14c14adfea0cae578282ac))
-- **file-loader:** remove dead code ([ffb36c5](https://github.com/Nikaple/nest-typed-config/commit/ffb36c5b7b5c6b6d932ce7ef0546033bb7e0d118))
+- **file-loader:** fix absolutePath option not working on windows ([27ba20a](https://github.com/Nikaple/nest-typed-config/commit/27ba20acd585debd45217f51fb292ba209c94251))
+- **file-loader:** remove dead code ([97572fb](https://github.com/Nikaple/nest-typed-config/commit/97572fbf0d8d5a2e31c71217243d3f33aff2a61a))

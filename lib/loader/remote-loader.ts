@@ -46,10 +46,16 @@ export const remoteLoader = <T = any>(
   url: string,
   options: RemoteLoaderOptions = {},
 ): (() => Promise<T>) => {
-  const HttpService = loadPackage('@nestjs/axios', 'remoteLoader', () =>
-    require('@nestjs/axios'),
+  const HttpService = loadPackage<Awaited<typeof import('@nestjs/axios')>>(
+    '@nestjs/axios',
+    'remoteLoader',
+    () => require('@nestjs/axios'),
   ).HttpService;
-  const axios = loadPackage('axios', 'remoteLoader', () => require('axios'));
+  const axios = loadPackage<Awaited<typeof import('axios')['default']>>(
+    'axios',
+    'remoteLoader',
+    () => require('axios'),
+  );
 
   return async (): Promise<T> => {
     const {
@@ -108,7 +114,7 @@ export const remoteLoader = <T = any>(
         return parseJson(content);
       },
       yaml: (content: string) => {
-        const parseYaml = loadPackage(
+        const parseYaml = loadPackage<Awaited<typeof import('yaml')>>(
           'yaml',
           "remoteLoader's ability to parse YAML files",
           () => require('yaml'),
@@ -116,7 +122,7 @@ export const remoteLoader = <T = any>(
         return parseYaml(content);
       },
       yml: (content: string) => {
-        const parseYaml = loadPackage(
+        const parseYaml = loadPackage<Awaited<typeof import('yaml')>>(
           'yaml',
           "remoteLoader's ability to parse YML files",
           () => require('yaml'),
@@ -124,7 +130,7 @@ export const remoteLoader = <T = any>(
         return parseYaml(content);
       },
       toml: (content: string) => {
-        const parseToml = loadPackage(
+        const parseToml = loadPackage<Awaited<typeof import('@iarna/toml')>>(
           '@iarna/toml',
           "remoteLoader's ability to parse TOML files",
           () => require('@iarna/toml'),

@@ -1,6 +1,6 @@
 {
   "name": "nest-typed-config",
-  "version": "2.10.1",
+  "version": "2.3.0",
   "description": "Intuitive, type-safe configuration module for Nest framework",
   "author": "Nikaple Zhou",
   "license": "MIT",
@@ -82,7 +82,7 @@
     "husky": "8.0.3",
     "jest": "29.7.0",
     "lint-staged": "14.0.1",
-    "parse-json": "7.1.0",
+    "parse-json": "8.3.0",
     "prettier": "2.8.8",
     "reflect-metadata": "0.1.13",
     "rimraf": "5.0.1",
