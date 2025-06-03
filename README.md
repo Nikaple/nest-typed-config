@@ -488,6 +488,74 @@ TypedConfigModule.forRoot({
 });
 ```
 
+## Handling Environment Variable Key and Value Transforms (Best Practice)
+
+When using multiple loaders (such as local YAML files for development and environment variables for production), it is common to need to map environment variables like `DATABASE__USER_NAME` to camelCase config properties like `userName`. Here is the recommended approach:
+
+1. **Use `keyTransformer` to unify key style**
+
+The `keyTransformer` option of `dotenvLoader` allows you to automatically convert environment variable names to camelCase. For example:
+
+```ts
+TypedConfigModule.forRoot({
+  schema: RootConfig,
+  load: [
+    fileLoader(),
+    dotenvLoader({
+      separator: '__',
+      keyTransformer: (key) =>
+        key
+          .toLowerCase()
+          .replace(/(?<!_)_([a-z])/g, (_, p1) => p1.toUpperCase()),
+    }),
+  ],
+});
+```
+
+With this, `DATABASE__USER_NAME=testuser` will be correctly mapped to the `userName` property.
+
+2. **Use `@Type` decorator to ensure value type conversion**
+
+Since environment variables are always loaded as strings, it is recommended to use the `@Type` decorator on config class properties to ensure correct type conversion:
+
+```ts
+import { IsNumber, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+
+export class DatabaseConfig {
+  @IsNumber()
+  @Type(() => Number)
+  public readonly port!: number;
+
+  @IsString()
+  public readonly userName!: string;
+}
+```
+
+3. **Full example with multiple loaders**
+
+```ts
+TypedConfigModule.forRoot({
+  schema: RootConfig,
+  load: [
+    fileLoader(), // Local config for development
+    dotenvLoader({
+      separator: '__',
+      keyTransformer: (key) =>
+        key
+          .toLowerCase()
+          .replace(/(?<!_)_([a-z])/g, (_, p1) => p1.toUpperCase()),
+    }), // Environment variables for production
+  ],
+});
+```
+
+> **Tip:**
+> - Adjust the `keyTransformer` function to match your naming conventions as needed.
+> - It is recommended to document this usage in your codebase for team clarity and maintainability.
+
+---
+
 ### Using custom loader
 
 If native loaders provided by `nest-typed-config` can't meet your needs, you can implement a custom loader. This can be achieved by providing a function which returns the configuration object synchronously or asynchronously through the `load` option. For example:
